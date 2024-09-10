@@ -7,7 +7,8 @@ using namespace std;
 class bankAccountType
 {
 	public:
-		bankAccountType(string n = "", int acctNumber = 0, double bal = 0);
+		//security - added password to constructor
+		bankAccountType(string n = "", int acctNumber = 0, double bal = 0, string pass = "");
 		int getAccountNumber();
 		double getBalance();
 		string getName();
@@ -17,10 +18,14 @@ class bankAccountType
 		virtual void createMonthlyStatement() = 0;
 		virtual void print();
 
+		bool checkPassword(string pass); //security
+
 	protected:
 		int accountNumber;
 		string name;
 		double balance;
+
+		string password; //security
 };
 
 #endif
