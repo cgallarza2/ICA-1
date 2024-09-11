@@ -20,7 +20,7 @@ bankAccountType::bankAccountType(string n, int acctNumber, double bal, string pa
 //security
 bool bankAccountType::checkPassword(string pass) { return (password == pass); }
 string bankAccountType::getUsername() { return username; }
-string bankAccountType::setUsername(string user) { username = user;}
+void bankAccountType::setUsername(string user) { username = user;}
 
 int bankAccountType::getAccountNumber()
 {

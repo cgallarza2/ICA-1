@@ -20,14 +20,14 @@ int main()
 {
     vector<bankAccountType *> accountsList;
 
-    accountsList.push_back(new savingsAccountType("Bill", 10200, 2500));
-    accountsList.push_back(new highInterestSavingsType("Susan", 10210, 2000));
+    accountsList.push_back(new savingsAccountType("Bill", 10200, 2500, "password", "username"));
+    accountsList.push_back(new highInterestSavingsType("Susan", 10210, 2000, "password", "username"));
     accountsList.push_back(new noServiceChargeCheckingType("John", 20100, 
-                                                    3500));
-    accountsList.push_back(new serviceChargeCheckingType("Ravi", 30100, 1800));
+                                                    3500, "password", "username"));
+    accountsList.push_back(new serviceChargeCheckingType("Ravi", 30100, 1800, "password", "username"));
     accountsList.push_back(new highInterestCheckingType("Sheila", 20200, 
-                                                 6000));
-    accountsList.push_back(new certificateOfDepositType("Hamid", 51001, 18000,
+                                                 6000, "password", "username"));
+    accountsList.push_back(new certificateOfDepositType("Hamid", 51001, 18000, "password", "username",
                                                 0.075, 18));
 
     cout << "January:\n-------------" << endl;

@@ -22,7 +22,7 @@ highInterestCheckingType::highInterestCheckingType(string n, int acctNumber,
 highInterestCheckingType::highInterestCheckingType(string n, int acctNumber,
 																	double bal, string pass, string user, double minBal, 
 																	double intRate)
-							   : noServiceChargeCheckingType(n, acctNumber, bal, 
+							   : noServiceChargeCheckingType(n, acctNumber, bal, pass, user,
 																	minBal, intRate)
 {
 }

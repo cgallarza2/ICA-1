@@ -22,9 +22,9 @@ serviceChargeCheckingType::serviceChargeCheckingType(string n, int acctNumber,
 }
 
 serviceChargeCheckingType::serviceChargeCheckingType(string n, int acctNumber, 
-																		double bal,
+																		double bal, string pass, string user,
 																		double servChargeAmount,
-																		double servChargeCheck, string pass, string user)
+																		double servChargeCheck)
 								 : checkingAccountType(n, acctNumber, bal, pass, user)
 {
 	serviceChargeAccount = servChargeAmount;

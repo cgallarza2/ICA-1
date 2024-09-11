@@ -10,8 +10,8 @@ class certificateOfDepositType: public bankAccountType
 {
 public:
 	certificateOfDepositType(string n, int acctNumber, double bal, string pass, string user);
-	certificateOfDepositType(string n, int acctNumber, double bal,
-								double intRate, int maturityMon, string pass, string user);
+	certificateOfDepositType(string n, int acctNumber, double bal, string pass, string user,
+								double intRate, int maturityMon);
 
 	double getInterestRate();
 

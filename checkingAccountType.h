@@ -11,7 +11,7 @@ using namespace std;
 class checkingAccountType: public bankAccountType
 {
 	public:
-		checkingAccountType(string n, int acctNumber, double bal);
+		checkingAccountType(string n, int acctNumber, double bal, string pass, string user);
 
 		virtual void writeCheck(double amount) = 0;
 };

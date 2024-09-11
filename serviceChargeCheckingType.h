@@ -11,9 +11,9 @@ class serviceChargeCheckingType: public checkingAccountType
 {
 	public:
 		serviceChargeCheckingType(string n, int acctNumber, double bal, string pass, string user);
-		serviceChargeCheckingType(string n, int acctNumber, double bal,
+		serviceChargeCheckingType(string n, int acctNumber, double bal, string pass, string user,
 											double servChargeAmount,
-											double servChargeCheck, string pass, string user);
+											double servChargeCheck);
 
 		double getServiceChargeAccount();
 		void setServiceChargeAccount(double amount);

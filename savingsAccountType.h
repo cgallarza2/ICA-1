@@ -11,7 +11,7 @@ class savingsAccountType: public bankAccountType
 public:
 	savingsAccountType(string n, int acctNumber, double bal, string pass, string user);
 
-	savingsAccountType(string n, int acctNumber, double bal, double intRate, string pass, string user);
+	savingsAccountType(string n, int acctNumber, double bal, string pass, string user, double intRate);
 
 	double getInterestRate();
 	void setInterestRate(double rate);

@@ -19,8 +19,8 @@ certificateOfDepositType::certificateOfDepositType(string n, int acctNumber, dou
 	cdMonth = 0;
 }
 
-certificateOfDepositType::certificateOfDepositType(string n, int acctNumber, double bal, double intRate,
-														 int maturityMon, string pass, string user)
+certificateOfDepositType::certificateOfDepositType(string n, int acctNumber, double bal, string pass, string user, double intRate,
+														 int maturityMon)
 							    : bankAccountType(n, acctNumber, bal, pass, user)
 {
 	interestRate = intRate;

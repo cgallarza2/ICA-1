@@ -15,8 +15,8 @@ savingsAccountType::savingsAccountType( string n, int acctNumber, double bal, st
 interestRate = INTEREST_RATE;
 }
 
-savingsAccountType::savingsAccountType(string n, int acctNumber, double bal, double intRate, string pass, string user)
-					: bankAccountType(n, acctNumber, bal, string pass, string user)
+savingsAccountType::savingsAccountType(string n, int acctNumber, double bal, string pass, string user, double intRate)
+					: bankAccountType(n, acctNumber, bal, pass, user)
 {
 	setInterestRate(intRate);
 }

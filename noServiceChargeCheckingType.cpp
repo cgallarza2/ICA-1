@@ -20,7 +20,7 @@ noServiceChargeCheckingType::noServiceChargeCheckingType(string n,
 }
 
 noServiceChargeCheckingType::noServiceChargeCheckingType(string n,
-										int acctNumber, double bal, string pass, string user
+										int acctNumber, double bal, string pass, string user,
 										double minBalance, double intRate)
 									: checkingAccountType(n, acctNumber, bal, pass, user)
 {
