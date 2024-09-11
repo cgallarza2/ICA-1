@@ -1,12 +1,12 @@
 CFLAGS = -Wall -Werror -Wpedantic -std=c++20 -O0 -g
 CC = g++
 
-OBJECTS = main.o bankAccountType.o savingsAccountType.o highInterestSavingsType.o certificateOfDepositType.o serviceChargeCheckingType.o checkingAccountType.o noServiceChargeCheckingType.o highInterestCheckingType.o
+OBJECTS = main.o bankAccountType.o savingsAccountType.o highInterestSavingsType.o certificateOfDepositType.o serviceChargeCheckingType.o checkingAccountType.o noServiceChargeCheckingType.o highInterestCheckingType.o clearScreen.o printMainMenu.o printCheckingAccount.o printSavingsAccount.o printCertificateOfDeposit.o
 
 run-tests: $(OBJECTS)
 	$(CC) $(CFLAGS) -o $@ $^
 
-main.o: main.cpp bankAccountType.o savingsAccountType.o highInterestSavingsType.o certificateOfDepositType.o
+main.o: main.cpp bankAccountType.o savingsAccountType.o highInterestSavingsType.o certificateOfDepositType.o printMainMenu.o
 
 highInterestSavingsType.o: highInterestSavingsType.cpp highInterestSavingsType.h bankAccountType.o  savingsAccountType.o
 
@@ -23,6 +23,16 @@ highInterestCheckingType.o: highInterestCheckingType.cpp highInterestCheckingTyp
 noServiceChargeCheckingType.o: noServiceChargeCheckingType.cpp noServiceChargeCheckingType.h checkingAccountType.o
 
 checkingAccountType.o: checkingAccountType.cpp checkingAccountType.h bankAccountType.o
+
+clearScreen.o: clearScreen.cpp userInterfaceFunctions.h
+
+printMainMenu.o: printMainMenu.cpp userInterfaceFunctions.h
+
+printCheckingAccount.o: printCheckingAccount.cpp userInterfaceFunctions.h
+
+printSavingsAccount.o: printSavingsAccount.cpp userInterfaceFunctions.h
+
+printCertificateOfDeposit.o: printCertificateOfDeposit.cpp userInterfaceFunctions.h
 
 clean:
 	rm -f run-tests *.o *~

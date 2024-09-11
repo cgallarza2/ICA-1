@@ -13,11 +13,15 @@
 #include "highInterestCheckingType.h"
 #include "certificateOfDepositType.h"
 #include "checkingAccountType.h"
+#include "userInterfaceFunctions.h"
 
 using namespace std;
   
+extern const int SCREEN_WIDTH = 100;
+
 int main()
 {
+	 printMainMenu();
     vector<bankAccountType *> accountsList;
 
     accountsList.push_back(new savingsAccountType("Bill", 10200, 2500, "password", "username"));
