@@ -7,7 +7,7 @@
 
 using namespace std;
 
-checkingAccountType::checkingAccountType(string n, int acctNumber, double bal)
-						  : bankAccountType(n, acctNumber, bal)
+checkingAccountType::checkingAccountType(string n, int acctNumber, double bal, string pass, string user)
+						  : bankAccountType(n, acctNumber, bal, string pass, string user)
 {
 }

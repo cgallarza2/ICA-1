@@ -12,17 +12,17 @@ const double noServiceChargeCheckingType::MIN_BALANCE = 1000.00;
 const double noServiceChargeCheckingType::INTEREST_RATE = 0.02;
 
 noServiceChargeCheckingType::noServiceChargeCheckingType(string n, 
-										int acctNumber, double bal)
-									: checkingAccountType(n, acctNumber, bal)
+										int acctNumber, double bal, string pass, string user)
+									: checkingAccountType(n, acctNumber, bal, pass, user)
 {
 	minimumBalance = MIN_BALANCE;
 	interestRate = INTEREST_RATE;
 }
 
 noServiceChargeCheckingType::noServiceChargeCheckingType(string n,
-										int acctNumber, double bal,
+										int acctNumber, double bal, string pass, string user
 										double minBalance, double intRate)
-									: checkingAccountType(n, acctNumber, bal)
+									: checkingAccountType(n, acctNumber, bal, pass, user)
 {
 	minimumBalance = minBalance;
 	interestRate = intRate;

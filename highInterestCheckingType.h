@@ -8,8 +8,8 @@ using namespace std;
 class highInterestCheckingType: public noServiceChargeCheckingType
 {
 	public:
-		highInterestCheckingType(string n, int acctNumber, double bal);
-		highInterestCheckingType(string n, int acctNumber, double bal,
+		highInterestCheckingType(string n, int acctNumber, double bal, string pass, string user);
+		highInterestCheckingType(string n, int acctNumber, double bal, string pass, string user,
 										double minBal, double intRate);
 		double getInterestRate();
 		void setInterestRate(double intRate);
