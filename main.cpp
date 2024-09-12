@@ -21,7 +21,36 @@ extern const int SCREEN_WIDTH = 100;
 
 int main()
 {
-	 printMainMenu();
+	 char mainChoice;
+	 clearScreen();
+
+	 do {
+		 printMainMenu();
+
+		 cin >> mainChoice;
+		 cin.ignore(10000, '\n');
+
+		 switch (mainChoice) {
+			 case '1':
+				 printCheckingAccount();
+				 break;
+			 case '2':
+				 printSavingsAccount();
+				 break;
+			 case '3':
+				 printCertificateOfDeposit();
+				 break;
+			 case '4':
+				 cout << "Exiting..." << endl;
+				 break;
+			 default:
+				 clearScreen();
+				 cout << "*** " << mainChoice << " *** is Invalid" << endl;
+				 cout << "Please enter a valid choice (1-4)." << endl;
+				 break;
+		 }
+	 } while (mainChoice != '4');
+
     vector<bankAccountType *> accountsList;
 
     accountsList.push_back(new savingsAccountType("Bill", 10200, 2500, "password", "username"));
