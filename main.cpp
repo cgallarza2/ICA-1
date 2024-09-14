@@ -100,7 +100,7 @@ int main()
 			cout << "Enter the interest rate:";
 			cin >> interestRate;
 			accountsList.push_back(new highInterestSavingsType(name, acctNumber, balance, password,
-																				username, interestRate, 2500));
+			username, interestRate, 2500));
 			break;
 		}
 		case 3: {
@@ -110,7 +110,7 @@ int main()
 			cout << "Enter the interest rate:";
 			cin >> intRate;
 			accountsList.push_back(new noServiceChargeCheckingType(name, acctNumber, balance, password,
-																					username, minBalance, intRate));
+			username, minBalance, intRate));
 			break;
 		}
 		case 4: {
@@ -120,7 +120,7 @@ int main()
 			cout << "Enter the service charge per check:";
 			cin >> serviceChargeCheck;
 			accountsList.push_back(new serviceChargeCheckingType(name, acctNumber, balance, password, username,
-																		serviceChargeAccount, serviceChargeCheck));
+			serviceChargeAccount, serviceChargeCheck));
 			break;
 		}
 		case 5: {
@@ -130,7 +130,7 @@ int main()
 			cout << "Enter the interest rate:";
 			cin >> intRate;
 			accountsList.push_back(new highInterestCheckingType(name, acctNumber, balance, password,
-																				username, minBalance, intRate));
+			username, minBalance, intRate));
 			break;
 		}
 		case 6: {
@@ -141,7 +141,7 @@ int main()
 			cout << "Enter the maturity months:";
 			cin >> maturityMonths;
 			accountsList.push_bank(new certificateOfDepositType(name, acctNumber, balance, password, username,
-																				interestRate, maturityMonths));
+			interestRate, maturityMonths));
 			break;
 		}
 		default:
