@@ -140,7 +140,7 @@ int main()
 			cin >> interestRate;
 			cout << "Enter the maturity months:";
 			cin >> maturityMonths;
-			accountsList.push_bank(new certificateOfDepositType(name, acctNumber, balance, password, username,
+			accountsList.push_back(new certificateOfDepositType(name, acctNumber, balance, password, username,
 			interestRate, maturityMonths));
 			break;
 		}
