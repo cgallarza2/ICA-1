@@ -4,6 +4,7 @@
 #include <iostream>
 #include <iomanip>
 #include <vector>
+#include <fstream>
  
 #include "bankAccountType.h"
 #include "savingsAccountType.h"
@@ -22,12 +23,13 @@ extern const int SCREEN_WIDTH = 100;
 
 int main()
 {
-	 char mainChoice;
-	 clearScreen();
-
 	 string username;
 	 string password;
 	 bool loggedIn;
+
+	 char mainChoice;
+
+	 clearScreen();
 
 	 while (!loggedIn) {
 	 	cout << "Please input your username!" << endl;
@@ -39,6 +41,8 @@ int main()
 			loggedIn = true;
 	   }
 	 }
+
+
 
 	 do {
 		 printMainMenu();
@@ -69,6 +73,7 @@ int main()
 
     vector<bankAccountType *> accountsList;
 
+	 accountsList = populateAccounts(accountsList, username + ".txt");
     accountsList.push_back(new savingsAccountType("Bill", 10200, 2500, "password", "username"));
     accountsList.push_back(new highInterestSavingsType("Susan", 10210, 2000, "password", "username"));
     accountsList.push_back(new noServiceChargeCheckingType("John", 20100, 

@@ -1,1 +1,0 @@
-Bill,10200,2575.00,password,username
