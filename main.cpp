@@ -14,6 +14,7 @@
 #include "certificateOfDepositType.h"
 #include "checkingAccountType.h"
 #include "userInterfaceFunctions.h"
+#include "fileManagementFunctions.h"
 
 using namespace std;
   
@@ -23,6 +24,21 @@ int main()
 {
 	 char mainChoice;
 	 clearScreen();
+
+	 string username;
+	 string password;
+	 bool loggedIn;
+
+	 while (!loggedIn) {
+	 	cout << "Please input your username!" << endl;
+	 	cin >> username;
+	 	cout << "Please input your password!" << endl;
+	 	cin >> password;
+
+	   if (attemptLogIn(username, password)) {
+			loggedIn = true;
+	   }
+	 }
 
 	 do {
 		 printMainMenu();
@@ -74,7 +90,7 @@ int main()
 	cin >> accountType;
 	cin.ignore (999, '\n');
 
-	string name, username, password;
+	string name;
 	int acctNumber;
 	double balance;
 
@@ -85,10 +101,6 @@ int main()
 	cout << "Enter the account balance:";
 	cin >> balance;
 	cin.ignore();
-	cout << "Enter the account username:";
-	getline(cin, username);
-	cout << "Enter the account password:";
-	getline(cin, password);
 
 	switch (accountType) {
 		case 1: {
