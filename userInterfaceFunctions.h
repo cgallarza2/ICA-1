@@ -9,6 +9,7 @@ using namespace std;
 
 extern const int SCREEN_WIDTH; // = 100;
 
+void printWelcomeMenu();
 void printMainMenu();
 void printCheckingAccount();
 void printSavingsAccount();
