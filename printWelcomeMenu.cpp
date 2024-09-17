@@ -15,11 +15,11 @@ void printWelcomeMenu (){
 
 		cout << string(SCREEN_WIDTH, '*') << endl;
 		cout << left;
-		cout << setw(39) << setw(60) << "Bank Managment System" << "*" << endl;
+		cout << setw(39) << "*" << setw(60) << "Bank Managment System" << "*" << endl;
 		cout << setw(42) << "*" << setw(57) << "Welcome Menu" << "*" << endl;
 		cout << setw(SCREEN_WIDTH - 1) << "*" << "*" << endl;
-		cout << setw(6) << "1. Login" << endl;
-		cout << setw(6) << "2. Create New User" << endl;
+		cout << setw(11) << "*" << setw(88) << "1. Login" << "*" << endl;
+		cout << setw(11) << "*" << setw(88) << "2. Create New User" << "*" << endl;
 		cout << setw(SCREEN_WIDTH - 1) << "*" << "*" << endl;
 		cout << right;
 		cout << "*" << string(SCREEN_WIDTH, '*') << endl << endl;
