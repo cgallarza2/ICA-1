@@ -25,10 +25,10 @@ int main()
 {
 	 string username;
 	 string password;
-	 bool loggedIn;
+//	 bool loggedIn;
 
 	 char mainChoice;
-
+/*
 	 clearScreen();
 
 	 while (!loggedIn) {
@@ -42,8 +42,9 @@ int main()
 	   }
 	 }
 
-
-
+*/
+	//int welcomeChoice;
+	printWelcomeMenu();
 	 do {
 		 printMainMenu();
 
