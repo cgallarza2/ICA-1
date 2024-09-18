@@ -17,7 +17,9 @@
 using namespace std;
 
 bool attemptLogIn(string username, string password);
-vector<bankAccountType*> populateAccounts(vector<bankAccountType*> accountVector, string txtFile);
+void addAccount(string username, string password);
+vector<bankAccountType*> populateAccounts(vector<bankAccountType*> accountVector);
+
 
 #endif
 

@@ -32,7 +32,6 @@ bool attemptLogIn(string username, string password) {
 				return true;
 			}
 		}
-
 		userList.close();
 		cout << "Please try again!" << endl;
 		return false;
@@ -41,7 +40,18 @@ bool attemptLogIn(string username, string password) {
 	return false;
 }
 
+void addAccount(string username, string password) {
+	ofstream userList;
+	string user;
+	string pass;
 
+	userList.open("userList.txt", ios::app);
+	if (userList.is_open()){
+		userList << endl << username << " " << password << endl;
+
+		userList.close();
+	}
+}
 
 vector<bankAccountType*> populateAccounts(vector<bankAccountType*> accountVector, string txtFile) {
 

@@ -11,6 +11,7 @@
 #include "highInterestCheckingType.h"
 #include "certificateOfDepositType.h"
 #include "checkingAccountType.h"
+#include "fileManagementFunctions.h"
 
 
 using namespace std;
@@ -31,6 +32,9 @@ void printCreateNewUser()
 	getline(cin, username);
 	cout << "Please create a safe password: ";
 	getline(cin, password);
+
+	addAccount(username, password);
+
 	cout << "Enter the account number: ";
 	cin >> acctNumber;
 	cout << "Enter the account balance: ";
