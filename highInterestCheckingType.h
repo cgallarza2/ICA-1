@@ -18,6 +18,8 @@ class highInterestCheckingType: public noServiceChargeCheckingType
 		void createMonthlyStatement();
 		virtual void print();
 
+		int getAccountType() const override;
+
 	protected:
 		int type;
 
