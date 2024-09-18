@@ -8,7 +8,7 @@ class bankAccountType
 {
 	public:
 		//security - added password and username to constructor
-		bankAccountType(string n = "", int acctNumber = 0, double bal = 0, string pass = "", string user = "");
+		bankAccountType(string n, int acctNumber, double bal, string pass, string user);
 		int getAccountNumber();
 		double getBalance();
 		string getName();

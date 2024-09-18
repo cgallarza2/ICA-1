@@ -31,9 +31,11 @@ void printSavingsAccount() {
 		switch (savingsChoice) {
 			case '1':
 				cout << "Basic Savings will be here";
+				printAccountFunctions();
 				break;
 			case '2':
 				cout << "High Interest Savings will be here";
+				printAccountFunctions();
 				break;
 			case '3':
 				cout << "Returning to main menu.";
@@ -41,7 +43,7 @@ void printSavingsAccount() {
 			default:
 				clearScreen();
 				cout << "*** " << savingsChoice << " is an Invalid Response***" << endl;
-				cout << "Please enter a response 1-3." << endl;
+				cout << "Please enter a response 1-3: " << endl;
 		}
 	} while (savingsChoice != '3');
 

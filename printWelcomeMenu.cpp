@@ -22,7 +22,7 @@ void printWelcomeMenu (){
 		cout << setw(11) << "*" << setw(88) << "2. Create New User" << "*" << endl;
 		cout << setw(SCREEN_WIDTH - 1) << "*" << "*" << endl;
 		cout << right;
-		cout << "*" << string(SCREEN_WIDTH, '*') << endl << endl;
+		cout << string(SCREEN_WIDTH, '*') << endl << endl;
 
 		cout << "Enter your choice: ";
 		cin >> welcomeChoice;
@@ -41,18 +41,17 @@ void printWelcomeMenu (){
 
 				if (attemptLogIn(username, password)) {
 					loggedIn = true;
-				}else {
-					cout << "No user account" << endl;
+					return;
 				}
 			}
 			break;
 		case '2':
-			cout << "Create new user here";
-			//should go to main menu that we have already
-			break;
+			printCreateNewUser();
+			return;
 		default:
 			clearScreen();
 			cout << "Please enter valid input" << endl;
+			break;
 		}
 
 	} while(welcomeChoice != '2');
