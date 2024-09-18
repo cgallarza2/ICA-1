@@ -43,7 +43,7 @@ void printCheckingAccount() {
 				printAccountFunctions();
 				break;
 			case '3':
-				cout << "Service Charge Chekcing will be here";
+				cout << "Service Charge Checking will be here";
 				printAccountFunctions();
 				break;
 			case '4':
