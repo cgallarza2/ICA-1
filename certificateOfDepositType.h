@@ -13,13 +13,13 @@ public:
 	certificateOfDepositType(string n, int acctNumber, double bal,
 								double intRate, int maturityMon);
 
-	double getInterestRate();
+	virtual double getInterestRate();
 
-	int getType();
+	virtual int getType();
 	void setInterestRate(double rate);
 	double getCurrentCDMonth();
 	void setCurrentCDMonth(int month);
-	double getMaturityMonths();
+	virtual int getMaturityMonths();
 	void setMaturityMonths(int month);
 	void postInterest();
 	void withdraw(double amount);
@@ -27,6 +27,7 @@ public:
 	void createMonthlyStatement();
 
 	void print();
+
 
 private:
 	static const double INTEREST_RATE; // = 0.05;

@@ -7,7 +7,7 @@ using namespace std;
 class bankAccountType
 {
 	public:
-		//security - added password and username to constructor
+
 		bankAccountType(string n, int acctNumber, double bal);
 		int getAccountNumber();
 		double getBalance();
@@ -17,6 +17,9 @@ class bankAccountType
 		void deposit (double amount);
 		virtual void createMonthlyStatement() = 0;
 		virtual void print();
+		virtual int getType();
+		virtual double getInterestRate();
+		virtual int getMaturityMonths();
 
 	protected:
 		int accountNumber;

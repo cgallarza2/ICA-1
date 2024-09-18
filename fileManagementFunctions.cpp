@@ -36,9 +36,11 @@ bool attemptLogIn(string username, string password) {
 		cout << "Please try again!" << endl;
 		return false;
 	}
-	
+
 	return false;
 }
+
+
 
 void addAccount(string username, string password) {
 	ofstream userList;
@@ -53,6 +55,8 @@ void addAccount(string username, string password) {
 	}
 }
 
+
+
 vector<bankAccountType*> populateAccounts(vector<bankAccountType*> accountVector, string txtFile) {
 
 	ifstream accounts;
@@ -60,29 +64,129 @@ vector<bankAccountType*> populateAccounts(vector<bankAccountType*> accountVector
 	string name;
 	int acctNumber;
 	double balance;
+	double intRate;
+	int maturityMon;
 
 	accounts.open(txtFile);
 	if (accounts.is_open()){
 		while (!accounts.eof()) {
 			accounts >> type;
-			if (type == 0) {
+			if (type == -9999) {
 				accounts.close();
 				return accountVector;
 			}
+
 			accounts >> name;
 			accounts >> acctNumber;
 			accounts >> balance;
+
+			if (type == 6) {
+			accounts >> intRate;
+			accounts >> maturityMon;
+			}
 
 			switch (type) {
 				case 1: {
 					accountVector.push_back(new savingsAccountType(name, acctNumber, balance));
 					break;
 				}
+				case 2: {
+					accountVector.push_back(new highInterestSavingsType(name, acctNumber, balance));
+					break;
+				}
+				case 3: {
+					accountVector.push_back(new noServiceChargeCheckingType(name, acctNumber, balance));
+					break;
+				}
+				case 4: {
+					accountVector.push_back(new serviceChargeCheckingType(name, acctNumber, balance));
+					break;
+				}
+				case 5: {
+					accountVector.push_back(new highInterestCheckingType(name, acctNumber, balance));
+					break;
+				}
+				case 6: {
+					accountVector.push_back(new certificateOfDepositType(name, acctNumber, balance, intRate, maturityMon));
+					break;
+				}
 				default:
-					cout << "Error!" << endl;
+					cout << "Error while attempting to push an account!" << endl;
 					break;
 			}
 		}
+
+		accounts.close();
+	}
+	return accountVector;
+}
+
+
+
+vector<bankAccountType*> createAccount(vector<bankAccountType*> accountVector, string txtFile, int a_type, string a_name, int a_acctNumber, double a_balance, double a_intRate = 0, int a_maturityMon = 0) {
+
+	ofstream accounts;
+	int type = a_type;
+	string name = a_name;
+	int acctNumber = a_acctNumber;
+	double balance = a_balance;
+	double intRate = a_intRate;
+	int maturityMon = a_maturityMon;
+
+	accounts.open(txtFile);
+	if (accounts.is_open()){
+
+		if (type == -9999) {
+			accounts.close();
+			return accountVector;
+		}
+
+		switch (type) {
+			case 1: {
+				accountVector.push_back(new savingsAccountType(name, acctNumber, balance));
+				break;
+			}
+			case 2: {
+				accountVector.push_back(new highInterestSavingsType(name, acctNumber, balance));
+				break;
+			}
+			case 3: {
+				accountVector.push_back(new noServiceChargeCheckingType(name, acctNumber, balance));
+				break;
+			}
+			case 4: {
+				accountVector.push_back(new serviceChargeCheckingType(name, acctNumber, balance));
+				break;
+			}
+			case 5: {
+				accountVector.push_back(new highInterestCheckingType(name, acctNumber, balance));
+				break;
+			}
+			case 6: {
+				accountVector.push_back(new certificateOfDepositType(name, acctNumber, balance, intRate, maturityMon));
+				break;
+			}
+			default:
+				cout << "Error while attempting to push an account!" << endl;
+				break;
+		}
+
+		for (int i = 0; i < accountVector.size(); i++) {
+			accounts << accountVector[i]->getType() << endl;
+			accounts << accountVector[i]->getName() << endl;
+			accounts << accountVector[i]->getAccountNumber() << endl;
+			accounts << accountVector[i]->getBalance() << endl;
+
+			if (accountVector[i]->getType() == 6) {
+				accounts << accountVector[i]->getInterestRate() << endl;
+				accounts << accountVector[i]->getMaturityMonths() << endl;
+			}
+
+			accounts << endl;
+		}
+
+
+		accounts << "-9999";
 
 		accounts.close();
 	}

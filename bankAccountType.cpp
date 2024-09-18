@@ -30,6 +30,21 @@ string bankAccountType::getName()
 	return name;
 }
 
+int bankAccountType::getType()
+{
+return 0;
+}
+
+double bankAccountType::getInterestRate()
+{
+return 0;
+}
+
+int bankAccountType::getMaturityMonths()
+{
+return 0;
+}
+
 void bankAccountType::setName(string n)
 {
 	name = n;

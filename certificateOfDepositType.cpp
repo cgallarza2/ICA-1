@@ -28,6 +28,7 @@ certificateOfDepositType::certificateOfDepositType(string n, int acctNumber, dou
 	interestRate = intRate;
 	maturityMonths = maturityMon;
 	cdMonth = 0;
+	type = TYPE;
 }
 
 double certificateOfDepositType::getInterestRate()
@@ -50,7 +51,7 @@ void certificateOfDepositType::setCurrentCDMonth(int month)
 	cdMonth = month;
 }
 
-double certificateOfDepositType::getMaturityMonths()
+int certificateOfDepositType::getMaturityMonths()
 {
 	return maturityMonths;
 }
