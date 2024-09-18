@@ -10,8 +10,8 @@ using namespace std;
 class serviceChargeCheckingType: public checkingAccountType
 {
 	public:
-		serviceChargeCheckingType(string n, int acctNumber, double bal, string pass, string user);
-		serviceChargeCheckingType(string n, int acctNumber, double bal, string pass, string user,
+		serviceChargeCheckingType(string n, int acctNumber, double bal);
+		serviceChargeCheckingType(string n, int acctNumber, double bal,
 											double servChargeAmount,
 											double servChargeCheck);
 

@@ -22,18 +22,16 @@ void printCreateNewUser()
 	int acctNumber, accountType;
 	double balance;
 
-
 	clearScreen();
 
 	cout << "Welcome to Bank Account Creation!" << endl << endl;
-	cout << "Please enter your name: ";
-	getline(cin, name);
 	cout << "Please create a username you would like to use: ";
 	getline(cin, username);
 	cout << "Please create a safe password: ";
 	getline(cin, password);
 
 	addAccount(username, password);
+
 
 	cout << "Enter the account number: ";
 	cin >> acctNumber;

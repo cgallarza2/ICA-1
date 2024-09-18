@@ -11,17 +11,17 @@ using namespace std;
 const double certificateOfDepositType::INTEREST_RATE = 0.05;
 const int certificateOfDepositType::NUMBER_OF_MATURITY_MONTHS = 6;
 
-certificateOfDepositType::certificateOfDepositType(string n, int acctNumber, double bal, string pass, string user)
-							: bankAccountType(n, acctNumber, bal, pass, user)
+certificateOfDepositType::certificateOfDepositType(string n, int acctNumber, double bal)
+							: bankAccountType(n, acctNumber, bal)
 {
 	interestRate = INTEREST_RATE;
 	maturityMonths = 0;
 	cdMonth = 0;
 }
 
-certificateOfDepositType::certificateOfDepositType(string n, int acctNumber, double bal, string pass, string user, double intRate,
+certificateOfDepositType::certificateOfDepositType(string n, int acctNumber, double bal, double intRate,
 														 int maturityMon)
-							    : bankAccountType(n, acctNumber, bal, pass, user)
+							    : bankAccountType(n, acctNumber, bal)
 {
 	interestRate = intRate;
 	maturityMonths = maturityMon;

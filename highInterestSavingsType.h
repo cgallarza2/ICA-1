@@ -8,8 +8,8 @@ using namespace std;
 class highInterestSavingsType: public savingsAccountType
 {
 public:
-	highInterestSavingsType(string n, int acctNumber, double bal, string pass, string user);
-	highInterestSavingsType(string n, int acctN, double balance, string pass, string user,
+	highInterestSavingsType(string n, int acctNumber, double bal);
+	highInterestSavingsType(string n, int acctN, double balance,
 							  double intRate, double minBalance);
 	double getMinimumBalance();
 	bool verifyMinimumBalance(double amount);

@@ -9,8 +9,8 @@ using namespace std;
 class certificateOfDepositType: public bankAccountType
 {
 public:
-	certificateOfDepositType(string n, int acctNumber, double bal, string pass, string user);
-	certificateOfDepositType(string n, int acctNumber, double bal, string pass, string user,
+	certificateOfDepositType(string n, int acctNumber, double bal);
+	certificateOfDepositType(string n, int acctNumber, double bal,
 								double intRate, int maturityMon);
 
 	double getInterestRate();

@@ -7,20 +7,13 @@
 
 using namespace std;
 //security - added password to constructor
-bankAccountType::bankAccountType(string n, int acctNumber, double bal, string pass, string user)
+bankAccountType::bankAccountType(string n, int acctNumber, double bal)
 {
 	name = n;
 	accountNumber = acctNumber;
 	balance = bal;
-
-	password = pass; //security
-	username = user;
 }
 
-//security
-bool bankAccountType::checkPassword(string pass) { return (password == pass); }
-string bankAccountType::getUsername() { return username; }
-void bankAccountType::setUsername(string user) { username = user;}
 
 int bankAccountType::getAccountNumber()
 {

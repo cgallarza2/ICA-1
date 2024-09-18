@@ -60,8 +60,6 @@ vector<bankAccountType*> populateAccounts(vector<bankAccountType*> accountVector
 	string name;
 	int acctNumber;
 	double balance;
-	string password;
-	string username;
 
 	accounts.open(txtFile);
 	if (accounts.is_open()){
@@ -74,12 +72,10 @@ vector<bankAccountType*> populateAccounts(vector<bankAccountType*> accountVector
 			accounts >> name;
 			accounts >> acctNumber;
 			accounts >> balance;
-			accounts >> password;
-			accounts >> username;
 
 			switch (type) {
 				case 1: {
-					accountVector.push_back(new savingsAccountType(name, acctNumber, balance, password, username));
+					accountVector.push_back(new savingsAccountType(name, acctNumber, balance));
 					break;
 				}
 				default:

@@ -8,7 +8,7 @@ class bankAccountType
 {
 	public:
 		//security - added password and username to constructor
-		bankAccountType(string n, int acctNumber, double bal, string pass, string user);
+		bankAccountType(string n, int acctNumber, double bal);
 		int getAccountNumber();
 		double getBalance();
 		string getName();
@@ -17,10 +17,6 @@ class bankAccountType
 		void deposit (double amount);
 		virtual void createMonthlyStatement() = 0;
 		virtual void print();
-
-		bool checkPassword(string pass); //security
-		string getUsername();
-		void setUsername(string user);
 
 	protected:
 		int accountNumber;

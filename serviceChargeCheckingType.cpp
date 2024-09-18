@@ -13,8 +13,8 @@ const int serviceChargeCheckingType::MAXIMUM_NUM_OF_CHECKS = 5;
 const double serviceChargeCheckingType::SERVICE_CHARGE_EXCESS_NUM_OF_CHECKS = 5;
 
 serviceChargeCheckingType::serviceChargeCheckingType(string n, int acctNumber,
-																		double bal, string pass, string user)
-								 :	 checkingAccountType(n, acctNumber, bal, pass, user)
+																		double bal)
+								 :	 checkingAccountType(n, acctNumber, bal)
 {
 	serviceChargeAccount = ACCOUNT_SERVICE_CHARGE;
 	numberOfChecksWritten = 0;
@@ -22,10 +22,10 @@ serviceChargeCheckingType::serviceChargeCheckingType(string n, int acctNumber,
 }
 
 serviceChargeCheckingType::serviceChargeCheckingType(string n, int acctNumber, 
-																		double bal, string pass, string user,
+																		double bal,
 																		double servChargeAmount,
 																		double servChargeCheck)
-								 : checkingAccountType(n, acctNumber, bal, pass, user)
+								 : checkingAccountType(n, acctNumber, bal)
 {
 	serviceChargeAccount = servChargeAmount;
 	serviceChargeCheck = servChargeCheck;
