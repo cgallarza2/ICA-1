@@ -9,12 +9,14 @@ using namespace std;
 
 const double highInterestSavingsType::MINIMUM_BALANCE = 2500.00;
 const double highInterestSavingsType::INTEREST_RATE = 0.05;
+const int highInterestSavingsType::TYPE = 2;
 
 highInterestSavingsType::highInterestSavingsType(string n, int acctNumber, 
 														double bal)
 						  : savingsAccountType(n, acctNumber, bal, INTEREST_RATE)
 {
 	minimumBalance = MINIMUM_BALANCE;
+	type = TYPE;
 }
 
 highInterestSavingsType::highInterestSavingsType(string n, int acctN, double balance, double intRate,
@@ -27,6 +29,11 @@ highInterestSavingsType::highInterestSavingsType(string n, int acctN, double bal
 double highInterestSavingsType::getMinimumBalance()
 {
 	return minimumBalance;
+}
+
+int highInterestSavingsType::getType()
+{
+	return type;
 }
 
 bool highInterestSavingsType::verifyMinimumBalance(double amount)

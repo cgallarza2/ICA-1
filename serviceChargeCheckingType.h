@@ -15,6 +15,7 @@ class serviceChargeCheckingType: public checkingAccountType
 											double servChargeAmount,
 											double servChargeCheck);
 
+		int getType();
 		double getServiceChargeAccount();
 		void setServiceChargeAccount(double amount);
 		double getServiceChargeChecks();
@@ -30,11 +31,13 @@ class serviceChargeCheckingType: public checkingAccountType
 		double serviceChargeAccount;
 		double serviceChargeCheck;
 		int numberOfChecksWritten;
+		int type;
 
 	private:
 		static const double ACCOUNT_SERVICE_CHARGE; // = 10.00;
 		static const int MAXIMUM_NUM_OF_CHECKS; // = 5;
 		static const double SERVICE_CHARGE_EXCESS_NUM_OF_CHECKS; // = 5;
+		static const int TYPE;
 };
 
 #endif

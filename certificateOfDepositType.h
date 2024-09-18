@@ -15,6 +15,7 @@ public:
 
 	double getInterestRate();
 
+	int getType();
 	void setInterestRate(double rate);
 	double getCurrentCDMonth();
 	void setCurrentCDMonth(int month);
@@ -30,9 +31,11 @@ public:
 private:
 	static const double INTEREST_RATE; // = 0.05;
 	static const int NUMBER_OF_MATURITY_MONTHS; // = 6;
+	static const int TYPE;
 
 	double interestRate;
 	int maturityMonths;
+	int type;
 
 	int cdMonth;
 };

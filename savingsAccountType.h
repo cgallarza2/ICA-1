@@ -13,6 +13,7 @@ public:
 
 	savingsAccountType(string n, int acctNumber, double bal, double intRate);
 
+	int getType();
 	double getInterestRate();
 	void setInterestRate(double rate);
 	void postInterest();
@@ -21,9 +22,11 @@ public:
 
 protected:
 	double interestRate;
+	int type;
 
 private:
 	static const double INTEREST_RATE; // = 0.03
+	static const int TYPE;
 };
 
 #endif

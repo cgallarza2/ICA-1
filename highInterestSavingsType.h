@@ -11,6 +11,7 @@ public:
 	highInterestSavingsType(string n, int acctNumber, double bal);
 	highInterestSavingsType(string n, int acctN, double balance,
 							  double intRate, double minBalance);
+	int getType();
 	double getMinimumBalance();
 	bool verifyMinimumBalance(double amount);
 	virtual void withdraw(double amount);
@@ -18,10 +19,12 @@ public:
 
 protected:
 	double minimumBalance;
+	int type;
 
 private:
 	static const double MINIMUM_BALANCE; // = 2500.00
 	static const double INTEREST_RATE; // = 0.05;
+	static const int TYPE;
 };
 
 #endif

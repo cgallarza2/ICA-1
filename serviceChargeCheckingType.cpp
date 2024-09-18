@@ -11,6 +11,7 @@ using namespace std;
 const double serviceChargeCheckingType::ACCOUNT_SERVICE_CHARGE = 10.00;
 const int serviceChargeCheckingType::MAXIMUM_NUM_OF_CHECKS = 5;
 const double serviceChargeCheckingType::SERVICE_CHARGE_EXCESS_NUM_OF_CHECKS = 5;
+const int serviceChargeCheckingType::TYPE = 4;
 
 serviceChargeCheckingType::serviceChargeCheckingType(string n, int acctNumber,
 																		double bal)
@@ -19,6 +20,7 @@ serviceChargeCheckingType::serviceChargeCheckingType(string n, int acctNumber,
 	serviceChargeAccount = ACCOUNT_SERVICE_CHARGE;
 	numberOfChecksWritten = 0;
 	serviceChargeCheck = 0;
+	type = TYPE;
 }
 
 serviceChargeCheckingType::serviceChargeCheckingType(string n, int acctNumber, 
@@ -60,6 +62,11 @@ int serviceChargeCheckingType::getNumberOfChecksWritten()
 void serviceChargeCheckingType::setNumberOfChecksWritten(int num)
 {
 	numberOfChecksWritten = num;
+}
+
+int serviceChargeCheckingType::getType()
+{
+	return type;
 }
 
 void serviceChargeCheckingType::postServiceCharge()

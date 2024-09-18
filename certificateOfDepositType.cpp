@@ -10,6 +10,7 @@ using namespace std;
 
 const double certificateOfDepositType::INTEREST_RATE = 0.05;
 const int certificateOfDepositType::NUMBER_OF_MATURITY_MONTHS = 6;
+const int certificateOfDepositType::TYPE = 6;
 
 certificateOfDepositType::certificateOfDepositType(string n, int acctNumber, double bal)
 							: bankAccountType(n, acctNumber, bal)
@@ -17,6 +18,7 @@ certificateOfDepositType::certificateOfDepositType(string n, int acctNumber, dou
 	interestRate = INTEREST_RATE;
 	maturityMonths = 0;
 	cdMonth = 0;
+	type = TYPE;
 }
 
 certificateOfDepositType::certificateOfDepositType(string n, int acctNumber, double bal, double intRate,
@@ -56,6 +58,11 @@ double certificateOfDepositType::getMaturityMonths()
 void certificateOfDepositType::setMaturityMonths(int month)
 {
 	maturityMonths = month;
+}
+
+int certificateOfDepositType::getType()
+{
+	return type;
 }
 
 void certificateOfDepositType::postInterest()
