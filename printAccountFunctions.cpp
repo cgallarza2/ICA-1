@@ -6,7 +6,7 @@
 using namespace std;
 
 
-void printAccountFunctions() {
+void printAccountFunctions(vector<bankAccountType*>& accountVector) {
 	char functionChoice;
 
 	do {
@@ -36,6 +36,7 @@ void printAccountFunctions() {
 				break;
 			case '2':
 				cout << "Depositing money will occur here";
+				accountVector = printDeposit(accountVector);
 				break;
 			case '3':
 				cout << "Withdrawing money will occur here";

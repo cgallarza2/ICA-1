@@ -26,6 +26,7 @@ class serviceChargeCheckingType: public checkingAccountType
 		void writeCheck(double amount);
 		virtual void createMonthlyStatement();
 		virtual void print();
+		int getAccountType() override;
 
 	protected: 
 		double serviceChargeAccount;

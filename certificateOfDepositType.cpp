@@ -61,6 +61,10 @@ void certificateOfDepositType::setMaturityMonths(int month)
 	maturityMonths = month;
 }
 
+int certificateOfDepositType::getAccountType() {
+	return 6;
+}
+
 int certificateOfDepositType::getType()
 {
 	return type;

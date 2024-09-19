@@ -21,7 +21,8 @@ class bankAccountType
 		virtual double getInterestRate();
 		virtual int getMaturityMonths();
 
-		//virtual void getAccountType() = 0;
+		virtual int getAccountType() = 0;
+
 	protected:
 		int accountNumber;
 		string name;

@@ -7,6 +7,7 @@ using namespace std;
 
 
 void printCheckingAccount() {
+	vector<bankAccountType*> accountVector;
 	char checkingChoice;
 
 	do {
@@ -36,19 +37,19 @@ void printCheckingAccount() {
 				// Each of these cases we check the txt files for their type of bank account selection
 				// If they don't have one, we say "sorry no account on file"
 				// If they do have one, we have to find the txt file with matching name and bank account type, then pass in that txt file to printAccountFunctions.
-				printAccountFunctions();
+				printAccountFunctions(accountVector);
 				break;
 			case '2':
 				cout << "High Interest Checking will be here";
-				printAccountFunctions();
+				printAccountFunctions(accountVector);
 				break;
 			case '3':
 				cout << "Service Charge Checking will be here";
-				printAccountFunctions();
+				printAccountFunctions(accountVector);
 				break;
 			case '4':
 				cout << "No Service Charge Checking will be here";
-				printAccountFunctions();
+				printAccountFunctions(accountVector);
 				break;
 			case '5':
 				cout << "Returning to main menu." << endl;

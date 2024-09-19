@@ -35,6 +35,10 @@ double noServiceChargeCheckingType::getMinimumBalance()
 	return minimumBalance;
 }
 
+int noServiceChargeCheckingType::getAccountType() {
+	return 3;
+}
+
 int noServiceChargeCheckingType::getType()
 {
 	return type;

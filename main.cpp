@@ -37,7 +37,7 @@ int main()
 {
 	 //string username;
 	 //string password;
-
+	 vector<bankAccountType*> accountVector;
 	 char mainChoice;
 
 	 vector<bankAccountType *> accountsList;
@@ -64,7 +64,7 @@ int main()
 				 printSavingsAccount();
 				 break;
 			 case '3':
-				 printAccountFunctions();
+				 printAccountFunctions(accountVector);
 				 break;
 			 case '4':
 				 cout << "Exiting... " << endl;

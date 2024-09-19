@@ -36,8 +36,9 @@ void printWelcomeMenu();
 void printMainMenu();
 void printCheckingAccount();
 void printSavingsAccount();
-void printAccountFunctions();
+void printAccountFunctions(vector<bankAccountType*>& accountVector);
 void printCreateNewUser();
 void clearScreen();
+vector<bankAccountType *> printDeposit(vector<bankAccountType*>& accountVector);
 
 #endif

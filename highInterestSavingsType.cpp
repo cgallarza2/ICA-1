@@ -31,6 +31,10 @@ double highInterestSavingsType::getMinimumBalance()
 	return minimumBalance;
 }
 
+int highInterestSavingsType::getAccountType() {
+	return 5;
+}
+
 int highInterestSavingsType::getType()
 {
 	return type;

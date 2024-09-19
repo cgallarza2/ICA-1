@@ -39,6 +39,10 @@ void highInterestCheckingType::setInterestRate(double intRate)
 	interestRate = intRate;
 }
 
+int highInterestCheckingType::getAccountType() {
+	return 1;
+}
+
 int highInterestCheckingType::getType()
 {
 	return type;

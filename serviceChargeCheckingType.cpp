@@ -1,4 +1,4 @@
-
+\
 //Implementation file
 
 #include <iostream>
@@ -62,6 +62,10 @@ int serviceChargeCheckingType::getNumberOfChecksWritten()
 void serviceChargeCheckingType::setNumberOfChecksWritten(int num)
 {
 	numberOfChecksWritten = num;
+}
+
+int serviceChargeCheckingType::getAccountType() {
+	return 2;
 }
 
 int serviceChargeCheckingType::getType()
