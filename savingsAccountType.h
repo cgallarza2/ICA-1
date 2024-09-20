@@ -13,7 +13,6 @@ public:
 
 	savingsAccountType(string n, int acctNumber, double bal, double intRate);
 
-	int getAccountType() override;
 	int getType();
 	double getInterestRate();
 	void setInterestRate(double rate);

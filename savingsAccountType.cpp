@@ -28,10 +28,6 @@ double savingsAccountType::getInterestRate()
 	return interestRate;
 }
 
-int savingsAccountType::getAccountType() {
-	return 4;
-}
-
 int savingsAccountType::getType()
 {
 	return type;

@@ -11,8 +11,6 @@ public:
 	highInterestSavingsType(string n, int acctNumber, double bal);
 	highInterestSavingsType(string n, int acctN, double balance,
 							  double intRate, double minBalance);
-
-	int getAccountType() override;
 	int getType();
 	double getMinimumBalance();
 	bool verifyMinimumBalance(double amount);

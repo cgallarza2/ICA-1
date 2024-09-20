@@ -6,7 +6,7 @@
 #include "bankAccountType.h"
 
 using namespace std;
-
+//security - added password to constructor
 bankAccountType::bankAccountType(string n, int acctNumber, double bal)
 {
 	name = n;
@@ -28,10 +28,6 @@ double bankAccountType::getBalance()
 string bankAccountType::getName()
 {
 	return name;
-}
-
-int bankAccountType::getAccountType(){
- return 0;
 }
 
 int bankAccountType::getType()

@@ -15,7 +15,6 @@ public:
 
 	virtual double getInterestRate();
 
-	int getAccountType() override;
 	virtual int getType();
 	void setInterestRate(double rate);
 	double getCurrentCDMonth();

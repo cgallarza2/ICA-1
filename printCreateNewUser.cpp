@@ -27,16 +27,18 @@ void printCreateNewUser()
 	cout << "Welcome to Bank Account Creation!" << endl << endl;
 	cout << "Please create a username you would like to use: ";
 	getline(cin, username);
-	cout << "Please create a safe password: ";
+	cout << "Please create a safe password: "; //add hashing later
 	getline(cin, password);
 
-	addAccount(username, password);
+	addAccount(username, password); //to userList
 
-
+	cout << "Enter your name: ";
+	cin >> name;
 	cout << "Enter the account number: ";
 	cin >> acctNumber;
 	cout << "Enter the account balance: ";
-	cout << balance;
+	//cout << balance;
+	cin >> balance;
 
 	clearScreen();
 	cout << "The various bank account types we have to offer!" << endl;
@@ -53,33 +55,48 @@ void printCreateNewUser()
 
 	//vector<bankAcocuntType *> accountsList;
 	//accountsList = populateAccounts(accountList, username + ".txt");
-
-	switch (accountType) {
-		case 1:
-		//	accountsList.push_back(new bankAccountType(name, acctNumber, balance, password, username));
-			break;
-		case 2:
-		//	accountsList.push_back(new highInterestCheckingType(name, acctNumber, balance, password, username));
-			break;
-		case 3:
-		//	accountsList.push_back(new serviceChargeCheckingType(name, acctNumber, balance, password, username));
-			break;
-		case 4:
-		//	accountsList.push_back(new noServiceChargeCheckingType(name, acctNumber, balance, password, username));
-			break;
-		case 5:
-		//	accountsList.push_back(new savingsAccountType(name, acctNumber, balance, password, username));
-			break;
-		case 6:
-		//	accountsList.push_back(new highInterestSavingsType(name, acctNumber, balance, password, username));
-			break;
-		case 7:
-		//	accountsList.push_back(new certificateOfDepositType(name, acctNumber, balance, password, username));
-			break;
-		default:
-			cout << "*** " << accountType << " is an invalid selection***" << endl;
-			break;
+	
+	string filename = username + "_account.txt"; //username_account.txt
+	ofstream accountFile(filename, ios::app);
+	if (accountFile.is_open()){
+		accountFile << accountType << endl; //first
+		accountFile << name << endl;
+		accountFile << acctNumber << endl;
+		accountFile << balance << endl;
+		accountFile << password << endl;
+		accountFile << username << endl; //last
+		accountFile.close();
+		cout << "Account Created" << endl;
+	}else{
+		cout << "Unable to make account" << endl;
 	}
+
+	//switch (accountType) {
+	//	case 1:
+		//	accountsList.push_back(new bankAccountType(name, acctNumber, balance, password, username));
+	//		break;
+	//	case 2:
+		//	accountsList.push_back(new highInterestCheckingType(name, acctNumber, balance, password, username));
+	//		break;
+	//	case 3:
+		//	accountsList.push_back(new serviceChargeCheckingType(name, acctNumber, balance, password, username));
+	//		break;
+	//	case 4:
+		//	accountsList.push_back(new noServiceChargeCheckingType(name, acctNumber, balance, password, username));
+	//		break;
+	//	case 5:
+		//	accountsList.push_back(new savingsAccountType(name, acctNumber, balance, password, username));
+	//		break;
+	//	case 6:
+		//	accountsList.push_back(new highInterestSavingsType(name, acctNumber, balance, password, username));
+	//		break;
+	//	case 7:
+		//	accountsList.push_back(new certificateOfDepositType(name, acctNumber, balance, password, username));
+	//		break;
+	//	default:
+	//		cout << "*** " << accountType << " is an invalid selection***" << endl;
+	//		break;
+	//}
 
 	return;
 }
