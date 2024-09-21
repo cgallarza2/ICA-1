@@ -9,10 +9,13 @@ using namespace std;
 
 void printAccountFunctions() {
 	char functionChoice;
-
+	bool firstTimeInScreen = true;
 
 	do {
-		clearScreen();
+		if (firstTimeInScreen) {
+			clearScreen();
+			firstTimeInScreen = false;
+		}
 
 		cout << string(SCREEN_WIDTH, '=') << endl;
 		cout << left;
@@ -28,7 +31,7 @@ void printAccountFunctions() {
 		cout << right;
 		cout << string(SCREEN_WIDTH, '=') << endl << endl;
 
-		cout << "Enter your choice:";
+		cout << "Enter your choice: ";
 		cin >> functionChoice;
 		cin.ignore(10000, '\n');
 

@@ -232,7 +232,7 @@ void printAccountInfo(string username, string password){
 			//accountFile.close();
 		}
 		accountFile.close();
-		}else {
-			cout << "User " << username << "does not have an account." << endl;
+		} else {
+			cout << "User " << username << " does not have an account." << endl;
 	}
 }
