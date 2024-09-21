@@ -1,4 +1,5 @@
 #include "userInterfaceFunctions.h"
+#include "fileManagementFunctions.h" //print info
 #include <iostream>
 #include <iomanip>
 #include <string>
@@ -8,6 +9,7 @@ using namespace std;
 
 void printAccountFunctions() {
 	char functionChoice;
+
 
 	do {
 		clearScreen();
@@ -32,7 +34,15 @@ void printAccountFunctions() {
 
 		switch (functionChoice) {
 			case '1':
-				cout << "printing";
+				//cout << "printing";
+				{
+					string username, password;
+					cout << "Enter your username: ";
+					getline(cin, username);
+					cout << "Enter your password: ";
+					getline(cin, password);
+					printAccountInfo(username, password);
+				}
 				break;
 			case '2':
 				cout << "Depositing money will occur here";

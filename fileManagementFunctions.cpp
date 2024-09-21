@@ -192,3 +192,47 @@ vector<bankAccountType*> createAccount(vector<bankAccountType*> accountVector, s
 	}
 	return accountVector;
 }
+
+
+//Account Options Functions
+//print account info
+void printAccountInfo(string username, string password){
+	ifstream accountFile;
+	string filename = username + "_account.txt";
+	//ifstream accountFile(filename);
+	accountFile.open(filename);
+
+	if (accountFile.is_open()) {
+		int type, acctNumber;
+		string name, password, uname;
+		double balance;
+
+		cout << endl << "Account Information for " << username << ":" << endl;
+		cout << "******************************" << endl;
+
+		while (accountFile >> type >> name >> acctNumber >> balance >> password >> uname) {
+			cout << "Account Type: ";
+			switch (type) {
+				case 1: cout << "Basic Checking" << endl; break;
+				case 2: cout << "High Interest Checking" << endl; break;
+				case 3: cout << "Service Charge Checking" << endl; break;
+				case 4: cout << "No Service Charge Checking" << endl; break;
+				case 5: cout << "Basic Savings" << endl; break;
+				case 6: cout << "High Interest Savings" << endl; break;
+				case 7: cout << "Certificate of Deposit" << endl; break;
+				default: cout << "Not found" << endl; break;
+			}
+
+			cout << "Name: " << name << endl;
+			cout << "Account Number: " << acctNumber << endl;
+			cout << "Balance: $" << balance << endl;
+			cout << "Username: " << uname << endl;
+			cout << "Password: " << password << endl; //add hashing later
+			cout << "*****************************" << endl;
+			//accountFile.close();
+		}
+		accountFile.close();
+		}else {
+			cout << "User " << username << "does not have an account." << endl;
+	}
+}
