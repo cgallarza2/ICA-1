@@ -35,11 +35,14 @@ void printAccountFunctions() {
 		cin >> functionChoice;
 		cin.ignore(10000, '\n');
 
+		string username;
+		
 		switch (functionChoice) {
 			case '1':
 				//cout << "printing";
 				{
-					string username, password;
+					//string username, password;
+					string password;
 					cout << "Enter your username: ";
 					getline(cin, username);
 					cout << "Enter your password: ";
@@ -48,7 +51,18 @@ void printAccountFunctions() {
 				}
 				break;
 			case '2':
-				cout << "Depositing money will occur here";
+				int accountType;
+				double amount;
+				
+				printDeposit();
+				
+				cout << "Enter username: ";
+				cin >> username;
+				cout << "Enter account type (1-7): ";
+				cin >> accountType;
+				cout << "Enter deposit amount: ";
+				cin >> amount;
+				depositToAccount(username, accountType, amount);
 				break;
 			case '3':
 				cout << "Withdrawing money will occur here";
