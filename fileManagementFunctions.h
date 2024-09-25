@@ -20,8 +20,10 @@ using namespace std;
 bool attemptLogIn(string username, string password);
 void addAccount(string username, string password);
 
+//Account File IO
 vector<bankAccountType*> populateAccounts(vector<bankAccountType*> accountVector, string txtFile);
-vector<bankAccountType*> createAccount(vector<bankAccountType*> accountVector, string txtFile, int a_type, string a_name, int a_acctNumber, double a_balance, double a_intRate, int a_maturityMon);
+vector<bankAccountType*> createAccount(vector<bankAccountType*> accountVector, string txtFile, int a_type, string a_name, int a_acctNumber, double a_balance, double a_intRate, int a_maturityMon, int sessionID);
+void updateUserAccounts (vector<bankAccountType*> accountVector, string txtFile, int sessionID);
 
 //account options functions
 void printAccountInfo(string username, string password);

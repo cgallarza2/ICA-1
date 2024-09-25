@@ -67,8 +67,12 @@ vector<bankAccountType*> populateAccounts(vector<bankAccountType*> accountVector
 	double intRate;
 	int maturityMon;
 
+	int sessionID;
+
 	accounts.open(txtFile);
 	if (accounts.is_open()){
+		accounts >> sessionID;
+
 		while (!accounts.eof()) {
 			accounts >> type;
 			if (type == -9999) {
@@ -123,7 +127,7 @@ vector<bankAccountType*> populateAccounts(vector<bankAccountType*> accountVector
 
 
 
-vector<bankAccountType*> createAccount(vector<bankAccountType*> accountVector, string txtFile, int a_type, string a_name, int a_acctNumber, double a_balance, double a_intRate = 0, int a_maturityMon = 0) {
+vector<bankAccountType*> createAccount(vector<bankAccountType*> accountVector, string txtFile, int a_type, string a_name, int a_acctNumber, double a_balance, double a_intRate = 0, int a_maturityMon = 0, int sessionID = 1212) {
 
 	ofstream accounts;
 	int type = a_type;
@@ -171,6 +175,20 @@ vector<bankAccountType*> createAccount(vector<bankAccountType*> accountVector, s
 				break;
 		}
 
+		updateUserAccounts(accountVector, txtFile, sessionID);
+	}
+	return accountVector;
+}
+
+
+
+void updateUserAccounts (vector<bankAccountType*> accountVector, string txtFile, int sessionID) {
+	ofstream accounts;
+
+	accounts.open(txtFile);
+	if (accounts.is_open()) {
+		accounts << sessionID << endl << endl;
+
 		for (int i = 0; i < accountVector.size(); i++) {
 			accounts << accountVector[i]->getType() << endl;
 			accounts << accountVector[i]->getName() << endl;
@@ -185,12 +203,10 @@ vector<bankAccountType*> createAccount(vector<bankAccountType*> accountVector, s
 			accounts << endl;
 		}
 
-
 		accounts << "-9999";
 
 		accounts.close();
 	}
-	return accountVector;
 }
 
 

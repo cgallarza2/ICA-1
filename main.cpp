@@ -39,15 +39,16 @@ int main()
 	 //string password;
 
 	 char mainChoice;
+	 int sessionID = 1212;
 
 	 vector<bankAccountType *> accountsList;
 	 string userr = "Tipi";
 
-	 accountsList = createAccount(accountsList, userr + ".txt", 1, "test1", 12392, 100.00, 0, 0);
-	 accountsList = createAccount(accountsList, userr + ".txt", 3, "test2", 12423, 200.00, 0, 0);
-	 accountsList = createAccount(accountsList, userr + ".txt", 4, "test4", 12567, 500.00, 0, 0);
-	 accountsList = createAccount(accountsList, userr + ".txt", 6, "test3", 62433, 300.00, .12, 2);
-	 accountsList = createAccount(accountsList, userr + ".txt", 5, "test5", 98058, 1000.00, 0, 0);
+	 accountsList = createAccount(accountsList, userr + ".txt", 1, "test1", 12392, 100.00, 0, 0, sessionID);
+	 accountsList = createAccount(accountsList, userr + ".txt", 3, "test2", 12423, 200.00, 0, 0, sessionID);
+	 accountsList = createAccount(accountsList, userr + ".txt", 4, "test4", 12567, 500.00, 0, 0, sessionID);
+	 accountsList = createAccount(accountsList, userr + ".txt", 6, "test3", 62433, 300.00, .12, 2, sessionID);
+	 accountsList = createAccount(accountsList, userr + ".txt", 5, "test5", 98058, 1000.00, 0, 0, sessionID);
 
 	 do {
 		 printWelcomeMenu();
