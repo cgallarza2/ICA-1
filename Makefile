@@ -1,8 +1,7 @@
 CFLAGS = -Wall -Werror -Wpedantic -std=c++20 -O0 -g
 CC = g++
 
-OBJECTS = main.o bankAccountType.o savingsAccountType.o highInterestSavingsType.o certificateOfDepositType.o serviceChargeCheckingType.o checkingAccountType.o noServiceChargeCheckingType.o highInterestCheckingType.o clearScreen.o printWelcomeMenu.o printMainMenu.o printCheckingAccount.o printSavingsAccount.o printAccountFunctions.o printCreateNewUser.o fileManagementFunctions.o printDeposit.o
-
+OBJECTS = main.o bankAccountType.o savingsAccountType.o highInterestSavingsType.o certificateOfDepositType.o serviceChargeCheckingType.o checkingAccountType.o noServiceChargeCheckingType.o highInterestCheckingType.o clearScreen.o printWelcomeMenu.o printMainMenu.o printCheckingAccount.o printSavingsAccount.o printAccountFunctions.o printCreateNewUser.o fileManagementFunctions.o printDeposit.o printWithdraw.o
 run-tests: $(OBJECTS)
 	$(CC) $(CFLAGS) -o $@ $^
 
@@ -41,6 +40,8 @@ printCreateNewUser.o: printCreateNewUser.cpp userInterfaceFunctions.h
 fileManagementFunctions.o: fileManagementFunctions.cpp fileManagementFunctions.h
 
 printDeposit.o: printDeposit.cpp fileManagementFunctions.h
+
+printWithdraw.o: printWithdraw.cpp fileManagementFunctions.h
 
 clean:
 	rm -f run-tests *.o *~

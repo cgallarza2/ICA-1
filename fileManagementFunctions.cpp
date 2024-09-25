@@ -199,7 +199,6 @@ vector<bankAccountType*> createAccount(vector<bankAccountType*> accountVector, s
 void printAccountInfo(string username, string password){
 	ifstream accountFile;
 	string filename = username + "_account.txt";
-	//ifstream accountFile(filename);
 	accountFile.open(filename);
 
 	if (accountFile.is_open()) {
@@ -229,7 +228,7 @@ void printAccountInfo(string username, string password){
 			cout << "Username: " << uname << endl;
 			cout << "Password: " << password << endl; //add hashing later
 			cout << "*****************************" << endl;
-			//accountFile.close();
+
 		}
 		accountFile.close();
 		} else {
@@ -256,9 +255,7 @@ void depositToAccount(string username, int accountType, double amount){
 			//check if account type is the one we want to deposit to
 			if (type == accountType){
 				balance += amount; //update the balance
-			} //else {
-				//cout << "User: " << username << " also has account type of: " << type << endl;
-			//}
+			} 
 			//update the file, to string 
 			updatedData += to_string(type) + " " + name + " " + to_string(acctNumber) + " " +
 							to_string(balance) + " " + password + " " + uname + "\n"; 
@@ -268,10 +265,49 @@ void depositToAccount(string username, int accountType, double amount){
 	//write updated data back into the user file
 	ofstream outputFile(filename);
 	if (outputFile.is_open()) {
-		outputFile << updatedData; //cout updated data to the outputfile
+		outputFile << updatedData; //updated data to the outputfile (single line)
 		outputFile.close();
-		cout << "Balance updated " << "New Balance: $" << balance << endl;
+		//cout << "Balance updated " << "New Balance: $" << fixed << setprecision(2) << balance << endl;
 	}else {
-		cout << "User: " << username << " does not have an account of type: " << type << endl;
+		cout << "\nUser: " << username << " does not have an account of type: " << type << endl;
+	}
+}
+
+//withdraw function
+void withdrawToAccount(string username, int accountType, double amount){
+	
+	ifstream accountFile;
+	string filename = username + "_account.txt";
+	accountFile.open(filename);
+	
+	if(!accountFile.is_open()) { cout << "user: " << username << " does not have account on file" << endl; return; }
+	
+	int type, acctNumber;
+	string name, uname, password;
+	double balance;
+	string updatedData; //store updated data
+	
+		//read all accounts and keep track of changes
+		while (accountFile >> type >> name >> acctNumber >> balance >> password >> uname){
+			//check if account type is the one we want to withdraw to
+			if (type == accountType && balance <= 0){
+				balance -= amount; //update the balance
+			} else {
+				cout << "\nWithdraw was not successful!! Balance must be more than 0" << endl; //loops all accounts rn
+			}
+			//update the file, to string 
+			updatedData += to_string(type) + " " + name + " " + to_string(acctNumber) + " " +
+							to_string(balance) + " " + password + " " + uname + "\n"; 
+		}
+	accountFile.close();
+	
+	//write updated data back into the user file
+	ofstream outputFile(filename);
+	if (outputFile.is_open()) {
+		outputFile << updatedData; //cout updated data to the outputfile (single file)
+		outputFile.close();
+		//cout << "Balance updated " << "New Balance: $" << fixed << setprecision(2) << balance << endl;
+	}else {
+		cout << "\nUser: " << username << " does not have an account of type: " << type << endl;
 	}
 }

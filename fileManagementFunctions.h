@@ -3,6 +3,7 @@
 
 #include <string>
 #include <iostream>
+#include <iomanip> // setprecision
 #include <fstream>
 #include <vector>
 #include "bankAccountType.h"
@@ -25,5 +26,6 @@ vector<bankAccountType*> createAccount(vector<bankAccountType*> accountVector, s
 //account options functions
 void printAccountInfo(string username, string password);
 void depositToAccount(string username, int accountType, double amount);
+void withdrawToAccount(string username, int accountType, double amount);
 
 #endif

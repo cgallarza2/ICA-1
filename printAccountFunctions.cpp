@@ -36,12 +36,12 @@ void printAccountFunctions() {
 		cin.ignore(10000, '\n');
 
 		string username;
+		int accountType;
+		double amount;
 		
 		switch (functionChoice) {
-			case '1':
-				//cout << "printing";
+			case '1': //print user data
 				{
-					//string username, password;
 					string password;
 					cout << "Enter your username: ";
 					getline(cin, username);
@@ -50,10 +50,7 @@ void printAccountFunctions() {
 					printAccountInfo(username, password);
 				}
 				break;
-			case '2':
-				int accountType;
-				double amount;
-				
+			case '2': //deposit
 				printDeposit();
 				
 				cout << "Enter username: ";
@@ -64,8 +61,16 @@ void printAccountFunctions() {
 				cin >> amount;
 				depositToAccount(username, accountType, amount);
 				break;
-			case '3':
-				cout << "Withdrawing money will occur here";
+			case '3': //withdraw
+				printWithdraw();
+				
+				cout << "Enter username: ";
+				cin >> username;
+				cout << "Enter account type (1-7): ";
+				cin >> accountType;
+				cout << "Enter withdraw amount: ";
+				cin >> amount;
+				withdrawToAccount(username, accountType, amount);
 				break;
 			case '4':
 				cout << "Creating a monthly statement will occur here";

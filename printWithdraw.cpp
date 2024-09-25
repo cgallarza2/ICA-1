@@ -1,6 +1,6 @@
 #include "userInterfaceFunctions.h"
 
-void printDeposit(){
+void printWithdraw(){
 
 	clearScreen();
 	cout << string(SCREEN_WIDTH, '*') << endl;

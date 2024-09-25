@@ -40,5 +40,6 @@ void printCreateNewUser();
 void clearScreen();
 //account options
 void printDeposit();
+void printWithdraw();
 
 #endif
