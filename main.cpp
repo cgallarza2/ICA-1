@@ -35,37 +35,37 @@ extern const double HIGHINTCHK_MIN_BAL = 5000.00;
 
 int main()
 {
-	 //string username;
-	 //string password;
 
-	 char mainChoice;
-	 int sessionID = 1212;
+	char mainChoice;
+	int sessionID = 1212;
 
-	 vector<bankAccountType *> accountsList;
-	 string userr = "Tipi";
+	//vector<bankAccountType *> accountsList;
+	vector<bankAccountType *> accountVector;
+	string txtFile = "Tipi.txt";
+	//string userr = "Steve";
 
-	 accountsList = createAccount(accountsList, userr + ".txt", 1, "test1", 12392, 100.00, 0, 0, sessionID);
-	 accountsList = createAccount(accountsList, userr + ".txt", 3, "test2", 12423, 200.00, 0, 0, sessionID);
-	 accountsList = createAccount(accountsList, userr + ".txt", 4, "test4", 12567, 500.00, 0, 0, sessionID);
-	 accountsList = createAccount(accountsList, userr + ".txt", 6, "test3", 62433, 300.00, .12, 2, sessionID);
-	 accountsList = createAccount(accountsList, userr + ".txt", 5, "test5", 98058, 1000.00, 0, 0, sessionID);
+	 //accountsList = createAccount(accountsList, userr + ".txt", 1, "test1", 12392, 100.00, 0, 0, sessionID);
+	 //accountsList = createAccount(accountsList, userr + ".txt", 3, "test2", 12423, 200.00, 0, 0, sessionID);
+	 //accountsList = createAccount(accountsList, userr + ".txt", 4, "test4", 12567, 500.00, 0, 0, sessionID);
+	 //accountsList = createAccount(accountsList, userr + ".txt", 6, "test3", 62433, 300.00, .12, 2, sessionID);
+	 //accountsList = createAccount(accountsList, userr + ".txt", 5, "test5", 98058, 1000.00, 0, 0, sessionID);
 
 	 do {
-		 printWelcomeMenu();
-		 printMainMenu();
-
-		 cin >> mainChoice;
-		 cin.ignore(10000, '\n');
+		populateAccounts(accountVector, txtFile);
+		printWelcomeMenu(accountsList);
+		printMainMenu();
+		cin >> mainChoice;
+		cin.ignore(10000, '\n');
 
 		 switch (mainChoice) {
 			 case '1':
-				 printCheckingAccount();
+				 printCheckingAccount(accountVector);
 				 break;
 			 case '2':
-				 printSavingsAccount();
+				 printSavingsAccount(accountVector);
 				 break;
 			 case '3':
-				 printAccountFunctions();
+				 printAccountFunctions(accountVector);
 				 break;
 			 case '4':
 				 cout << "Exiting... " << endl;
@@ -79,7 +79,8 @@ int main()
 	 } while (mainChoice != '4');
 
 
-	 //accountsList = populateAccounts(accountsList, username + ".txt");
+	//string username, password;
+	//accountsList = populateAccounts(accountsList, username + ".txt");
     //accountsList.push_back(new savingsAccountType("Bill", 10200, 2500, "password", "username"));
     //accountsList.push_back(new highInterestSavingsType("Susan", 10210, 2000, "password", "username"));
     //accountsList.push_back(new noServiceChargeCheckingType("John", 20100, 

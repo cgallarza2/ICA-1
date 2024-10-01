@@ -4,7 +4,7 @@
 #include <iomanip>
 #include <string>
 
-void printWelcomeMenu (){
+void printWelcomeMenu (vector<bankAccountType *> accountVector){
 	char welcomeChoice;
 	string username;
 	string password;
@@ -16,7 +16,7 @@ void printWelcomeMenu (){
 		cout << string(SCREEN_WIDTH, '*') << endl;
 		cout << left;
 		cout << setw(39) << "*" << setw(60) << "Bank Managment System" << "*" << endl;
-		cout << setw(42) << "*" << setw(57) << "Welcome Menu" << "*" << endl;
+		cout << setw(42) << "*" << setw(57) << "Login Menu" << "*" << endl;
 		cout << setw(SCREEN_WIDTH - 1) << "*" << "*" << endl;
 		cout << setw(11) << "*" << setw(88) << "1. Login" << "*" << endl;
 		cout << setw(11) << "*" << setw(88) << "2. Create New User" << "*" << endl;
@@ -30,13 +30,12 @@ void printWelcomeMenu (){
 
 		switch(welcomeChoice) {
 		case '1':
-			cout << "Login here";
 			clearScreen();
 
 			while (!loggedIn) {
-				cout << "Enter username:" << endl;
+				cout << "Enter username:";
 				cin >> username;
-				cout << "Enter password:" << endl;
+				cout << "Enter password:";
 				cin >> password;
 
 				if (attemptLogIn(username, password)) {
@@ -46,7 +45,7 @@ void printWelcomeMenu (){
 			}
 			break;
 		case '2':
-			printCreateNewUser();
+			printCreateNewUser(accountVector);
 			return;
 		default:
 			clearScreen();

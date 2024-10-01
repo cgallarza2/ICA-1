@@ -6,7 +6,7 @@
 using namespace std;
 
 
-void printSavingsAccount() {
+void printSavingsAccount(vector<bankAccountType *> accountVector) {
 	char savingsChoice;
 
 	do {
@@ -31,11 +31,11 @@ void printSavingsAccount() {
 		switch (savingsChoice) {
 			case '1':
 				cout << "Basic Savings will be here";
-				printAccountFunctions();
+				printAccountFunctions(accountVector);
 				break;
 			case '2':
 				cout << "High Interest Savings will be here";
-				printAccountFunctions();
+				printAccountFunctions(accountVector);
 				break;
 			case '3':
 				cout << "Returning to main menu.";

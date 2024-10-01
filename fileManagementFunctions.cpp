@@ -212,118 +212,62 @@ void updateUserAccounts (vector<bankAccountType*> accountVector, string txtFile,
 
 //Account Options Functions
 //print account info
-void printAccountInfo(string username, string password){
-	ifstream accountFile;
-	string filename = username + "_account.txt";
-	accountFile.open(filename);
+void printAccountInfo(const vector<bankAccountType*> accountVector) { //pass in account vector
+    cout << "\n**********************************" << endl;
+	for (const auto account : accountVector) { //iterate through account vector (print all accounts)
+        //cout << "Account type: " << account->getType() << endl;
+        switch (account->getType()) {
+            case 1: cout << "Account type: Checking" << endl; break;
+            case 2: cout << "Account type: High Interest Checking" << endl; break;
+            case 3: cout << "Account type: Service Charge Checking" << endl; break;
+            case 4: cout << "Account type: No Service Charge Checking" << endl; break;
+            case 5: cout << "Account type: Savings" << endl; break;
+            case 6: cout << "Account type: High Interest Savings" << endl; break;
+            case 7: cout << "Account type: Certificate of Deposit (C.O.D.)" << endl;
+                cout << "Interest rate: " << account->getInterestRate() << "%" << endl;
+                cout << "Maturity months: " << account->getMaturityMonths() << endl;
+                break;
+            default: cout << "Account type: Not Found" << endl; break;
+        }
+        cout << "Account name: " << account->getName() << endl;
+        cout << "Account number: " << account->getAccountNumber() << endl;
+        cout << "Balance: $" << account->getBalance() << endl;
 
-	if (accountFile.is_open()) {
-		int type, acctNumber;
-		string name, password, uname;
-		double balance;
-
-		cout << endl << "Account Information for " << username << ":" << endl;
-		cout << "******************************" << endl;
-
-		while (accountFile >> type >> name >> acctNumber >> balance >> password >> uname) {
-			cout << "Account Type: ";
-			switch (type) {
-				case 1: cout << "Basic Checking" << endl; break;
-				case 2: cout << "High Interest Checking" << endl; break;
-				case 3: cout << "Service Charge Checking" << endl; break;
-				case 4: cout << "No Service Charge Checking" << endl; break;
-				case 5: cout << "Basic Savings" << endl; break;
-				case 6: cout << "High Interest Savings" << endl; break;
-				case 7: cout << "Certificate of Deposit" << endl; break;
-				default: cout << "Not found" << endl; break;
-			}
-
-			cout << "Name: " << name << endl;
-			cout << "Account Number: " << acctNumber << endl;
-			cout << "Balance: $" << balance << endl;
-			cout << "Username: " << uname << endl;
-			cout << "Password: " << password << endl; //add hashing later
-			cout << "*****************************" << endl;
-
-		}
-		accountFile.close();
-		} else {
-			cout << "User " << username << " does not have an account." << endl;
-	}
+        cout << "**********************************" << endl; //seperate accounts
+    }
 }
+
 
 //deposit function
-void depositToAccount(string username, int accountType, double amount){
-	
-	ifstream accountFile;
-	string filename = username + "_account.txt";
-	accountFile.open(filename);
-	
-	if(!accountFile.is_open()) { cout << "user: " << username << " does not have account on file" << endl; return; }
-	
-	int type, acctNumber;
-	string name, uname, password;
-	double balance;
-	string updatedData; //store updated data
-	
-		//read all accounts and keep track of changes
-		while (accountFile >> type >> name >> acctNumber >> balance >> password >> uname){
-			//check if account type is the one we want to deposit to
-			if (type == accountType){
-				balance += amount; //update the balance
-			} 
-			//update the file, to string 
-			updatedData += to_string(type) + " " + name + " " + to_string(acctNumber) + " " +
-							to_string(balance) + " " + password + " " + uname + "\n"; 
-		}
-	accountFile.close();
-	
-	//write updated data back into the user file
-	ofstream outputFile(filename);
-	if (outputFile.is_open()) {
-		outputFile << updatedData; //updated data to the outputfile (single line)
-		outputFile.close();
-		//cout << "Balance updated " << "New Balance: $" << fixed << setprecision(2) << balance << endl;
-	}else {
-		cout << "\nUser: " << username << " does not have an account of type: " << type << endl;
-	}
+bool depositToAccount(vector<bankAccountType*> accountVector, int accountType, double amount) { //pass in user input account type and amount
+    cout << "\n**********************************" << endl;
+	for (auto account : accountVector) { //iterate through account vector
+        if (account->getType() == accountType) { //check type
+            account->deposit(amount); // deposit()
+            cout << "Successfully deposited $" << amount << " to account type " << accountType << "..." << endl;
+            return true; // deposit made
+        }
+    }
+    cout << "Account type " << accountType << " not found." << endl; //TODO: add switch cases for accountType
+    return false; // false if account not found
 }
 
+
 //withdraw function
-void withdrawToAccount(string username, int accountType, double amount){
-	
-	ifstream accountFile;
-	string filename = username + "_account.txt";
-	accountFile.open(filename);
-	
-	if(!accountFile.is_open()) { cout << "user: " << username << " does not have account on file" << endl; return; }
-	
-	int type, acctNumber;
-	string name, uname, password;
-	double balance;
-	string updatedData; //store updated data
-	
-		//read all accounts and keep track of changes
-		while (accountFile >> type >> name >> acctNumber >> balance >> password >> uname){
-			//check if account type is the one we want to withdraw to
-			if (type == accountType && balance <= 0){
-				balance -= amount; //update the balance
-			} else {
-				cout << "\nWithdraw was not successful!! Balance must be more than 0" << endl; //loops all accounts rn
-			}
-			//update the file, to string 
-			updatedData += to_string(type) + " " + name + " " + to_string(acctNumber) + " " +
-							to_string(balance) + " " + password + " " + uname + "\n"; 
-		}
-	accountFile.close();
-	
-	//write updated data back into the user file
-	ofstream outputFile(filename);
-	if (outputFile.is_open()) {
-		outputFile << updatedData; //cout updated data to the outputfile (single file)
-		outputFile.close();
-		//cout << "Balance updated " << "New Balance: $" << fixed << setprecision(2) << balance << endl;
-	}else {
-		cout << "\nUser: " << username << " does not have an account of type: " << type << endl;
-	}
+bool withdrawToAccount(vector<bankAccountType*> accountVector, int accountType, double amount) {
+    for (auto account : accountVector) { //iterate
+        if (account->getType() == accountType) { //check type to withdraw
+            if (account->getBalance() >= amount) { //check balance greater than 0 (check for if withdraw 
+                account->withdraw(amount); // withdraw()
+                cout << "Successfully withdrew $" << amount << " from account type " << accountType << "..." << endl;
+                return true; // withdraw made
+            } else {
+                cout << "Insufficient funds in account number " << accountType << "." << endl;
+                return false; // false, not enough in balance
+            }
+        }
+    }
+    cout << "Account type " << accountType << " not found." << endl; //TODO: add switch cases for accountType
+    return false; // false if account not found
 }
+

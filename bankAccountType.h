@@ -12,6 +12,7 @@ class bankAccountType
 		int getAccountNumber();
 		double getBalance();
 		string getName();
+		string getUsername();
 		void setName(string n);
 		virtual void withdraw(double amount);
 		void deposit (double amount);

@@ -1,5 +1,5 @@
 #include "userInterfaceFunctions.h"
-#include "fileManagementFunctions.h" //print info
+#include "fileManagementFunctions.h" //print / deposit / withdraw
 #include <iostream>
 #include <iomanip>
 #include <string>
@@ -7,9 +7,10 @@
 using namespace std;
 
 
-void printAccountFunctions() {
+void printAccountFunctions(vector<bankAccountType *> accountVector) {
 	char functionChoice;
 	bool firstTimeInScreen = true;
+	int sessionID = 1212;
 
 	do {
 		if (firstTimeInScreen) {
@@ -33,44 +34,32 @@ void printAccountFunctions() {
 
 		cout << "Enter your choice: ";
 		cin >> functionChoice;
-		cin.ignore(10000, '\n');
 
-		string username;
+		string txtFile;
 		int accountType;
 		double amount;
 		
 		switch (functionChoice) {
 			case '1': //print user data
-				{
-					string password;
-					cout << "Enter your username: ";
-					getline(cin, username);
-					cout << "Enter your password: ";
-					getline(cin, password);
-					printAccountInfo(username, password);
-				}
+				printAccountInfo(accountVector);
 				break;
 			case '2': //deposit
 				printDeposit();
-				
-				cout << "Enter username: ";
-				cin >> username;
 				cout << "Enter account type (1-7): ";
 				cin >> accountType;
-				cout << "Enter deposit amount: ";
+				cout << "Enter deposit amount: " ;
 				cin >> amount;
-				depositToAccount(username, accountType, amount);
+				depositToAccount(accountVector, accountType, amount);
+
 				break;
 			case '3': //withdraw
 				printWithdraw();
-				
-				cout << "Enter username: ";
-				cin >> username;
 				cout << "Enter account type (1-7): ";
 				cin >> accountType;
 				cout << "Enter withdraw amount: ";
 				cin >> amount;
-				withdrawToAccount(username, accountType, amount);
+				//cin.ignore(10000, '\n');
+				withdrawToAccount(accountVector, accountType, amount);
 				break;
 			case '4':
 				cout << "Creating a monthly statement will occur here";
@@ -81,7 +70,7 @@ void printAccountFunctions() {
 			default:
 				clearScreen();
 				cout << "*** " << functionChoice << " is an Invalid Response***" << endl;
-				cout << "Please enter a response 1-5." << endl;
+				cout << "Please enter a response (1-5)" << endl;
 				break;
 		}
 	} while(functionChoice != '5');

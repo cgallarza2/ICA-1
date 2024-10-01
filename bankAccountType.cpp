@@ -30,6 +30,11 @@ string bankAccountType::getName()
 	return name;
 }
 
+string bankAccountType::getUsername()
+{
+	return username;
+}
+
 int bankAccountType::getType()
 {
 return 0;

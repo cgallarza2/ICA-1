@@ -26,8 +26,8 @@ vector<bankAccountType*> createAccount(vector<bankAccountType*> accountVector, s
 void updateUserAccounts (vector<bankAccountType*> accountVector, string txtFile, int sessionID);
 
 //account options functions
-void printAccountInfo(string username, string password);
-void depositToAccount(string username, int accountType, double amount);
-void withdrawToAccount(string username, int accountType, double amount);
+void printAccountInfo(vector<bankAccountType*> accountVector);
+bool depositToAccount(vector<bankAccountType*> accountVector, int accountType, double amount);
+bool withdrawToAccount(vector<bankAccountType*> accountVector, int accountType, double amount);
 
 #endif
