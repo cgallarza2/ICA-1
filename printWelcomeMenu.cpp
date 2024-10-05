@@ -3,12 +3,17 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
+#include <termios.h>
+#include <unistd.h>
+#include <stdio.h>
 
 void printWelcomeMenu (vector<bankAccountType *> &accountVector){
 	char welcomeChoice;
 	string username;
-	string password;
+	char password[100];
 	bool loggedIn = false;
+	int i = 0;
+	int ch;
 
 	do{
 		clearScreen();
@@ -34,9 +39,20 @@ void printWelcomeMenu (vector<bankAccountType *> &accountVector){
 
 			while (!loggedIn) {
 				cout << "Enter username: ";
-				cin >> username;
+				getline(cin, username);
 				cout << "Enter password: ";
-				cin >> password;
+				while ((ch = getch()) != '\n') {		// hashing
+					if (ch == 127 || ch == 8) {
+						if (i != 0) {
+							i--;
+							cout << "\b \b";
+						}
+					} else {
+						password[i++] = ch;
+						cout << "*";
+					}
+				}
+				password[i] = '\0';
 
 				if (attemptLogIn(username, password)) {
 					loggedIn = true;

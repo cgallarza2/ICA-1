@@ -3,6 +3,9 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <termios.h>
+#include <unistd.h>
+#include <stdio.h>
 #include "bankAccountType.h"
 #include "savingsAccountType.h"
 #include "highInterestSavingsType.h"
@@ -53,6 +56,19 @@ void addAccount(string username, string password) {
 
 		userList.close();
 	}
+}
+
+
+int getch(){
+	int ch;
+	struct termios old_settings, new_settings;
+	tcgetattr(STDIN_FILENO, &old_settings);
+	new_settings = old_settings;
+	new_settings.c_lflag &= ~(ICANON | ECHO);
+	tcsetattr(STDIN_FILENO, TCSANOW, &new_settings);
+	ch = getchar();
+	tcsetattr(STDIN_FILENO, TCSANOW, &old_settings);
+	return ch;
 }
 
 

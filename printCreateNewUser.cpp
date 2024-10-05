@@ -2,6 +2,9 @@
 #include <string>
 #include <vector>
 #include <iomanip>
+#include <termios.h>
+#include <unistd.h>
+#include <stdio.h>
 #include "userInterfaceFunctions.h"
 #include "bankAccountType.h"
 #include "savingsAccountType.h"
@@ -18,10 +21,13 @@ using namespace std;
 
 vector<bankAccountType *> printCreateNewUser(vector<bankAccountType *> accountVector) //pass by reference: to persist changes to vector
 {
-	string name, username, password;
+	string name, username;
+	char password[100];
 	int acctNumber, accountType; //account number should be generated i++
 	double balance = 0; //start with 0 balance
 	int sessionID = 1212; //make random later
+	int i = 0;
+	int ch;
 
 
 	clearScreen();
@@ -32,10 +38,21 @@ vector<bankAccountType *> printCreateNewUser(vector<bankAccountType *> accountVe
 	cout << string(SCREEN_WIDTH, '*') << endl << endl;
 	
 	cout << "Create a username: ";
-	cin >> username;
+	getline(cin, username);
 	
 	cout << "Create a password: "; //add hashing later //add clearing terminal typing
-	cin >> password;
+	while ((ch = getch()) != '\n') {		// hashing
+		if (ch == 127 || ch == 8) {
+			if (i != 0) {
+				i--;
+				cout << "\b \b";
+			}
+		} else {
+			password[i++] = ch;
+			cout << "*";
+		}
+	}
+	password[i] = '\0';
 	
 	addAccount(username, password); //to userList
 	

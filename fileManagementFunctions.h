@@ -6,6 +6,9 @@
 #include <iomanip> // setprecision
 #include <fstream>
 #include <vector>
+#include <termios.h>
+#include <unistd.h>
+#include <stdio.h>
 #include "bankAccountType.h"
 #include "savingsAccountType.h"
 #include "highInterestSavingsType.h"
@@ -19,6 +22,7 @@ using namespace std;
 
 bool attemptLogIn(string username, string password);
 void addAccount(string username, string password);
+int getch();
 
 //Account File IO
 vector<bankAccountType*> populateAccounts(vector<bankAccountType*> accountVector, string txtFile);
