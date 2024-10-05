@@ -1,25 +1,11 @@
-bill4ever billion
-sus4n passw0rd
-username password
+usernames passwords
 
-test1 test2
+ajake sha
 
-billybob hola
+bjake sha
 
-bil bil
+cjake sha
 
-exit text
+djake sha
 
-jukish sha
-
-j d
-
-jbob dix
-
-shlak ding
-
-juke sha
-
-juke sha
-
-jukish sha
+djake sha

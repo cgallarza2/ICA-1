@@ -58,11 +58,10 @@ void printAccountFunctions(vector<bankAccountType *> accountVector) {
 				cin >> accountType;
 				cout << "Enter withdraw amount: ";
 				cin >> amount;
-				//cin.ignore(10000, '\n');
 				withdrawToAccount(accountVector, accountType, amount);
 				break;
-			case '4':
-				cout << "Creating a monthly statement will occur here";
+			case '4': //create monthly statement
+				createStatement(accountVector);
 				break;
 			case '5':
 				cout << "Returning to main menu.";

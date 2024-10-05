@@ -28,7 +28,7 @@ vector<bankAccountType *> printCreateNewUser(vector<bankAccountType *> accountVe
 
 	cout << string(SCREEN_WIDTH, '*') << endl;
 	cout << left;
-	cout << setw(11) << "*" << setw(88) << "Welcome to Bank Account Creation!" << "*" << endl;
+	cout << setw(11) << "*" << setw(20) << " "  << setw(68) << "Welcome to Bank Account Creation!" << "*" << endl;
 	cout << string(SCREEN_WIDTH, '*') << endl << endl;
 	
 	cout << "Create a username: ";
@@ -39,13 +39,10 @@ vector<bankAccountType *> printCreateNewUser(vector<bankAccountType *> accountVe
 	
 	addAccount(username, password); //to userList
 	
-	//cout << string(SCREEN_WIDTH, '*') << endl;
 	cout << "Enter your given name: ";
 	cin >> name;
 	cout << "Enter the account number: ";
 	cin >> acctNumber;
-	//cout << "Enter the account balance: ";
-	//cin >> balance;
 
 
 	clearScreen();
@@ -72,10 +69,8 @@ vector<bankAccountType *> printCreateNewUser(vector<bankAccountType *> accountVe
 	
 	if (accountFile.is_open()){
 		accountVector = createAccount(accountVector, filename, accountType, name, acctNumber, balance, 0, 0, sessionID); //to accountvector
-		printAccountInfo(accountVector); //testing 
 	} //error checking in createAccount
-//return;
-return accountVector; //needs to return account vector
+return accountVector;
 }
 /*
 	string filename = username + "_account.txt"; //username_account.txt

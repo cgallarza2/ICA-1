@@ -37,22 +37,10 @@ int main()
 {
 
 	char mainChoice;
-	int sessionID = 1212;
-
-	//vector<bankAccountType *> accountsList;
 	vector<bankAccountType *> accountVector;
-	string txtFile = "Tipi.txt";
-	//string userr = "Steve";
-
-	 //accountsList = createAccount(accountsList, userr + ".txt", 1, "test1", 12392, 100.00, 0, 0, sessionID);
-	 //accountsList = createAccount(accountsList, userr + ".txt", 3, "test2", 12423, 200.00, 0, 0, sessionID);
-	 //accountsList = createAccount(accountsList, userr + ".txt", 4, "test4", 12567, 500.00, 0, 0, sessionID);
-	 //accountsList = createAccount(accountsList, userr + ".txt", 6, "test3", 62433, 300.00, .12, 2, sessionID);
-	 //accountsList = createAccount(accountsList, userr + ".txt", 5, "test5", 98058, 1000.00, 0, 0, sessionID);
-
+	
 	 do {
-		populateAccounts(accountVector, txtFile);
-		printWelcomeMenu(accountsList);
+		printWelcomeMenu(accountVector);
 		printMainMenu();
 		cin >> mainChoice;
 		cin.ignore(10000, '\n');
@@ -90,38 +78,6 @@ int main()
                                                  //6000, "password", "username"));
     //accountsList.push_back(new certificateOfDepositType("Hamid", 51001, 18000, "password", "username",
                                                 //0.075, 18));
-
-
-	
-
-    //cout << "January:\n-------------" << endl;
-    //for (int i = 0; i < accountsList.size(); i++)
-    //{
-    //    accountsList[i]->createMonthlyStatement();
-   //     accountsList[i]->print();
-    //    cout << endl;
-    //}
-
-    //cout << "\nFebruary:\n-------------" << endl;
-    //for (int i = 0; i < accountsList.size(); i++)
-    //{
-    //    accountsList[i]->createMonthlyStatement();
-    //    accountsList[i]->print();
-    //    cout << endl;
-    //}
-//
-    //for (int i = 0; i < accountsList.size(); i++)
-    ////{
-    //     accountsList[i]->withdraw(500);
-    //}
-//
-    //cout << "\nMarch:\n-------------" << endl;
-    //for (int i = 0; i < accountsList.size(); i++)
-    //{
-    //    accountsList[i]->createMonthlyStatement();
-    //    accountsList[i]->print();
-   //     cout << endl;
-   // }
 
     return 0;
 }

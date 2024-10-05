@@ -212,8 +212,8 @@ void updateUserAccounts (vector<bankAccountType*> accountVector, string txtFile,
 
 //Account Options Functions
 //print account info
-void printAccountInfo(const vector<bankAccountType*> accountVector) { //pass in account vector
-    cout << "\n**********************************" << endl;
+void printAccountInfo(const vector<bankAccountType*> accountVector) {
+    cout << "\n**********************************\n";
 	for (const auto account : accountVector) { //iterate through account vector (print all accounts)
         //cout << "Account type: " << account->getType() << endl;
         switch (account->getType()) {
@@ -227,28 +227,39 @@ void printAccountInfo(const vector<bankAccountType*> accountVector) { //pass in 
                 cout << "Interest rate: " << account->getInterestRate() << "%" << endl;
                 cout << "Maturity months: " << account->getMaturityMonths() << endl;
                 break;
-            default: cout << "Account type: Not Found" << endl; break;
+            default: cout << "Account type: Not Found \nReturning to account options... \n\n"; break;
         }
         cout << "Account name: " << account->getName() << endl;
         cout << "Account number: " << account->getAccountNumber() << endl;
         cout << "Balance: $" << account->getBalance() << endl;
 
-        cout << "**********************************" << endl; //seperate accounts
+        cout << "**********************************\n\n";
     }
 }
 
 
 //deposit function
-bool depositToAccount(vector<bankAccountType*> accountVector, int accountType, double amount) { //pass in user input account type and amount
-    cout << "\n**********************************" << endl;
+bool depositToAccount(vector<bankAccountType*> accountVector, int accountType, double amount) {
 	for (auto account : accountVector) { //iterate through account vector
         if (account->getType() == accountType) { //check type
             account->deposit(amount); // deposit()
-            cout << "Successfully deposited $" << amount << " to account type " << accountType << "..." << endl;
+            cout << "\nSuccessful deposit of: $" << amount 
+			<< "\nBalance: $" << account->getBalance() 
+			<< "\nReturning to account options. \n\n";
             return true; // deposit made
         }
     }
-    cout << "Account type " << accountType << " not found." << endl; //TODO: add switch cases for accountType
+    switch (accountType) {
+        case 1: cout << "Account Type Not Found: Checking \nReturning to account options... \n\n" << endl; break;
+        case 2: cout << "Account Type Not Found: High Interest Checking \nReturning to account options... \n\n" << endl; break;
+        case 3: cout << "Account Type Not Found: Service Charge Checking \nReturning to account options... \n\n" << endl; break;
+        case 4: cout << "Account Type Not Found: No Service Charge Checking \nReturning to account options... \n\n" << endl; break;
+        case 5: cout << "Account Type Not Found: Savings \nReturning to account options... \n\n" << endl; break;
+        case 6: cout << "Account Type Not Found: High Interest Savings \nReturning to account options... \n\n" << endl; break;
+        case 7: cout << "Account Type Not Found: Certificate of Deposit (C.O.D.) \nReturning to account options... \n\n" << endl;
+		break;
+        default: break;
+    }
     return false; // false if account not found
 }
 
@@ -257,17 +268,62 @@ bool depositToAccount(vector<bankAccountType*> accountVector, int accountType, d
 bool withdrawToAccount(vector<bankAccountType*> accountVector, int accountType, double amount) {
     for (auto account : accountVector) { //iterate
         if (account->getType() == accountType) { //check type to withdraw
-            if (account->getBalance() >= amount) { //check balance greater than 0 (check for if withdraw 
+            if (account->getBalance() >= amount) { //check balance greater than 0 (check if withdraw goes - )
                 account->withdraw(amount); // withdraw()
-                cout << "Successfully withdrew $" << amount << " from account type " << accountType << "..." << endl;
+                cout << "\nSuccessful withdraw of: $" << amount 
+				<< "\nRemaining balance: $" << account->getBalance() 
+				<< "\nReturning to account options... \n\n";
                 return true; // withdraw made
             } else {
-                cout << "Insufficient funds in account number " << accountType << "." << endl;
-                return false; // false, not enough in balance
+                cout << "\nInsufficient funds in ";
+				switch (accountType) {
+					case 1: cout << "Account type: Checking \nReturning to account options... \n\n" << endl; break;
+					case 2: cout << "Account type: High Interest Checking \nReturning to account options... \n\n" << endl; break;
+					case 3: cout << "Account type: Service Charge Checking \nReturning to account options... \n\n" << endl; break;
+					case 4: cout << "Account type: No Service Charge Checking \nReturning to account options... \n\n" << endl; break;
+					case 5: cout << "Account type: Savings \nReturning to account options... \n\n" << endl; break;
+					case 6: cout << "Account type: High Interest Savings \nReturning to account options... \n\n" << endl; break;
+					case 7: cout << "Account type: Certificate of Deposit (C.O.D.) \nReturning to account options... \n\n" << endl; break;
+					default: break;
+				}
+				cout << "Balance: $" << account->getBalance() << endl;
+				return false; // false, not enough in balance
             }
         }
     }
-    cout << "Account type " << accountType << " not found." << endl; //TODO: add switch cases for accountType
+	switch (accountType) {
+        case 1: cout << "Account type Not Found: Checking \nReturning to account options... \n\n" << endl; break;
+        case 2: cout << "Account type Not Found: High Interest Checking \nReturning to account options... \n\n" << endl; break;
+        case 3: cout << "Account type Not Found: Service Charge Checking \nReturning to account options... \n\n" << endl; break;
+        case 4: cout << "Account type Not Found: No Service Charge Checking \nReturning to account options... \n\n" << endl; break;
+        case 5: cout << "Account type Not Found: Savings \nReturning to account options... \n\n" << endl; break;
+        case 6: cout << "Account type Not Found: High Interest Savings \nReturning to account options... \n\n" << endl; break;
+        case 7: cout << "Account type Not Found: Certificate of Deposit (C.O.D.) \nReturning to account options... \n\n" << endl; break;
+        default: break;
+    }
     return false; // false if account not found
 }
 
+
+void createStatement(vector<bankAccountType*> &accountVector){
+	cout << "\nJanuary:\n-------------" << endl;
+	for (int i = 0; i < accountVector.size(); i++){
+	    accountVector[i]->createMonthlyStatement();
+        accountVector[i]->print();
+	    cout << endl;
+	}
+
+	cout << "\nFebruary:\n-------------" << endl;
+	for (int i = 0; i < accountVector.size(); i++){
+	    accountVector[i]->createMonthlyStatement();
+	    accountVector[i]->print();
+	    cout << endl;
+	}
+
+	cout << "\nMarch:\n-------------" << endl;
+	for (int i = 0; i < accountVector.size(); i++){
+	    accountVector[i]->createMonthlyStatement();
+	    accountVector[i]->print();
+        cout << endl;
+    }
+}

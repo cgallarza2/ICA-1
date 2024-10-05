@@ -5,7 +5,7 @@ void printDeposit(){
 	clearScreen();
 	cout << string(SCREEN_WIDTH, '*') << endl;
 	cout << left;
-	cout << setw(21) << "*" << setw(88) << "Which account do you want to deposit to?" << "*" << endl;
+	cout << setw(11) << "*" << setw(20) << " " << setw(68) << "Which account do you want to deposit to?" << "*" << endl;
 	cout << setw(SCREEN_WIDTH - 1) << "*" << "*" << endl;
 	cout << setw(11) << "*" << setw(88) << "1. Checking" << "*" << endl;
 	cout << setw(11) << "*" << setw(88) << "2. High Interest Checking" << "*" << endl;

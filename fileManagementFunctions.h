@@ -29,5 +29,6 @@ void updateUserAccounts (vector<bankAccountType*> accountVector, string txtFile,
 void printAccountInfo(vector<bankAccountType*> accountVector);
 bool depositToAccount(vector<bankAccountType*> accountVector, int accountType, double amount);
 bool withdrawToAccount(vector<bankAccountType*> accountVector, int accountType, double amount);
+void createStatement(vector<bankAccountType*> &accountVector);
 
 #endif
