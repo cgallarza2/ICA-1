@@ -14,6 +14,7 @@ public:
 	int getType();
 	double getMinimumBalance();
 	bool verifyMinimumBalance(double amount);
+	virtual void deposit(double amount);
 	virtual void withdraw(double amount);
 	virtual void print();
 

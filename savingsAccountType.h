@@ -17,6 +17,8 @@ public:
 	double getInterestRate();
 	void setInterestRate(double rate);
 	void postInterest();
+	void deposit(double amount);
+	void withdraw(double amount);
 	virtual void createMonthlyStatement();
 	virtual void print();
 

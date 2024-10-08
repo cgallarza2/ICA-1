@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
+#include <stdexcept>
 #include "certificateOfDepositType.h"
 
 using namespace std;
@@ -71,17 +72,26 @@ void certificateOfDepositType::postInterest()
 	balance = balance + balance * interestRate;
 }
 
-void certificateOfDepositType::withdraw(double amount)
+void certificateOfDepositType::deposit(double amount)
 {
-	//no withdrawal until maturity
+	if (amount <= 0) {
+		throw std::invalid_argument("You must enter an amount greater than zero. Please try again.");
+	}
+	balance = balance + amount;
 }
 
-void certificateOfDepositType::withdraw()
+void certificateOfDepositType::withdraw(double amount)
 {
-	if (cdMonth > maturityMonths)
-		balance = 0;
-	else
-		cout << "CD has not be matured. No withdrawal." << endl;
+	if (cdMonth <= maturityMonths) {
+		throw std::runtime_error("CD has not been matured. No withdrawal.");
+	}
+	if (amount <= 0) {
+		throw std::invalid_argument("You must enter an amount greater than zero. Please try again.");
+	}
+	if (amount > balance) {
+		throw std::runtime_error("Your withdrawal amount is invalid. Please try again.");
+	}
+	balance = balance - amount;
 }
 
 void certificateOfDepositType::createMonthlyStatement()

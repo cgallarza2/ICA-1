@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
+#include <stdexcept>
 #include "highInterestSavingsType.h"
 
 using namespace std;
@@ -41,10 +42,23 @@ bool highInterestSavingsType::verifyMinimumBalance(double amount)
 	return (balance - amount >= minimumBalance);
 }
 
+void highInterestSavingsType::deposit(double amount)
+{
+	if (amount <= 0) {
+		throw std::invalid_argument("You must enter an amount greater than zero. Please try again.");
+	}
+	balance = balance + amount;
+}
+
 void highInterestSavingsType::withdraw(double amount)
 {
-	if (verifyMinimumBalance(amount))
-		balance = balance - amount;
+	if (amount <= 0) {
+		throw std::invalid_argument("You must enter an amount greater than zero. Please try again.");
+	}
+	if (!verifyMinimumBalance(amount)) {
+		throw std::runtime_error("Your withdrawal amount is invalid. Please try again.");
+	}
+	balance = balance - amount;
 }
 
 void highInterestSavingsType::print()

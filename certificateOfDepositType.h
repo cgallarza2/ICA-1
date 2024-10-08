@@ -22,8 +22,8 @@ public:
 	virtual int getMaturityMonths();
 	void setMaturityMonths(int month);
 	void postInterest();
+	void deposit(double amount);
 	void withdraw(double amount);
-	void withdraw();
 	void createMonthlyStatement();
 
 	void print();

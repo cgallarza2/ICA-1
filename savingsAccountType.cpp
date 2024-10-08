@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
+#include <stdexcept>
 #include "savingsAccountType.h"
 
 using namespace std;
@@ -48,10 +49,28 @@ void savingsAccountType::createMonthlyStatement()
 	postInterest();
 }
 
+void savingsAccountType::deposit(double amount)
+{
+	if (amount <= 0) {
+		throw std::invalid_argument("You must enter a number greater than zero. Please try again.");
+	}
+	balance = balance + amount;
+}
+
+void savingsAccountType::withdraw(double amount)
+{
+	if (amount <= 0) {
+		throw std::invalid_argument("You must enter an amount greater than zero. Please try again.");
+	}
+	if (amount > balance) {
+		throw std::runtime_error("Your withdrawal amount is invalid. Please try again.");
+	}
+	balance = balance - amount;
+}
+
 void savingsAccountType::print()
 {
 	cout << fixed << showpoint << setprecision(2);
 	cout << "Savings account: " << getName() << "\t ACCT# " 
 		  << getAccountNumber() << "\tBalance: $" << getBalance();
 }
-

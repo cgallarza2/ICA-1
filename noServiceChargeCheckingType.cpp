@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
+#include <stdexcept>
 #include "noServiceChargeCheckingType.h"
 
 using namespace std;
@@ -45,21 +46,34 @@ void noServiceChargeCheckingType::setMinimumBalance(double minBalance)
 	minimumBalance = minBalance;
 }
 
-bool noServiceChargeCheckingType::verifyMinimumumBalance(double amount)
+bool noServiceChargeCheckingType::verifyMinimumBalance(double amount)
 {
 	return (balance - amount >= minimumBalance);
 }
 
 void noServiceChargeCheckingType::writeCheck(double amount)
 {
-	if (verifyMinimumumBalance(amount))
+	if (verifyMinimumBalance(amount))
 		balance = balance - amount;
+}
+
+void noServiceChargeCheckingType::deposit(double amount)
+{
+	if (amount <= 0) {
+		throw std::invalid_argument("You must enter an amount greater than zero. Please try again.");
+	}
+	balance = balance + amount;
 }
 
 void noServiceChargeCheckingType::withdraw(double amount)
 {
-	if (verifyMinimumumBalance(amount))
-		balance = balance - amount;
+	if (amount <= 0) {
+		throw std::invalid_argument("You must enter an amount greater than zero. Please try again.");
+	}
+	if (!verifyMinimumBalance(amount)) {
+		throw std::runtime_error("Your withdrawal amount is invalid. Please try again.");
+	}
+	balance = balance - amount;
 }
 
 void noServiceChargeCheckingType::createMonthlyStatement()
