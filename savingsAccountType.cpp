@@ -71,6 +71,6 @@ void savingsAccountType::withdraw(double amount)
 void savingsAccountType::print()
 {
 	cout << fixed << showpoint << setprecision(2);
-	cout << "Savings account: " << getName() << "\t ACCT# " 
+	cout << "Savings: " << getName() << "\t ACCT# " 
 		  << getAccountNumber() << "\tBalance: $" << getBalance();
 }

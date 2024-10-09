@@ -83,6 +83,6 @@ void noServiceChargeCheckingType::createMonthlyStatement()
 void noServiceChargeCheckingType::print()
 {
 	cout << fixed << showpoint << setprecision(2);
-	cout << "No Service Charge Check. " << getName() << "\t ACCT# " 
+	cout << "No Service Charge Checking: " << getName() << "\t ACCT# " 
 		  << getAccountNumber() << "\tBalance $" << getBalance();
 }

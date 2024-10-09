@@ -353,24 +353,32 @@ bool withdrawToAccount(vector<bankAccountType*> accountVector, int accountType, 
 
 
 void createStatement(vector<bankAccountType*> &accountVector){
+	//need to store balances before processing months
 	cout << "\nJanuary:\n-------------" << endl;
 	for (int i = 0; i < accountVector.size(); i++){
+		double ogBalance = accountVector[i]->getBalance();//get original balance
 	    accountVector[i]->createMonthlyStatement();
         accountVector[i]->print();
+		accountVector[i]->setBalance(ogBalance);
 	    cout << endl;
 	}
 
 	cout << "\nFebruary:\n-------------" << endl;
 	for (int i = 0; i < accountVector.size(); i++){
+		double ogBalance = accountVector[i]->getBalance();
 	    accountVector[i]->createMonthlyStatement();
 	    accountVector[i]->print();
+		accountVector[i]->setBalance(ogBalance);
 	    cout << endl;
 	}
 
 	cout << "\nMarch:\n-------------" << endl;
 	for (int i = 0; i < accountVector.size(); i++){
+		double ogBalance = accountVector[i]->getBalance();
 	    accountVector[i]->createMonthlyStatement();
 	    accountVector[i]->print();
+		accountVector[i]->setBalance(ogBalance);//set balance back to original
         cout << endl;
     }
+	//need to restore og balance after processing monthly statements
 }

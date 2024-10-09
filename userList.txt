@@ -1,11 +1,10 @@
 usernames passwords
 
-ajake sha
 
-bjake sha
+ajuke god
 
-cjake sha
+ajuke god
 
-djake sha
+ajuke god
 
-djake sha
+ajuke god

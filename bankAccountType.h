@@ -11,6 +11,7 @@ class bankAccountType
 		bankAccountType(string n, int acctNumber, double bal);
 		int getAccountNumber();
 		double getBalance();
+		void setBalance(double newBalance);
 		string getName();
 		string getUsername();
 		void setName(string n);

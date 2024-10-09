@@ -64,6 +64,6 @@ void highInterestSavingsType::withdraw(double amount)
 void highInterestSavingsType::print()
 {
 	cout << fixed << showpoint << setprecision(2);
-	cout << "High InterestSavings: " << getName() << "\t ACCT# "
+	cout << "High Interest Savings: " << getName() << "\t ACCT# "
 		  << getAccountNumber() << "\tBalance: $" << getBalance();
 }

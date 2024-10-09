@@ -40,8 +40,8 @@ vector<bankAccountType *> printCreateNewUser(vector<bankAccountType *> accountVe
 	cout << "Create a username: ";
 	getline(cin, username);
 	
-	cout << "Create a password: "; //add hashing later //add clearing terminal typing
-	while ((ch = getch()) != '\n') {		// hashing
+	cout << "Create a password: ";	//add hashing later
+	while ((ch = getch()) != '\n') {		// clearing typing
 		if (ch == 127 || ch == 8) {
 			if (i != 0) {
 				i--;
@@ -56,7 +56,7 @@ vector<bankAccountType *> printCreateNewUser(vector<bankAccountType *> accountVe
 	
 	addAccount(username, password); //to userList
 	
-	cout << "Enter your given name: ";
+	cout << "\nEnter your given name: ";
 	cin >> name;
 	cout << "Enter the account number: ";
 	cin >> acctNumber;

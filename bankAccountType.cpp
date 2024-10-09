@@ -26,6 +26,11 @@ double bankAccountType::getBalance()
 	return balance;
 }
 
+void bankAccountType::setBalance(double newBalance)
+{
+	balance = newBalance;
+}
+
 string bankAccountType::getName()
 {
 	return name;
