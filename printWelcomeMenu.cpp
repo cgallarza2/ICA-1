@@ -34,14 +34,14 @@ void printWelcomeMenu (vector<bankAccountType *> &accountVector){
 		cin.ignore(1000, '\n');
 
 		switch(welcomeChoice) {
-		case '1': //needs to get account vector
+		case '1': //needs to get account vector //needs hashing
 			clearScreen();
 
 			while (!loggedIn) {
 				cout << "Enter username: ";
 				getline(cin, username);
 				cout << "Enter password: ";
-				while ((ch = getch()) != '\n') {		// hashing
+				while ((ch = getch()) != '\n') {		// clearing screen
 					if (ch == 127 || ch == 8) {
 						if (i != 0) {
 							i--;

@@ -10,7 +10,7 @@ using namespace std;
 
 const double highInterestCheckingType::INTEREST_RATE = 0.05;
 const double highInterestCheckingType::MIN_BALANCE = 5000.00;
-const int highInterestCheckingType::TYPE = 5;
+const int highInterestCheckingType::TYPE = 1;
 
 highInterestCheckingType::highInterestCheckingType(string n, int acctNumber, 
 																   double bal)

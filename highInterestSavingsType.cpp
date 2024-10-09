@@ -10,7 +10,7 @@ using namespace std;
 
 const double highInterestSavingsType::MINIMUM_BALANCE = 2500.00;
 const double highInterestSavingsType::INTEREST_RATE = 0.05;
-const int highInterestSavingsType::TYPE = 2;
+const int highInterestSavingsType::TYPE = 5;
 
 highInterestSavingsType::highInterestSavingsType(string n, int acctNumber, 
 														double bal)

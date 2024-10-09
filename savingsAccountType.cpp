@@ -9,7 +9,7 @@
 using namespace std;
 
 const double savingsAccountType::INTEREST_RATE = 0.03;
-const int savingsAccountType::TYPE = 1;
+const int savingsAccountType::TYPE = 4;
 
 savingsAccountType::savingsAccountType( string n, int acctNumber, double bal)
 					: bankAccountType(n, acctNumber, bal)

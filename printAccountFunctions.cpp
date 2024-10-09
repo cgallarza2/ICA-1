@@ -18,19 +18,19 @@ void printAccountFunctions(vector<bankAccountType *> accountVector) {
 			firstTimeInScreen = false;
 		}
 
-		cout << string(SCREEN_WIDTH, '=') << endl;
+		cout << string(SCREEN_WIDTH, '*') << endl;
 		cout << left;
-		cout << setw(39) << "=" << setw(60) << "Bank Management System" << "=" << endl;
-		cout << setw(42) << "=" << setw(57) << "Account Options" << "=" << endl;
-		cout << setw(SCREEN_WIDTH - 1) << "=" << "=" << endl;
-		cout << setw(21) << "=" << setw(78) << "1. Print Account Info" << "=" << endl;
-		cout << setw(21) << "=" << setw(78) << "2. Deposit Money" << "=" << endl;
-		cout << setw(21) << "=" << setw(78) << "3. Withdraw Money" << "=" << endl;
-		cout << setw(21) << "=" << setw(78) << "4. Create Monthly Statement" << "=" << endl;
-		cout << setw(21) << "=" << setw(78) << "5. Return to Main Menu" << "=" << endl;
-		cout << setw(SCREEN_WIDTH - 1) << "=" << "=" << endl;
+		cout << setw(39) << "*" << setw(60) << "Bank Management System" << "*" << endl;
+		cout << setw(42) << "*" << setw(57) << "Account Options" << "*" << endl;
+		cout << setw(SCREEN_WIDTH - 1) << "*" << "*" << endl;
+		cout << setw(21) << "*" << setw(78) << "1. Print Account Info" << "*" << endl;
+		cout << setw(21) << "*" << setw(78) << "2. Deposit Money" << "*" << endl;
+		cout << setw(21) << "*" << setw(78) << "3. Withdraw Money" << "*" << endl;
+		cout << setw(21) << "*" << setw(78) << "4. Create Monthly Statement" << "*" << endl;
+		cout << setw(21) << "*" << setw(78) << "5. Return to Main Menu" << "*" << endl;
+		cout << setw(SCREEN_WIDTH - 1) << "*" << "*" << endl;
 		cout << right;
-		cout << string(SCREEN_WIDTH, '=') << endl << endl;
+		cout << string(SCREEN_WIDTH, '*') << endl << endl;
 
 		cout << "Enter your choice: ";
 		cin >> functionChoice;
@@ -45,7 +45,7 @@ void printAccountFunctions(vector<bankAccountType *> accountVector) {
 				break;
 			case '2': //deposit
 				printDeposit();
-				cout << "Enter account type (1-7): ";
+				cout << "Enter account type (1-6): ";
 				cin >> accountType;
 				cout << "Enter deposit amount: " ;
 				cin >> amount;
@@ -54,7 +54,7 @@ void printAccountFunctions(vector<bankAccountType *> accountVector) {
 				break;
 			case '3': //withdraw
 				printWithdraw();
-				cout << "Enter account type (1-7): ";
+				cout << "Enter account type (1-6): ";
 				cin >> accountType;
 				cout << "Enter withdraw amount: ";
 				cin >> amount;

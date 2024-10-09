@@ -67,18 +67,17 @@ vector<bankAccountType *> printCreateNewUser(vector<bankAccountType *> accountVe
 	cout << left;
 	cout << setw(11) << "*" << setw(88) << "The various bank account types we have to offer!" << "*" << endl;
 	cout << string(SCREEN_WIDTH, '*') << endl;
-	cout << setw(11) << "*" << setw(88) << "1. Basic Checking" << "*" << endl;
-	cout << setw(11) << "*" << setw(88) << "2. High Interest Checking" << "*" << endl;
-	cout << setw(11) << "*" << setw(88) << "3. Service Charge Checking" << "*" << endl;
-	cout << setw(11) << "*" << setw(88) << "4. No Service Charge Checking" << "*" << endl;
-	cout << setw(11) << "*" << setw(88) << "5. Basic Savings" << "*" << endl;
-	cout << setw(11) << "*" << setw(88) << "6. High Interest Savings" << "*" << endl;
-	cout << setw(11) << "*" << setw(88) << "7. Certificate of Deposit" << "*" << endl;
+	cout << setw(11) << "*" << setw(88) << "1. High Interest Checking" << "*" << endl;
+	cout << setw(11) << "*" << setw(88) << "2. Service Charge Checking" << "*" << endl;
+	cout << setw(11) << "*" << setw(88) << "3. No Service Charge Checking" << "*" << endl;
+	cout << setw(11) << "*" << setw(88) << "4. Basic Savings" << "*" << endl;
+	cout << setw(11) << "*" << setw(88) << "5. High Interest Savings" << "*" << endl;
+	cout << setw(11) << "*" << setw(88) << "6. Certificate of Deposit" << "*" << endl;
 	cout << setw(SCREEN_WIDTH - 1) << "*" << "*" << endl;
 	cout << right;
 	cout << string(SCREEN_WIDTH, '*') << endl << endl;
 
-	cout << "Please enter the bank account type (1-7): ";
+	cout << "Please enter the bank account type (1-6): ";
 	cin >> accountType;
 
 	string filename = username + ".txt"; //username.txt

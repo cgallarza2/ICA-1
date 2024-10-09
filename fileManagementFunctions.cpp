@@ -165,11 +165,11 @@ vector<bankAccountType*> createAccount(vector<bankAccountType*> accountVector, s
 
 		switch (type) {
 			case 1: {
-				accountVector.push_back(new savingsAccountType(name, acctNumber, balance));
+				accountVector.push_back(new highInterestCheckingType(name, acctNumber, balance));
 				break;
 			}
 			case 2: {
-				accountVector.push_back(new highInterestSavingsType(name, acctNumber, balance));
+				accountVector.push_back(new serviceChargeCheckingType(name, acctNumber, balance));
 				break;
 			}
 			case 3: {
@@ -177,11 +177,11 @@ vector<bankAccountType*> createAccount(vector<bankAccountType*> accountVector, s
 				break;
 			}
 			case 4: {
-				accountVector.push_back(new serviceChargeCheckingType(name, acctNumber, balance));
+				accountVector.push_back(new savingsAccountType(name, acctNumber, balance));
 				break;
 			}
 			case 5: {
-				accountVector.push_back(new highInterestCheckingType(name, acctNumber, balance));
+				accountVector.push_back(new highInterestSavingsType(name, acctNumber, balance));
 				break;
 			}
 			case 6: {
@@ -235,13 +235,12 @@ void printAccountInfo(const vector<bankAccountType*> accountVector) {
 	for (const auto account : accountVector) { //iterate through account vector (print all accounts)
         //cout << "Account type: " << account->getType() << endl;
         switch (account->getType()) {
-            case 1: cout << "Account type: Checking" << endl; break;
-            case 2: cout << "Account type: High Interest Checking" << endl; break;
-            case 3: cout << "Account type: Service Charge Checking" << endl; break;
-            case 4: cout << "Account type: No Service Charge Checking" << endl; break;
-            case 5: cout << "Account type: Savings" << endl; break;
-            case 6: cout << "Account type: High Interest Savings" << endl; break;
-            case 7: cout << "Account type: Certificate of Deposit (C.O.D.)" << endl;
+            case 1: cout << "Account type: High Interest Checking" << endl; break;
+            case 2: cout << "Account type: Service Charge Checking" << endl; break;
+            case 3: cout << "Account type: No Service Charge Checking" << endl; break;
+            case 4: cout << "Account type: Savings" << endl; break;
+            case 5: cout << "Account type: High Interest Savings" << endl; break;
+            case 6: cout << "Account type: Certificate of Deposit (C.O.D.)" << endl;
                 cout << "Interest rate: " << account->getInterestRate() << "%" << endl;
                 cout << "Maturity months: " << account->getMaturityMonths() << endl;
                 break;
@@ -274,18 +273,17 @@ bool depositToAccount(vector<bankAccountType*> accountVector, int accountType, d
             account->deposit(amount); // deposit()
             cout << "\nSuccessful deposit of: $" << amount 
 					  << "\nBalance: $" << account->getBalance() 
-					  << "\nReturning to account options. \n\n";
+					  << "\nReturning to account options... \n\n";
             return true; // deposit made
 			}
 		}
     switch (accountType) {
-        case 1: cout << "Account Type Not Found: Checking \nReturning to account options... \n\n" << endl; break;
-        case 2: cout << "Account Type Not Found: High Interest Checking \nReturning to account options... \n\n" << endl; break;
-        case 3: cout << "Account Type Not Found: Service Charge Checking \nReturning to account options... \n\n" << endl; break;
-        case 4: cout << "Account Type Not Found: No Service Charge Checking \nReturning to account options... \n\n" << endl; break;
-        case 5: cout << "Account Type Not Found: Savings \nReturning to account options... \n\n" << endl; break;
-        case 6: cout << "Account Type Not Found: High Interest Savings \nReturning to account options... \n\n" << endl; break;
-        case 7: cout << "Account Type Not Found: Certificate of Deposit (C.O.D.) \nReturning to account options... \n\n" << endl;
+        case 1: cout << "Account Type Not Found: High Interest Checking \nReturning to account options... \n\n" << endl; break;
+        case 2: cout << "Account Type Not Found: Service Charge Checking \nReturning to account options... \n\n" << endl; break;
+        case 3: cout << "Account Type Not Found: No Service Charge Checking \nReturning to account options... \n\n" << endl; break;
+        case 4: cout << "Account Type Not Found: Savings \nReturning to account options... \n\n" << endl; break;
+        case 5: cout << "Account Type Not Found: High Interest Savings \nReturning to account options... \n\n" << endl; break;
+        case 6: cout << "Account Type Not Found: Certificate of Deposit (C.O.D.) \nReturning to account options... \n\n" << endl;
         default: break;
 	    }
 	}
@@ -354,31 +352,32 @@ bool withdrawToAccount(vector<bankAccountType*> accountVector, int accountType, 
 
 void createStatement(vector<bankAccountType*> &accountVector){
 	//need to store balances before processing months
+	vector<double> ogBalance;
+	for (int i = 0; i < accountVector.size(); i++) {
+		ogBalance.push_back(accountVector[i]->getBalance());//store all balances in double vect
+	}
 	cout << "\nJanuary:\n-------------" << endl;
 	for (int i = 0; i < accountVector.size(); i++){
-		double ogBalance = accountVector[i]->getBalance();//get original balance
 	    accountVector[i]->createMonthlyStatement();
         accountVector[i]->print();
-		accountVector[i]->setBalance(ogBalance);
 	    cout << endl;
 	}
 
 	cout << "\nFebruary:\n-------------" << endl;
 	for (int i = 0; i < accountVector.size(); i++){
-		double ogBalance = accountVector[i]->getBalance();
 	    accountVector[i]->createMonthlyStatement();
 	    accountVector[i]->print();
-		accountVector[i]->setBalance(ogBalance);
 	    cout << endl;
 	}
 
 	cout << "\nMarch:\n-------------" << endl;
 	for (int i = 0; i < accountVector.size(); i++){
-		double ogBalance = accountVector[i]->getBalance();
 	    accountVector[i]->createMonthlyStatement();
 	    accountVector[i]->print();
-		accountVector[i]->setBalance(ogBalance);//set balance back to original
         cout << endl;
     }
 	//need to restore og balance after processing monthly statements
+	for (int i = 0; i < accountVector.size(); i++){
+		accountVector[i]->setBalance(ogBalance[i]); //add all balances back in place to account vect
+	}
 }
