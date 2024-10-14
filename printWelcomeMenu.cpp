@@ -56,6 +56,9 @@ void printWelcomeMenu (vector<bankAccountType *> &accountVector){
 
 				if (attemptLogIn(username, password)) {
 					loggedIn = true;
+					//populate account vector
+					string txtFile  = username + ".txt";
+					accountVector = populateAccounts(accountVector, txtFile);
 					return;
 				}
 			}

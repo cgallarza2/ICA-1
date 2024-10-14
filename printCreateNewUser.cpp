@@ -19,7 +19,7 @@
 
 using namespace std;
 
-vector<bankAccountType *> printCreateNewUser(vector<bankAccountType *> accountVector) //pass by reference: to persist changes to vector
+vector<bankAccountType *> printCreateNewUser(vector<bankAccountType *> accountVector)
 {
 	string name, username;
 	char password[100];
@@ -88,6 +88,7 @@ vector<bankAccountType *> printCreateNewUser(vector<bankAccountType *> accountVe
 	} //error checking in createAccount
 return accountVector;
 }
+
 /*
 	string filename = username + "_account.txt"; //username_account.txt
 	ofstream accountFile(filename, ios::app);

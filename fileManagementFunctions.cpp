@@ -42,6 +42,7 @@ bool attemptLogIn(string username, string password) {
 		return false;
 	}
 
+	cout << "error: cant open user list file\n";
 	return false;
 }
 
@@ -109,11 +110,11 @@ vector<bankAccountType*> populateAccounts(vector<bankAccountType*> accountVector
 
 			switch (type) {
 				case 1: {
-					accountVector.push_back(new savingsAccountType(name, acctNumber, balance));
+					accountVector.push_back(new highInterestCheckingType(name, acctNumber, balance));
 					break;
 				}
 				case 2: {
-					accountVector.push_back(new highInterestSavingsType(name, acctNumber, balance));
+					accountVector.push_back(new serviceChargeCheckingType(name, acctNumber, balance));
 					break;
 				}
 				case 3: {
@@ -121,11 +122,11 @@ vector<bankAccountType*> populateAccounts(vector<bankAccountType*> accountVector
 					break;
 				}
 				case 4: {
-					accountVector.push_back(new serviceChargeCheckingType(name, acctNumber, balance));
+					accountVector.push_back(new savingsAccountType(name, acctNumber, balance));
 					break;
 				}
 				case 5: {
-					accountVector.push_back(new highInterestCheckingType(name, acctNumber, balance));
+					accountVector.push_back(new highInterestSavingsType(name, acctNumber, balance));
 					break;
 				}
 				case 6: {
@@ -137,7 +138,6 @@ vector<bankAccountType*> populateAccounts(vector<bankAccountType*> accountVector
 					break;
 			}
 		}
-
 		accounts.close();
 	}
 	return accountVector;
