@@ -5,6 +5,8 @@
 #include <iomanip>
 #include <vector>
 #include <fstream>
+#include <limits>
+#include <stdexcept>
  
 #include "bankAccountType.h"
 #include "savingsAccountType.h"
@@ -38,33 +40,39 @@ int main()
 
 	char mainChoice;
 	vector<bankAccountType *> accountVector;
-	
-	 do {
-		printWelcomeMenu(accountVector);
-		printMainMenu();
-		cin >> mainChoice;
-		cin.ignore(10000, '\n');
 
-		 switch (mainChoice) {
-			 case '1':
-				 printCheckingAccount(accountVector);
-				 break;
-			 case '2':
-				 printSavingsAccount(accountVector);
-				 break;
-			 case '3':
-				 printAccountFunctions(accountVector);
-				 break;
-			 case '4':
-				 cout << "Exiting... " << endl;
-				 break;
-			 default:
-				 clearScreen();
-				 cout << "*** " << mainChoice << " *** is Invalid" << endl;
-				 cout << "Please enter a valid choice (1-4)." << endl;
-				 break;
-		 }
-	 } while (mainChoice != '4');
+	try {
+	 printWelcomeMenu(accountVector);
+	 printMainMenu();
+    cin >> mainChoice;
+
+    if (cin.fail()) {
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        throw invalid_argument("Invalid selection. Please enter a valid number.");
+    }
+
+    switch(mainChoice) {
+        case '1':
+            printCheckingAccount(accountVector);
+            break;
+        case '2':
+            printSavingsAccount(accountVector);
+            break;
+        case '3':
+            printAccountFunctions(accountVector);
+            break;
+        case '4':
+            cout << "Exiting... " << endl;
+            break;
+        default:
+            clearScreen();
+            cout << "Invalid choice. Returning to main menu.\n";
+            break;
+    }
+} catch (const invalid_argument &e) {
+    cout << "Error: " << e.what() << "\nReturning to the main menu...\n";
+}
 
 
 	//string username, password;

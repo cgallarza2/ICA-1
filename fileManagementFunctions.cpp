@@ -289,11 +289,12 @@ bool depositToAccount(vector<bankAccountType*> accountVector, int accountType, d
 	}
 	 catch (const invalid_argument& e) {
 		 cout << "Error: " << e.what() << endl;
-		 cin.clear();
 		 cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		 return false;
 	 }
 	 catch (const exception& e) {
 		 cout << "An error has occurred: " << e.what() << endl;
+		 return false;
 	 }
     return false; // false if account not found
 }
@@ -337,14 +338,16 @@ bool withdrawToAccount(vector<bankAccountType*> accountVector, int accountType, 
     }
 	 catch (const invalid_argument& e) {
 		  cout << "Error: " << e.what() << endl;
-		  cin.clear();
 		  cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		  return false;
 	 }
 	 catch (const runtime_error& e) {
 		  cout << "Error: " << e.what() << endl;
+		  return false;
 	 }
 	 catch (const exception& e) {
 		  cout << "An error has occurred: " << e.what() << endl;
+		  return false;
 	 }
     return false; // false if account not found
 }
