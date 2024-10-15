@@ -30,12 +30,13 @@ extern const double NOSERV_CHRG_CHK_INT_RATE; // = 0.02;
 extern const double HIGHINTCHK_RATE; // = 0.05;
 extern const double HIGHINTCHK_MIN_BAL; // = 5000.00
 
-
+//menus
 void printWelcomeMenu(vector<bankAccountType *> &accountsVector);
 void printMainMenu();
 void printCheckingAccount(vector<bankAccountType *> accountVector);
 void printSavingsAccount(vector<bankAccountType *> accountVector);
-void printAccountFunctions(vector<bankAccountType *> accountVector);
+//user menus
+vector<bankAccountType *> printAccountFunctions(vector<bankAccountType *> &accountVector);
 vector<bankAccountType *> printCreateNewUser(vector<bankAccountType *> accountVector);
 void clearScreen();
 //account options

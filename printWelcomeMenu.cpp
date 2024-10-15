@@ -34,7 +34,7 @@ void printWelcomeMenu (vector<bankAccountType *> &accountVector){
 		cin.ignore(1000, '\n');
 
 		switch(welcomeChoice) {
-		case '1': //needs to get account vector //needs hashing
+		case '1'://needs hashing
 			clearScreen();
 
 			while (!loggedIn) {

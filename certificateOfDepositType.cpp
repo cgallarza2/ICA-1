@@ -74,23 +74,12 @@ void certificateOfDepositType::postInterest()
 
 void certificateOfDepositType::deposit(double amount)
 {
-	if (amount <= 0) {
-		throw std::invalid_argument("You must enter an amount greater than zero. Please try again.");
-	}
+
 	balance = balance + amount;
 }
 
 void certificateOfDepositType::withdraw(double amount)
 {
-	if (cdMonth <= maturityMonths) {
-		throw std::runtime_error("CD has not been matured. No withdrawal.");
-	}
-	if (amount <= 0) {
-		throw std::invalid_argument("You must enter an amount greater than zero. Please try again.");
-	}
-	if (amount > balance) {
-		throw std::runtime_error("Your withdrawal amount is invalid. Please try again.");
-	}
 	balance = balance - amount;
 }
 
@@ -103,6 +92,6 @@ void certificateOfDepositType::createMonthlyStatement()
 void certificateOfDepositType::print()
 {
 	cout << fixed << showpoint << setprecision(2);
-	cout << "Certificate of Deposit: " << getName() << "\t ACCT# "
+	cout << "Certificate of Deposit: " << getName() << "\t\t ACCT# "
 		  << getAccountNumber() << "\tBalance: $" << getBalance();
 }

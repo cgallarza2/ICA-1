@@ -92,6 +92,6 @@ void serviceChargeCheckingType::createMonthlyStatement()
 void serviceChargeCheckingType::print()
 {
 	cout << fixed << showpoint << setprecision(2);
-	cout << "Service Charge Checking: " << getName() << "\t ACCT# " 
+	cout << "Service Charge Checking: " << getName() << "\t\t ACCT# " 
 		  << getAccountNumber() << "\tBalance: $" << getBalance();
 }

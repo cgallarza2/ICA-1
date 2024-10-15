@@ -59,20 +59,13 @@ void noServiceChargeCheckingType::writeCheck(double amount)
 
 void noServiceChargeCheckingType::deposit(double amount)
 {
-	if (amount <= 0) {
-		throw std::invalid_argument("You must enter an amount greater than zero. Please try again.");
-	}
+
 	balance = balance + amount;
 }
 
 void noServiceChargeCheckingType::withdraw(double amount)
 {
-	if (amount <= 0) {
-		throw std::invalid_argument("You must enter an amount greater than zero. Please try again.");
-	}
-	if (!verifyMinimumBalance(amount)) {
-		throw std::runtime_error("Your withdrawal amount is invalid. Please try again.");
-	}
+
 	balance = balance - amount;
 }
 

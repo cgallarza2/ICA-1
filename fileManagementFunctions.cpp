@@ -240,9 +240,9 @@ void printAccountInfo(const vector<bankAccountType*> accountVector) {
             case 3: cout << "Account type: No Service Charge Checking" << endl; break;
             case 4: cout << "Account type: Savings" << endl; break;
             case 5: cout << "Account type: High Interest Savings" << endl; break;
-            case 6: cout << "Account type: Certificate of Deposit (C.O.D.)" << endl;
-                cout << "Interest rate: " << account->getInterestRate() << "%" << endl;
-                cout << "Maturity months: " << account->getMaturityMonths() << endl;
+            case 6: cout << "Account type: Certificate of Deposit" << endl;
+                //cout << "Interest rate: " << account->getInterestRate() << "%" << endl;
+                //cout << "Maturity months: " << account->getMaturityMonths() << endl; not working friend?
                 break;
             default: cout << "Account type: Not Found \nReturning to account options... \n\n"; break;
         }
@@ -256,53 +256,52 @@ void printAccountInfo(const vector<bankAccountType*> accountVector) {
 
 
 //deposit function
-bool depositToAccount(vector<bankAccountType*> accountVector, int accountType, double amount) {
+vector<bankAccountType*> depositToAccount(vector<bankAccountType*> &accountVector, int accountType, double amount) {
 	try { // exception handling for depositing non-numbers
-		if (cin.fail()) {
-			 cin.clear();
-			 cin.ignore(numeric_limits<streamsize>::max(), '\n');
-			throw invalid_argument("Your deposit amount is invalid. Please try again.");
-		}
+		// if (cin.fail()) {
+			 // cin.clear();
+			 // cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			// throw invalid_argument("Your deposit amount is invalid. Please try again.");
+		// }
 
 		if (amount <= 0) { // exception handling for depositing zero or negative numbers
 			throw invalid_argument("You must enter an amount greater than zero. Please try again.");
 		}
 
-	for (auto account : accountVector) { //iterate through account vector
-        if (account->getType() == accountType) { //check type
-            account->deposit(amount); // deposit()
-            cout << "\nSuccessful deposit of: $" << amount 
-					  << "\nBalance: $" << account->getBalance() 
-					  << "\nReturning to account options... \n\n";
-            return true; // deposit made
+		for (auto account : accountVector) { //iterate through account vector
+			if (account->getType() == accountType) { //check type
+				account->deposit(amount); // deposit()
+				cout << "\nSuccessful deposit of: $" << amount 
+						  << "\nBalance: $" << account->getBalance() 
+						  << "\nReturning to account options... \n\n";
+			return accountVector; // deposit made
 			}
 		}
-    switch (accountType) {
-        case 1: cout << "Account Type Not Found: High Interest Checking \nReturning to account options... \n\n" << endl; break;
-        case 2: cout << "Account Type Not Found: Service Charge Checking \nReturning to account options... \n\n" << endl; break;
-        case 3: cout << "Account Type Not Found: No Service Charge Checking \nReturning to account options... \n\n" << endl; break;
-        case 4: cout << "Account Type Not Found: Savings \nReturning to account options... \n\n" << endl; break;
-        case 5: cout << "Account Type Not Found: High Interest Savings \nReturning to account options... \n\n" << endl; break;
-        case 6: cout << "Account Type Not Found: Certificate of Deposit (C.O.D.) \nReturning to account options... \n\n" << endl;
-        default: break;
-	    }
+		switch (accountType) {
+			case 1: cout << "Account Type Not Found: High Interest Checking \nReturning to account options... \n\n" << endl; break;
+			case 2: cout << "Account Type Not Found: Service Charge Checking \nReturning to account options... \n\n" << endl; break;
+			case 3: cout << "Account Type Not Found: No Service Charge Checking \nReturning to account options... \n\n" << endl; break;
+			case 4: cout << "Account Type Not Found: Savings \nReturning to account options... \n\n" << endl; break;
+			case 5: cout << "Account Type Not Found: High Interest Savings \nReturning to account options... \n\n" << endl; break;
+			case 6: cout << "Account Type Not Found: Certificate of Deposit \nReturning to account options... \n\n" << endl;
+			default: break;
+		}
+		return accountVector;
 	}
 	 catch (const invalid_argument& e) {
 		 cout << "Error: " << e.what() << endl;
 		 cin.ignore(numeric_limits<streamsize>::max(), '\n');
-		 return false;
 	 }
 	 catch (const exception& e) {
 		 cout << "An error has occurred: " << e.what() << endl;
-		 return false;
 	 }
-    return false; // false if account not found
+	 return accountVector;
 }
 
 //withdraw function
-bool withdrawToAccount(vector<bankAccountType*> accountVector, int accountType, double amount) {
+vector<bankAccountType*>  withdrawToAccount(vector<bankAccountType*> &accountVector, int accountType, double amount) {
 	 try { // exception handling for withdrawing non-numbers
-		  if (cin.fail()) {
+		if (cin.fail()) {
 				cin.clear();
 				cin.ignore(numeric_limits<streamsize>::max(), '\n');
 				throw invalid_argument("Your withdrawal amount is invalid. Please try again.");
@@ -312,17 +311,15 @@ bool withdrawToAccount(vector<bankAccountType*> accountVector, int accountType, 
 				throw invalid_argument("You must enter an amount greater than zero. Please try again.");
 		  }
 
-    for (auto account : accountVector) { //iterate
-        if (account->getType() == accountType) { //check type to withdraw
-            if (account->getBalance() >= amount) { //check balance greater than 0 (check if withdraw goes - )
-                account->withdraw(amount); // withdraw()
-                cout << "\nSuccessful withdraw of: $" << amount 
-							<< "\nRemaining balance: $" << account->getBalance() 
-							<< "\nReturning to account options... \n\n";
-                return true; // withdraw made
-            } else {
-                throw runtime_error("Your withdrawal amount is invalid. Please try again.");
-				}
+		for (auto account : accountVector) { //iterate
+			if (account->getType() == accountType) { //check type to withdraw
+				if (account->getBalance() >= amount) { //check balance greater than 0 (check if withdraw goes - )
+					account->withdraw(amount); // withdraw()
+					cout << "\nSuccessful withdraw of: $" << amount 
+								<< "\nRemaining balance: $" << account->getBalance() 
+								<< "\nReturning to account options... \n\n";
+					return accountVector; // withdraw made
+				} else { cout << "not enough funds\n"; }
 			}
 		}
 		switch (accountType) {
@@ -335,25 +332,23 @@ bool withdrawToAccount(vector<bankAccountType*> accountVector, int accountType, 
      		case 7: cout << "Account type Not Found: Certificate of Deposit (C.O.D.) \nReturning to account options... \n\n" << endl; break;
     		default: break;
 			}
+	return accountVector;
     }
 	 catch (const invalid_argument& e) {
 		  cout << "Error: " << e.what() << endl;
 		  cin.ignore(numeric_limits<streamsize>::max(), '\n');
-		  return false;
 	 }
 	 catch (const runtime_error& e) {
 		  cout << "Error: " << e.what() << endl;
-		  return false;
 	 }
 	 catch (const exception& e) {
 		  cout << "An error has occurred: " << e.what() << endl;
-		  return false;
 	 }
-    return false; // false if account not found
+	 return accountVector;
 }
 
 
-void createStatement(vector<bankAccountType*> &accountVector){
+void createStatement(vector<bankAccountType*> accountVector){
 	//need to store balances before processing months
 	vector<double> ogBalance;
 	for (int i = 0; i < accountVector.size(); i++) {

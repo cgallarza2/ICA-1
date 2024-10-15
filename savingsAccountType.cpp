@@ -51,26 +51,19 @@ void savingsAccountType::createMonthlyStatement()
 
 void savingsAccountType::deposit(double amount)
 {
-	if (amount <= 0) {
-		throw std::invalid_argument("You must enter a number greater than zero. Please try again.");
-	}
+
 	balance = balance + amount;
 }
 
 void savingsAccountType::withdraw(double amount)
 {
-	if (amount <= 0) {
-		throw std::invalid_argument("You must enter an amount greater than zero. Please try again.");
-	}
-	if (amount > balance) {
-		throw std::runtime_error("Your withdrawal amount is invalid. Please try again.");
-	}
+
 	balance = balance - amount;
 }
 
 void savingsAccountType::print()
 {
 	cout << fixed << showpoint << setprecision(2);
-	cout << "Savings: " << getName() << "\t ACCT# " 
+	cout << "Savings: " << getName() << "\t\t\t\t ACCT# " 
 		  << getAccountNumber() << "\tBalance: $" << getBalance();
 }

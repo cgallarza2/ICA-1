@@ -44,26 +44,19 @@ bool highInterestSavingsType::verifyMinimumBalance(double amount)
 
 void highInterestSavingsType::deposit(double amount)
 {
-	if (amount <= 0) {
-		throw std::invalid_argument("You must enter an amount greater than zero. Please try again.");
-	}
+
 	balance = balance + amount;
 }
 
 void highInterestSavingsType::withdraw(double amount)
 {
-	if (amount <= 0) {
-		throw std::invalid_argument("You must enter an amount greater than zero. Please try again.");
-	}
-	if (!verifyMinimumBalance(amount)) {
-		throw std::runtime_error("Your withdrawal amount is invalid. Please try again.");
-	}
+
 	balance = balance - amount;
 }
 
 void highInterestSavingsType::print()
 {
 	cout << fixed << showpoint << setprecision(2);
-	cout << "High Interest Savings: " << getName() << "\t ACCT# "
+	cout << "High Interest Savings: " << getName() << "\t\t ACCT# "
 		  << getAccountNumber() << "\tBalance: $" << getBalance();
 }

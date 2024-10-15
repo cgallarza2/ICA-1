@@ -31,8 +31,8 @@ void updateUserAccounts (vector<bankAccountType*> accountVector, string txtFile,
 
 //account options functions
 void printAccountInfo(vector<bankAccountType*> accountVector);
-bool depositToAccount(vector<bankAccountType*> accountVector, int accountType, double amount);
-bool withdrawToAccount(vector<bankAccountType*> accountVector, int accountType, double amount);
-void createStatement(vector<bankAccountType*> &accountVector);
+vector<bankAccountType*>  depositToAccount(vector<bankAccountType*> &accountVector, int accountType, double amount);
+vector<bankAccountType*>  withdrawToAccount(vector<bankAccountType*> &accountVector, int accountType, double amount);
+void createStatement(vector<bankAccountType*> accountVector);
 
 #endif

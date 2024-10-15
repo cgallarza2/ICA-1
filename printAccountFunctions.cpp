@@ -7,10 +7,10 @@
 using namespace std;
 
 
-void printAccountFunctions(vector<bankAccountType *> accountVector) {
+vector<bankAccountType *> printAccountFunctions(vector<bankAccountType *> &accountVector) {
 	char functionChoice;
 	bool firstTimeInScreen = true;
-	int sessionID = 1212;
+	//int sessionID = 1212;
 
 	do {
 		if (firstTimeInScreen) {
@@ -27,7 +27,7 @@ void printAccountFunctions(vector<bankAccountType *> accountVector) {
 		cout << setw(21) << "*" << setw(78) << "2. Deposit Money" << "*" << endl;
 		cout << setw(21) << "*" << setw(78) << "3. Withdraw Money" << "*" << endl;
 		cout << setw(21) << "*" << setw(78) << "4. Create Monthly Statement" << "*" << endl;
-		cout << setw(21) << "*" << setw(78) << "5. Return to Main Menu" << "*" << endl;
+		cout << setw(21) << "*" << setw(78) << "5. Return to login" << "*" << endl;
 		cout << setw(SCREEN_WIDTH - 1) << "*" << "*" << endl;
 		cout << right;
 		cout << string(SCREEN_WIDTH, '*') << endl << endl;
@@ -49,8 +49,8 @@ void printAccountFunctions(vector<bankAccountType *> accountVector) {
 				cin >> accountType;
 				cout << "Enter deposit amount: " ;
 				cin >> amount;
-				depositToAccount(accountVector, accountType, amount);
-
+				accountVector = depositToAccount(accountVector, accountType, amount);
+				//updateUserAccounts(accountVector, txtFile, sessionID);
 				break;
 			case '3': //withdraw
 				printWithdraw();
@@ -58,13 +58,15 @@ void printAccountFunctions(vector<bankAccountType *> accountVector) {
 				cin >> accountType;
 				cout << "Enter withdraw amount: ";
 				cin >> amount;
-				withdrawToAccount(accountVector, accountType, amount);
+				accountVector = withdrawToAccount(accountVector, accountType, amount);
+				//updateUserAccounts(accountVector, txtFile, sessionID);
 				break;
 			case '4': //create monthly statement
 				createStatement(accountVector);
 				break;
 			case '5':
-				cout << "Returning to main menu.";
+				cout << "Returning to login...";
+				throw runtime_error("Return to main menu");
 				break;
 			default:
 				clearScreen();
@@ -74,5 +76,5 @@ void printAccountFunctions(vector<bankAccountType *> accountVector) {
 		}
 	} while(functionChoice != '5');
 
-	return;
+	return accountVector;
 }
