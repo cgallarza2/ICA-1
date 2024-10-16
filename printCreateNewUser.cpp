@@ -61,29 +61,31 @@ vector<bankAccountType *> printCreateNewUser(vector<bankAccountType *> accountVe
 	cin >> acctNumber;
 
 
-	clearScreen();
-	cout << string(SCREEN_WIDTH, '*') << endl;
-	cout << left;
-	cout << setw(11) << "*" << setw(88) << "The various bank account types we have to offer!" << "*" << endl;
-	cout << string(SCREEN_WIDTH, '*') << endl;
-	cout << setw(11) << "*" << setw(88) << "1. High Interest Checking" << "*" << endl;
-	cout << setw(11) << "*" << setw(88) << "2. Service Charge Checking" << "*" << endl;
-	cout << setw(11) << "*" << setw(88) << "3. No Service Charge Checking" << "*" << endl;
-	cout << setw(11) << "*" << setw(88) << "4. Basic Savings" << "*" << endl;
-	cout << setw(11) << "*" << setw(88) << "5. High Interest Savings" << "*" << endl;
-	cout << setw(11) << "*" << setw(88) << "6. Certificate of Deposit" << "*" << endl;
-	cout << setw(SCREEN_WIDTH - 1) << "*" << "*" << endl;
-	cout << right;
-	cout << string(SCREEN_WIDTH, '*') << endl << endl;
+	//clearScreen();
+	//cout << string(SCREEN_WIDTH, '*') << endl;
+	//cout << left;
+	//cout << setw(11) << "*" << setw(88) << "The various bank account types we have to offer!" << "*" << endl;
+	//cout << string(SCREEN_WIDTH, '*') << endl;
+	//cout << setw(11) << "*" << setw(88) << "1. High Interest Checking" << "*" << endl;
+	//cout << setw(11) << "*" << setw(88) << "2. Service Charge Checking" << "*" << endl;
+	//cout << setw(11) << "*" << setw(88) << "3. No Service Charge Checking" << "*" << endl;
+	//cout << setw(11) << "*" << setw(88) << "4. Basic Savings" << "*" << endl;
+	//cout << setw(11) << "*" << setw(88) << "5. High Interest Savings" << "*" << endl;
+	//cout << setw(11) << "*" << setw(88) << "6. Certificate of Deposit" << "*" << endl;
+	//cout << setw(SCREEN_WIDTH - 1) << "*" << "*" << endl;
+	//cout << right;
+	//cout << string(SCREEN_WIDTH, '*') << endl << endl;
 
-	cout << "Please enter the bank account type (1-6): ";
-	cin >> accountType;
+	//cout << "Please enter the bank account type (1-6): ";
+	//cin >> accountType;
 
 	string filename = username + ".txt"; //username.txt
 	ofstream accountFile(filename, ios::app);
 	
 	if (accountFile.is_open()){
-		accountVector = createAccount(accountVector, filename, accountType, name, acctNumber, balance, 0, 0, sessionID); //to accountvector
+		for (int i = 1; i < 7; i++) {
+			accountVector = createAccount(accountVector, filename, i, name, acctNumber, balance, 0.05, 0, sessionID); //to accountvector
+		}
 	} //error checking in createAccount
 return accountVector;
 }
