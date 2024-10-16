@@ -64,7 +64,7 @@ void printWelcomeMenu (vector<bankAccountType *> &accountVector, int sessionID, 
 			}
 			break;
 		case '2':
-			accountVector = printCreateNewUser(accountVector, sessionID);
+			accountVector = printCreateNewUser(accountVector, sessionID, username);
 			return;
 		default:
 			clearScreen();

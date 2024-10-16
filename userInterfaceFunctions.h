@@ -37,7 +37,7 @@ void printCheckingAccount(vector<bankAccountType *> accountVector, int sessionID
 void printSavingsAccount(vector<bankAccountType *> accountVector, int sessionID, string username);
 //user menus
 vector<bankAccountType *> printAccountFunctions(vector<bankAccountType *> &accountVector, int sessionID, string username);
-vector<bankAccountType *> printCreateNewUser(vector<bankAccountType *> accountVector, int sessionID);
+vector<bankAccountType *> printCreateNewUser(vector<bankAccountType *> accountVector, int sessionID, string &username);
 void clearScreen();
 //account options
 void printDeposit();

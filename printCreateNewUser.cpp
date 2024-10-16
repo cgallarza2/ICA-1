@@ -19,9 +19,9 @@
 
 using namespace std;
 
-vector<bankAccountType *> printCreateNewUser(vector<bankAccountType *> accountVector, int sessionID)
+vector<bankAccountType *> printCreateNewUser(vector<bankAccountType *> accountVector, int sessionID, string &username)
 {
-	string name, username;
+	string name;
 	char password[100];
 	int acctNumber, accountType; //account number should be generated i++
 	double balance = 0; //start with 0 balance

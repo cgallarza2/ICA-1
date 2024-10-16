@@ -52,7 +52,7 @@ vector<bankAccountType *> printAccountFunctions(vector<bankAccountType *> &accou
 
 				if (checkID(sessionID, username)) {
 					/* accountVector =  */depositToAccount(accountVector, accountType, amount);
-					//updateUserAccounts(accountVector, txtFile, sessionID);
+					updateUserAccounts(accountVector, txtFile, sessionID);
 				}
 				else {
 					cout << "Sorry! It appears a more recent session has been detected. Please login again!" << endl;
@@ -69,7 +69,7 @@ vector<bankAccountType *> printAccountFunctions(vector<bankAccountType *> &accou
 
 				if (checkID(sessionID, username)) {
 					/*  accountVector =  */withdrawToAccount(accountVector, accountType, amount);
-					//updateUserAccounts(accountVector, txtFile, sessionID);
+					updateUserAccounts(accountVector, txtFile, sessionID);
 				}
 				else {
 					cout << "Sorry! It appears a more recent session has been detected. Please login again!" << endl;
