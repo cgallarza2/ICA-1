@@ -289,11 +289,10 @@ void printAccountInfo(const vector<bankAccountType*> accountVector) {
 //deposit function
 /* vector<bankAccountType*> */ bool depositToAccount(vector<bankAccountType*> &accountVector, int accountType, double amount) {
 	try { // exception handling for depositing non-numbers
-		// if (cin.fail()) {
-			 // cin.clear();
-			 // cin.ignore(numeric_limits<streamsize>::max(), '\n');
-			// throw invalid_argument("Your deposit amount is invalid. Please try again.");
-		// }
+		if (cin.fail()) {
+			 cin.clear();
+			throw invalid_argument("Your deposit amount is invalid. Please try again.");
+		}
 
 		if (amount <= 0) { // exception handling for depositing zero or negative numbers
 			throw invalid_argument("You must enter an amount greater than zero. Please try again.");
@@ -336,7 +335,6 @@ void printAccountInfo(const vector<bankAccountType*> accountVector) {
 	 try { // exception handling for withdrawing non-numbers
 		if (cin.fail()) {
 				cin.clear();
-				cin.ignore(numeric_limits<streamsize>::max(), '\n');
 				throw invalid_argument("Your withdrawal amount is invalid. Please try again.");
 		  }
 
