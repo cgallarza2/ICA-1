@@ -7,9 +7,8 @@
 #include <unistd.h>
 #include <stdio.h>
 
-void printWelcomeMenu (vector<bankAccountType *> &accountVector){
+void printWelcomeMenu (vector<bankAccountType *> &accountVector, int sessionID, string &username){
 	char welcomeChoice;
-	string username;
 	char password[100];
 	bool loggedIn = false;
 	int i = 0;
@@ -59,12 +58,13 @@ void printWelcomeMenu (vector<bankAccountType *> &accountVector){
 					//populate account vector
 					string txtFile  = username + ".txt";
 					accountVector = populateAccounts(accountVector, txtFile);
+					updateUserAccounts(accountVector, txtFile, sessionID);
 					return;
 				}
 			}
 			break;
 		case '2':
-			accountVector = printCreateNewUser(accountVector);
+			accountVector = printCreateNewUser(accountVector, sessionID);
 			return;
 		default:
 			clearScreen();

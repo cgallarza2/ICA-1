@@ -9,6 +9,8 @@
 #include <termios.h>
 #include <unistd.h>
 #include <stdio.h>
+#include <time.h>
+
 #include "bankAccountType.h"
 #include "savingsAccountType.h"
 #include "highInterestSavingsType.h"
@@ -28,6 +30,10 @@ int getch();
 vector<bankAccountType*> populateAccounts(vector<bankAccountType*> accountVector, string txtFile);
 vector<bankAccountType*> createAccount(vector<bankAccountType*> accountVector, string txtFile, int a_type, string a_name, int a_acctNumber, double a_balance, double a_intRate, int a_maturityMon, int sessionID);
 void updateUserAccounts (vector<bankAccountType*> accountVector, string txtFile, int sessionID);
+
+//Session ID Management
+int generateSessionID();
+bool checkID(int sessionID, string txtFile);
 
 //account options functions
 void printAccountInfo(vector<bankAccountType*> accountVector);

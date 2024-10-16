@@ -7,7 +7,7 @@
 using namespace std;
 
 
-vector<bankAccountType *> printAccountFunctions(vector<bankAccountType *> &accountVector) {
+vector<bankAccountType *> printAccountFunctions(vector<bankAccountType *> &accountVector, int sessionID, string username) {
 	char functionChoice;
 	bool firstTimeInScreen = true;
 	//int sessionID = 1212;
@@ -38,7 +38,7 @@ vector<bankAccountType *> printAccountFunctions(vector<bankAccountType *> &accou
 		string txtFile;
 		int accountType;
 		double amount;
-		
+
 		switch (functionChoice) {
 			case '1': //print user data
 				printAccountInfo(accountVector);
@@ -49,8 +49,16 @@ vector<bankAccountType *> printAccountFunctions(vector<bankAccountType *> &accou
 				cin >> accountType;
 				cout << "Enter deposit amount: " ;
 				cin >> amount;
-				/* accountVector =  */depositToAccount(accountVector, accountType, amount);
-				//updateUserAccounts(accountVector, txtFile, sessionID);
+
+				if (checkID(sessionID, username)) {
+					/* accountVector =  */depositToAccount(accountVector, accountType, amount);
+					//updateUserAccounts(accountVector, txtFile, sessionID);
+				}
+				else {
+					cout << "Sorry! It appears a more recent session has been detected. Please login again!" << endl;
+					cin.ignore();
+				}
+
 				break;
 			case '3': //withdraw
 				printWithdraw();
@@ -58,8 +66,15 @@ vector<bankAccountType *> printAccountFunctions(vector<bankAccountType *> &accou
 				cin >> accountType;
 				cout << "Enter withdraw amount: ";
 				cin >> amount;
-				/*  accountVector =  */withdrawToAccount(accountVector, accountType, amount);
-				//updateUserAccounts(accountVector, txtFile, sessionID);
+
+				if (checkID(sessionID, username)) {
+					/*  accountVector =  */withdrawToAccount(accountVector, accountType, amount);
+					//updateUserAccounts(accountVector, txtFile, sessionID);
+				}
+				else {
+					cout << "Sorry! It appears a more recent session has been detected. Please login again!" << endl;
+					cin.ignore();
+				}
 				break;
 			case '4': //create monthly statement
 				createStatement(accountVector);

@@ -8,6 +8,8 @@
 #include <termios.h>
 #include <unistd.h>
 #include <stdio.h>
+#include <time.h>
+
 #include "bankAccountType.h"
 #include "savingsAccountType.h"
 #include "highInterestSavingsType.h"
@@ -225,6 +227,35 @@ void updateUserAccounts (vector<bankAccountType*> accountVector, string txtFile,
 
 		accounts.close();
 	}
+}
+
+//Session ID Management
+
+int generateSessionID() {
+	int id;
+	srand(time(0));
+
+	id = rand() % 1000 + 1;
+	return id;
+}
+
+
+bool checkID(int sessionID, string txtFile) {
+	ifstream check;
+	int recordedID;
+
+	check.open(txtFile + ".txt");
+	if (check.is_open()) {
+
+		check >> recordedID;
+		check.close();
+
+		if (sessionID == recordedID) {
+			return true;
+		}
+	}
+
+	return false;
 }
 
 

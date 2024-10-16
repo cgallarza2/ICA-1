@@ -19,13 +19,12 @@
 
 using namespace std;
 
-vector<bankAccountType *> printCreateNewUser(vector<bankAccountType *> accountVector)
+vector<bankAccountType *> printCreateNewUser(vector<bankAccountType *> accountVector, int sessionID)
 {
 	string name, username;
 	char password[100];
 	int acctNumber, accountType; //account number should be generated i++
 	double balance = 0; //start with 0 balance
-	int sessionID = 1212; //make random later
 	int i = 0;
 	int ch;
 

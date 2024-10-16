@@ -38,12 +38,15 @@ extern const double HIGHINTCHK_MIN_BAL = 5000.00;
 int main()
 {
 
+	int sessionID = generateSessionID();
+	string username;
 	char mainChoice;
 	vector<bankAccountType *> accountVector;
 
 	try {
 		do {
-		printWelcomeMenu(accountVector);
+
+		printWelcomeMenu(accountVector, sessionID, username);
 		printMainMenu();
 		cin >> mainChoice;
 
@@ -56,14 +59,14 @@ int main()
 			switch(mainChoice) {
 				case '1':
 					//printCheckingAccount(accountVector);
-					printAccountFunctions(accountVector);
+					printAccountFunctions(accountVector, sessionID, username);
 					break;
 				case '2':
 					//printSavingsAccount(accountVector);
-					printAccountFunctions(accountVector);
+					printAccountFunctions(accountVector, sessionID, username);
 					break;
 				case '3':
-					printAccountFunctions(accountVector);
+					printAccountFunctions(accountVector, sessionID, username);
 					break;
 				case '4':
 					cout << "Exiting... " << endl;
