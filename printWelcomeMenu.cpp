@@ -61,6 +61,9 @@ void printWelcomeMenu (vector<bankAccountType *> &accountVector, int sessionID, 
 					updateUserAccounts(accountVector, txtFile, sessionID);
 					return;
 				}
+				else {
+					i = 0;
+				}
 			}
 			break;
 		case '2':
