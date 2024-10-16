@@ -82,6 +82,8 @@ vector<bankAccountType *> printAccountFunctions(vector<bankAccountType *> &accou
 			case '5':
 				cout << "Returning to login...";
 				//throw runtime_error("Return to main menu");
+				updateUserAccounts(accountVector, txtFile, sessionID);
+				accountVector.clear();
 				return accountVector;
 				break;
 			default:
