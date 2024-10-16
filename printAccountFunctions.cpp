@@ -35,7 +35,7 @@ vector<bankAccountType *> printAccountFunctions(vector<bankAccountType *> &accou
 		cout << "Enter your choice: ";
 		cin >> functionChoice;
 
-		string txtFile;
+		string txtFile = username + ".txt";
 		int accountType;
 		double amount;
 
