@@ -40,7 +40,7 @@ bool attemptLogIn(string username, string password) {
 			}
 		}
 		userList.close();
-		cout << "Please try again!" << endl;
+		cout << "\nPlease try again!" << endl;
 		return false;
 	}
 
