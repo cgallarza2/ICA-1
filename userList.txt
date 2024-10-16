@@ -11,3 +11,11 @@ bjuke shaka
 abob god
 
 abob god
+
+abob.txt password
+
+abob password
+
+abob password
+
+abob password

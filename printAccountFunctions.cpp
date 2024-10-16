@@ -49,7 +49,7 @@ vector<bankAccountType *> printAccountFunctions(vector<bankAccountType *> &accou
 				cin >> accountType;
 				cout << "Enter deposit amount: " ;
 				cin >> amount;
-				accountVector = depositToAccount(accountVector, accountType, amount);
+				/* accountVector =  */depositToAccount(accountVector, accountType, amount);
 				//updateUserAccounts(accountVector, txtFile, sessionID);
 				break;
 			case '3': //withdraw
@@ -58,7 +58,7 @@ vector<bankAccountType *> printAccountFunctions(vector<bankAccountType *> &accou
 				cin >> accountType;
 				cout << "Enter withdraw amount: ";
 				cin >> amount;
-				accountVector = withdrawToAccount(accountVector, accountType, amount);
+				/*  accountVector =  */withdrawToAccount(accountVector, accountType, amount);
 				//updateUserAccounts(accountVector, txtFile, sessionID);
 				break;
 			case '4': //create monthly statement
@@ -66,7 +66,8 @@ vector<bankAccountType *> printAccountFunctions(vector<bankAccountType *> &accou
 				break;
 			case '5':
 				cout << "Returning to login...";
-				throw runtime_error("Return to main menu");
+				//throw runtime_error("Return to main menu");
+				return accountVector;
 				break;
 			default:
 				clearScreen();

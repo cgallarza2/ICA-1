@@ -256,7 +256,7 @@ void printAccountInfo(const vector<bankAccountType*> accountVector) {
 
 
 //deposit function
-vector<bankAccountType*> depositToAccount(vector<bankAccountType*> &accountVector, int accountType, double amount) {
+/* vector<bankAccountType*> */ bool depositToAccount(vector<bankAccountType*> &accountVector, int accountType, double amount) {
 	try { // exception handling for depositing non-numbers
 		// if (cin.fail()) {
 			 // cin.clear();
@@ -274,7 +274,8 @@ vector<bankAccountType*> depositToAccount(vector<bankAccountType*> &accountVecto
 				cout << "\nSuccessful deposit of: $" << amount 
 						  << "\nBalance: $" << account->getBalance() 
 						  << "\nReturning to account options... \n\n";
-			return accountVector; // deposit made
+			//return accountVector; // deposit made
+			return true;
 			}
 		}
 		switch (accountType) {
@@ -286,7 +287,7 @@ vector<bankAccountType*> depositToAccount(vector<bankAccountType*> &accountVecto
 			case 6: cout << "Account Type Not Found: Certificate of Deposit \nReturning to account options... \n\n" << endl;
 			default: break;
 		}
-		return accountVector;
+		//return accountVector;
 	}
 	 catch (const invalid_argument& e) {
 		 cout << "Error: " << e.what() << endl;
@@ -295,11 +296,12 @@ vector<bankAccountType*> depositToAccount(vector<bankAccountType*> &accountVecto
 	 catch (const exception& e) {
 		 cout << "An error has occurred: " << e.what() << endl;
 	 }
-	 return accountVector;
+	 //return accountVector;
+	 return true;
 }
 
 //withdraw function
-vector<bankAccountType*>  withdrawToAccount(vector<bankAccountType*> &accountVector, int accountType, double amount) {
+/* vector<bankAccountType*> */ bool withdrawToAccount(vector<bankAccountType*> &accountVector, int accountType, double amount) {
 	 try { // exception handling for withdrawing non-numbers
 		if (cin.fail()) {
 				cin.clear();
@@ -318,13 +320,15 @@ vector<bankAccountType*>  withdrawToAccount(vector<bankAccountType*> &accountVec
 					cout << "\nSuccessful withdraw of: $" << amount 
 								<< "\nRemaining balance: $" << account->getBalance() 
 								<< "\nReturning to account options... \n\n";
-					return accountVector; // withdraw made
+					//return accountVector; // withdraw made
+					return true;
 				} else { cout << "not enough funds\n"; }
+				return false;
 			}
 		}
 		switch (accountType) {
         	case 1: cout << "Account type Not Found: Checking \nReturning to account options... \n\n" << endl; break;
-         case 2: cout << "Account type Not Found: High Interest Checking \nReturning to account options... \n\n" << endl; break;
+			case 2: cout << "Account type Not Found: High Interest Checking \nReturning to account options... \n\n" << endl; break;
     		case 3: cout << "Account type Not Found: Service Charge Checking \nReturning to account options... \n\n" << endl; break;
     		case 4: cout << "Account type Not Found: No Service Charge Checking \nReturning to account options... \n\n" << endl; break;
      		case 5: cout << "Account type Not Found: Savings \nReturning to account options... \n\n" << endl; break;
@@ -332,7 +336,8 @@ vector<bankAccountType*>  withdrawToAccount(vector<bankAccountType*> &accountVec
      		case 7: cout << "Account type Not Found: Certificate of Deposit (C.O.D.) \nReturning to account options... \n\n" << endl; break;
     		default: break;
 			}
-	return accountVector;
+	//return accountVector;
+	return true;
     }
 	 catch (const invalid_argument& e) {
 		  cout << "Error: " << e.what() << endl;
@@ -344,7 +349,8 @@ vector<bankAccountType*>  withdrawToAccount(vector<bankAccountType*> &accountVec
 	 catch (const exception& e) {
 		  cout << "An error has occurred: " << e.what() << endl;
 	 }
-	 return accountVector;
+	 //return accountVector;
+	 return true;
 }
 
 
