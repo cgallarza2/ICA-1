@@ -83,26 +83,9 @@ vector<bankAccountType *> printCreateNewUser(vector<bankAccountType *> accountVe
 	ofstream accountFile(filename, ios::app);
 	
 	if (accountFile.is_open()){
-		for (int i = 1; i < 7; i++) {
+		for (int i = 1; i < 7; i++) { //create all types of account for new user...
 			accountVector = createAccount(accountVector, filename, i, name, acctNumber, balance, 0.05, 0, sessionID); //to accountvector
 		}
 	} //error checking in createAccount
 return accountVector;
 }
-
-/*
-	string filename = username + "_account.txt"; //username_account.txt
-	ofstream accountFile(filename, ios::app);
-	if (accountFile.is_open()){
-		accountFile << accountType << endl; //user specifies in menus 
-		accountFile << name << endl; //user enters
-		accountFile << acctNumber << endl; //user does not enter
-		accountFile << balance << endl; //user does not enter
-		accountFile << password << endl; //store in hash, when printing dehash
-		accountFile << username << endl; //user enters 
-		accountFile.close();
-		cout << "Account Created" << endl;
-	}else{
-		cout << "Unable to make account" << endl;
-	}
-*/
