@@ -1,6 +1,3 @@
-#include <fstream> //file
-#include <sstream> //file
-
 #include <iostream>
 #include <iomanip>
 #include <vector>
@@ -42,13 +39,20 @@ int main()
 	string username;
 	char mainChoice;
 	vector<bankAccountType *> accountVector;
+	bool isEmployee = false;
 
 	try {
 		do {
-
-		printWelcomeMenu(accountVector, sessionID, username);
-		printMainMenu();
-		cin >> mainChoice;
+			loginMenu(accountVector, sessionID, username);
+			if (username.find("_employee") != string::npos) {
+				isEmployee = true;
+			}
+			if (isEmployee) {
+				printEmployeeMenu();
+			} else {
+				printUserMenu();
+			}
+			cin >> mainChoice;
 
 			if (cin.fail()) {
 				cin.clear();
@@ -57,19 +61,34 @@ int main()
 			}
 
 			switch(mainChoice) {
-				case '1':
-					//printCheckingAccount(accountVector);
-					printAccountFunctions(accountVector, sessionID, username);
+				case '1': //could make into account settings
+					if (isEmployee) {
+						//for now go to employee options
+						printEmployeeOptions(accountVector, sessionID, username);
+					} else {
+						//for now go to user options
+						printUserOptions(accountVector, sessionID, username);
+					}
 					break;
-				case '2':
-					//printSavingsAccount(accountVector);
-					printAccountFunctions(accountVector, sessionID, username);
+				case '2': //could make into account logs
+					if (isEmployee) {
+						//for now go to employee options
+						printEmployeeOptions(accountVector, sessionID, username);
+					} else {
+						//for now go to user options 
+						printUserOptions(accountVector, sessionID, username);
+					}
 					break;
-				case '3':
-					printAccountFunctions(accountVector, sessionID, username);
+				case '3'://options
+					if (isEmployee) {
+						//for now display employee stuff 
+						printEmployeeOptions(accountVector, sessionID, username);
+					} else {
+						printUserOptions(accountVector, sessionID, username);
+					}
 					break;
-				case '4':
-					cout << "Exiting... " << endl;
+				case '4': //log out
+					cout << "\nExiting... " << endl;
 					break;
 				default:
 					clearScreen();

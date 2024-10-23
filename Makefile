@@ -1,11 +1,11 @@
 CFLAGS = -Wall -Werror -Wpedantic -std=c++20 -O0 -g
 CC = g++
 
-OBJECTS = main.o bankAccountType.o savingsAccountType.o highInterestSavingsType.o certificateOfDepositType.o serviceChargeCheckingType.o checkingAccountType.o noServiceChargeCheckingType.o highInterestCheckingType.o clearScreen.o printWelcomeMenu.o printMainMenu.o printCheckingAccount.o printSavingsAccount.o printAccountFunctions.o printCreateNewUser.o fileManagementFunctions.o printDeposit.o printWithdraw.o
+OBJECTS = main.o bankAccountType.o savingsAccountType.o highInterestSavingsType.o certificateOfDepositType.o serviceChargeCheckingType.o checkingAccountType.o noServiceChargeCheckingType.o highInterestCheckingType.o clearScreen.o fileManagementFunctions.o loginMenu.o createNewUser.o printUserMenu.o printUserOptions.o printDeposit.o printWithdraw.o printEmployeeOptions.o printEmployeeMenu.o
 run-tests: $(OBJECTS)
 	$(CC) $(CFLAGS) -o $@ $^
 
-main.o: main.cpp bankAccountType.o savingsAccountType.o highInterestSavingsType.o certificateOfDepositType.o printMainMenu.o
+main.o: main.cpp bankAccountType.o savingsAccountType.o highInterestSavingsType.o certificateOfDepositType.o
 
 highInterestSavingsType.o: highInterestSavingsType.cpp highInterestSavingsType.h bankAccountType.o  savingsAccountType.o
 
@@ -25,23 +25,24 @@ checkingAccountType.o: checkingAccountType.cpp checkingAccountType.h bankAccount
 
 clearScreen.o: clearScreen.cpp userInterfaceFunctions.h
 
-printWelcomeMenu.o: printWelcomeMenu.cpp userInterfaceFunctions.h
-
-printMainMenu.o: printMainMenu.cpp userInterfaceFunctions.h
-
-printCheckingAccount.o: printCheckingAccount.cpp userInterfaceFunctions.h
-
-printSavingsAccount.o: printSavingsAccount.cpp userInterfaceFunctions.h
-
-printAccountFunctions.o: printAccountFunctions.cpp userInterfaceFunctions.h
-
-printCreateNewUser.o: printCreateNewUser.cpp userInterfaceFunctions.h
-
 fileManagementFunctions.o: fileManagementFunctions.cpp fileManagementFunctions.h
+
+printUserMenu.o: printUserMenu.cpp userInterfaceFunctions.h
 
 printDeposit.o: printDeposit.cpp fileManagementFunctions.h
 
 printWithdraw.o: printWithdraw.cpp fileManagementFunctions.h
+
+loginMenu.o: loginMenu.cpp userInterfaceFunctions.h
+
+printEmployeeOptions.o: printEmployeeOptions.cpp userInterfaceFunctions.h
+
+printEmployeeMenu.o: printEmployeeMenu.cpp userInterfaceFunctions.h
+
+printUserOptions.o: printUserOptions.cpp userInterfaceFunctions.h
+
+createNewUser.o: createNewUser.cpp userInterfaceFunctions.h
+
 
 clean:
 	rm -f run-tests *.o *~

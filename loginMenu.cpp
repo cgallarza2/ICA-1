@@ -1,27 +1,14 @@
-#include "userInterfaceFunctions.h" //constructor
-#include "fileManagementFunctions.h" //login
-#include <iostream>
-#include <iomanip>
-#include <string>
-#include <termios.h>
-#include <unistd.h>
-#include <stdio.h>
+#include "userInterfaceFunctions.h" //defined
+#include "fileManagementFunctions.h" //login user, login employee
 
-void printWelcomeMenu (vector<bankAccountType *> &accountVector, int sessionID, string &username){
+void loginMenu(vector<bankAccountType *> &accountVector, int sessionID, string &username){
 	char welcomeChoice;
 	char password[100];
 	bool loggedIn = false;
 	int i = 0;
 	int ch;
-	
-	//colors
-	const string green = "\033[32m";
-    const string yellow = "\033[33m";
-    const string reset = "\033[0m";
-    const string flashing = "\033[5m";
-
+	clearScreen();
 	do{
-		clearScreen();
 		cout << flashing; //not working
 		cout << "\t\t\t " << yellow << "/" << green << "$$$$$$$" << yellow << "   /" << green << "$$$$$$" << yellow << "  /" << green << "$$" << yellow << "   /" << green << "$$" << yellow << " /" << green << "$$" << yellow << "   /" << green << "$$" << endl;
 		cout << "\t\t\t" << yellow << "|" << green << " $$" << yellow <<"__" << green <<" $$ " << yellow << " /" << green << "$$" << yellow << "__ " << green << " $$" << yellow << "|" << green << " $$$ " << yellow << "|" << green << " $$" << yellow << "|" << green << " $$  " << yellow << "/" << green << "$$" << yellow << "/" << endl;
@@ -50,8 +37,13 @@ void printWelcomeMenu (vector<bankAccountType *> &accountVector, int sessionID, 
 
 		switch(welcomeChoice) {
 		case '1'://needs hashing
-			clearScreen();
-
+			char choice;			//specify account login
+			cout << "\nPress 1. User\t  Press 2. Employee" << reset << endl;
+			cout << "Login as: ";
+			cin >> choice;
+			cin.ignore();
+			
+		if (choice == '1'){ //login as user	
 			while (!loggedIn) {
 				cout << "Enter username: ";
 				getline(cin, username);
@@ -69,9 +61,8 @@ void printWelcomeMenu (vector<bankAccountType *> &accountVector, int sessionID, 
 				}
 				password[i] = '\0';
 
-				if (attemptLogIn(username, password)) {
+				if (attemptLogIn(username, password)) { //populate user account vector
 					loggedIn = true;
-					//populate account vector
 					string txtFile  = username + ".txt";
 					accountVector = populateAccounts(accountVector, txtFile);
 					updateUserAccounts(accountVector, txtFile, sessionID);
@@ -81,17 +72,50 @@ void printWelcomeMenu (vector<bankAccountType *> &accountVector, int sessionID, 
 					i = 0;
 				}
 			}
-			break;
+		}else if (choice == '2') { // employee log-in
+            while (!loggedIn) {
+                cout << "Enter employee username: ";
+                getline(cin, username);
+				username += "_employee"; 
+                cout << "Enter employee password: ";
+                while ((ch = getch()) != '\n') {
+                    if (ch == 127 || ch == 8) {
+                        if (i != 0) {
+                            i--;
+                            cout << "\b \b";
+                        }
+                    } else {
+                        password[i++] = ch;
+                        cout << "*";
+                    }
+                }
+                password[i] = '\0';
+
+                if (attemptEmployeeLogIn(username, password)) { // populate employee account vector
+                    loggedIn = true;
+                    string txtFile = username + ".txt";
+                    accountVector = populateAccounts(accountVector, txtFile);
+                    updateUserAccounts(accountVector, txtFile, sessionID);
+                    return;
+                } else {
+                    i = 0;
+                }
+            }
+        } else {
+            clearScreen();
+            cout << red << "Please select user(1) or employee(2)" << reset << endl;
+		}
+        break;
 		case '2':
-			accountVector = printCreateNewUser(accountVector, sessionID, username);
+			accountVector = createNewUser(accountVector, sessionID, username);
 			return;
 		default:
 			clearScreen();
-			cout << "Please enter valid input" << endl;
+			cout << red << "Please enter valid input" << reset << endl;
 			break;
 		}
 
-	} while(welcomeChoice != '2');
+	} while(welcomeChoice != '3');
 	return;
 
 }

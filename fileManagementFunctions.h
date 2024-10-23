@@ -31,14 +31,19 @@ vector<bankAccountType*> populateAccounts(vector<bankAccountType*> accountVector
 vector<bankAccountType*> createAccount(vector<bankAccountType*> accountVector, string txtFile, int a_type, string a_name, int a_acctNumber, double a_balance, double a_intRate, int a_maturityMon, int sessionID);
 void updateUserAccounts (vector<bankAccountType*> accountVector, string txtFile, int sessionID);
 
+//employee login management
+bool attemptEmployeeLogIn(string username, string password);
+void addEmployeeAccount(string username, string password);
+int generateAccountNumber();
+
 //Session ID Management
 int generateSessionID();
 bool checkID(int sessionID, string txtFile);
 
-//account options functions
+//user account options functions
 void printAccountInfo(vector<bankAccountType*> accountVector);
-/* vector<bankAccountType*>  */ bool depositToAccount(vector<bankAccountType*> &accountVector, int accountType, double amount);
-/* vector<bankAccountType*> */ bool withdrawToAccount(vector<bankAccountType*> &accountVector, int accountType, double amount);
+bool depositToAccount(vector<bankAccountType*> &accountVector, int accountType, double amount);
+bool withdrawToAccount(vector<bankAccountType*> &accountVector, int accountType, double amount);
 void createStatement(vector<bankAccountType*> accountVector);
 
 #endif

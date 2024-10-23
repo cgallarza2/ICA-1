@@ -5,7 +5,7 @@
 #include <iostream>
 #include <iomanip>
 #include <vector>
-#include "bankAccountType.h" // vector
+#include "bankAccountType.h"
 #include "savingsAccountType.h"
 #include "highInterestSavingsType.h"
 #include "noServiceChargeCheckingType.h"
@@ -30,15 +30,24 @@ extern const double NOSERV_CHRG_CHK_INT_RATE; // = 0.02;
 extern const double HIGHINTCHK_RATE; // = 0.05;
 extern const double HIGHINTCHK_MIN_BAL; // = 5000.00
 
-//menus
-void printWelcomeMenu(vector<bankAccountType *> &accountsVector, int sessionID, string &username);
-void printMainMenu();
-void printCheckingAccount(vector<bankAccountType *> accountVector, int sessionID, string username);
-void printSavingsAccount(vector<bankAccountType *> accountVector, int sessionID, string username);
-//user menus
-vector<bankAccountType *> printAccountFunctions(vector<bankAccountType *> &accountVector, int sessionID, string username);
-vector<bankAccountType *> printCreateNewUser(vector<bankAccountType *> accountVector, int sessionID, string &username);
+//colors
+const string green = "\033[32m";
+const string yellow = "\033[33m";
+const string reset = "\033[0m";
+const string flashing = "\033[5m";
+const string red = "\033[0;31m";
+
 void clearScreen();
+
+//login menu
+void loginMenu(vector<bankAccountType *> &accountsVector, int sessionID, string &username);
+vector<bankAccountType *> createNewUser(vector<bankAccountType *> accountVector, int sessionID, string &username);
+//user menus
+void printUserMenu();
+vector<bankAccountType *> printUserOptions(vector<bankAccountType *> &accountVector, int sessionID, string username);
+//employee menus
+void printEmployeeMenu();
+vector<bankAccountType *> printEmployeeOptions(vector<bankAccountType *> &accountVector, int sessionID, string username);
 //account options
 void printDeposit();
 void printWithdraw();

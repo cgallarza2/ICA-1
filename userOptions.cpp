@@ -1,16 +1,9 @@
-#include "userInterfaceFunctions.h"
+#include "userInterfaceFunctions.h" //defined
 #include "fileManagementFunctions.h" //print / deposit / withdraw
-#include <iostream>
-#include <iomanip>
-#include <string>
 
-using namespace std;
-
-
-vector<bankAccountType *> printAccountFunctions(vector<bankAccountType *> &accountVector, int sessionID, string username) {
+vector<bankAccountType *> printUserOptions(vector<bankAccountType *> &accountVector, int sessionID, string username) {
 	char functionChoice;
 	bool firstTimeInScreen = true;
-	//int sessionID = 1212;
 
 	do {
 		if (firstTimeInScreen) {
@@ -18,6 +11,10 @@ vector<bankAccountType *> printAccountFunctions(vector<bankAccountType *> &accou
 			firstTimeInScreen = false;
 		}
 
+		for (const auto account : accountVector) {
+			cout << "logged in: " << account->getName() << endl;
+			break;
+		}
 		cout << string(SCREEN_WIDTH, '*') << endl;
 		cout << left;
 		cout << setw(39) << "*" << setw(60) << "Bank Management System" << "*" << endl;
@@ -51,7 +48,7 @@ vector<bankAccountType *> printAccountFunctions(vector<bankAccountType *> &accou
 				cin >> amount;
 
 				if (checkID(sessionID, username)) {
-					/* accountVector =  */depositToAccount(accountVector, accountType, amount);
+					depositToAccount(accountVector, accountType, amount);
 					updateUserAccounts(accountVector, txtFile, sessionID);
 				}
 				else {
@@ -68,7 +65,7 @@ vector<bankAccountType *> printAccountFunctions(vector<bankAccountType *> &accou
 				cin >> amount;
 
 				if (checkID(sessionID, username)) {
-					/*  accountVector =  */withdrawToAccount(accountVector, accountType, amount);
+					withdrawToAccount(accountVector, accountType, amount);
 					updateUserAccounts(accountVector, txtFile, sessionID);
 				}
 				else {
@@ -81,7 +78,6 @@ vector<bankAccountType *> printAccountFunctions(vector<bankAccountType *> &accou
 				break;
 			case '5':
 				cout << "Returning to login...";
-				//throw runtime_error("Return to main menu");
 				updateUserAccounts(accountVector, txtFile, sessionID);
 				accountVector.clear();
 				return accountVector;

@@ -63,7 +63,6 @@ void addAccount(string username, string password) {
 	}
 }
 
-
 int getch(){
 	int ch;
 	struct termios old_settings, new_settings;
@@ -287,7 +286,7 @@ void printAccountInfo(const vector<bankAccountType*> accountVector) {
 
 
 //deposit function
-/* vector<bankAccountType*> */ bool depositToAccount(vector<bankAccountType*> &accountVector, int accountType, double amount) {
+bool depositToAccount(vector<bankAccountType*> &accountVector, int accountType, double amount) {
 	try { // exception handling for depositing non-numbers
 		if (cin.fail()) {
 			 cin.clear();
@@ -304,7 +303,6 @@ void printAccountInfo(const vector<bankAccountType*> accountVector) {
 				cout << "\nSuccessful deposit of: $" << amount 
 						  << "\nBalance: $" << account->getBalance() 
 						  << "\nReturning to account options... \n\n";
-			//return accountVector; // deposit made
 			return true;
 			}
 		}
@@ -317,7 +315,6 @@ void printAccountInfo(const vector<bankAccountType*> accountVector) {
 			case 6: cout << "Account Type Not Found: Certificate of Deposit \nReturning to account options... \n\n" << endl;
 			default: break;
 		}
-		//return accountVector;
 	}
 	 catch (const invalid_argument& e) {
 		 cout << "Error: " << e.what() << endl;
@@ -326,12 +323,11 @@ void printAccountInfo(const vector<bankAccountType*> accountVector) {
 	 catch (const exception& e) {
 		 cout << "An error has occurred: " << e.what() << endl;
 	 }
-	 //return accountVector;
 	 return true;
 }
 
 //withdraw function
-/* vector<bankAccountType*> */ bool withdrawToAccount(vector<bankAccountType*> &accountVector, int accountType, double amount) {
+bool withdrawToAccount(vector<bankAccountType*> &accountVector, int accountType, double amount) {
 	 try { // exception handling for withdrawing non-numbers
 		if (cin.fail()) {
 				cin.clear();
@@ -349,7 +345,6 @@ void printAccountInfo(const vector<bankAccountType*> accountVector) {
 					cout << "\nSuccessful withdraw of: $" << amount 
 								<< "\nRemaining balance: $" << account->getBalance() 
 								<< "\nReturning to account options... \n\n";
-					//return accountVector; // withdraw made
 					return true;
 				} else { cout << "not enough funds\n"; }
 				return false;
@@ -365,7 +360,6 @@ void printAccountInfo(const vector<bankAccountType*> accountVector) {
      		case 7: cout << "Account type Not Found: Certificate of Deposit (C.O.D.) \nReturning to account options... \n\n" << endl; break;
     		default: break;
 			}
-	//return accountVector;
 	return true;
     }
 	 catch (const invalid_argument& e) {
@@ -378,7 +372,6 @@ void printAccountInfo(const vector<bankAccountType*> accountVector) {
 	 catch (const exception& e) {
 		  cout << "An error has occurred: " << e.what() << endl;
 	 }
-	 //return accountVector;
 	 return true;
 }
 
@@ -414,3 +407,69 @@ void createStatement(vector<bankAccountType*> accountVector){
 		accountVector[i]->setBalance(ogBalance[i]); //add all balances back in place to account vect
 	}
 }
+
+//employee login
+bool attemptEmployeeLogIn(string username, string password) {
+    ifstream employeeList;
+    string user;
+    string pass;
+
+    employeeList.open("employeeList.txt"); 
+    if (employeeList.is_open()) {
+        while (!employeeList.eof()) {
+            employeeList >> user;
+            employeeList >> pass;
+
+            if (user == username && pass == password) {
+                cout << "\nEmployee Log-In Successful!" << endl;
+                employeeList.close();
+                return true;
+            }
+        }
+        employeeList.close();
+        cout << "\nPlease try again!" << endl;
+        return false;
+    }
+
+    cout << "\nError: Can't open employee list file\n";
+    return false;
+}
+
+void addEmployeeAccount(string username, string password) {
+    ofstream employeeList;
+
+    employeeList.open("employeeList.txt", ios::app);
+    if (employeeList.is_open()) {
+        employeeList << endl << username << " " << password << endl;
+        employeeList.close();
+        cout << "\nEmployee account added successfully!" << endl;
+    } else {
+        cout << "\nError: Can't open employee list file\n";
+    }
+}
+
+//account number 
+int generateAccountNumber() {
+    int accountNumber = 0;
+    ifstream accountNumberFile("accountNumbers.txt");
+
+    if (accountNumberFile.is_open()) {
+        accountNumberFile >> accountNumber;
+        accountNumberFile.close();
+    } else {
+        accountNumber = 1000;
+    }
+
+    accountNumber++;
+
+    ofstream outFile("accountNumbers.txt");
+    if (outFile.is_open()) {
+        outFile << accountNumber;
+        outFile.close();
+    } else {
+        cout << "\nError: Unable to open account number file" << endl;
+    }
+
+    return accountNumber;
+}
+
