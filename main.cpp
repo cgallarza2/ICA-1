@@ -1,7 +1,3 @@
-#include <iostream>
-#include <iomanip>
-#include <vector>
-#include <fstream>
 #include <limits>
 #include <stdexcept>
  
@@ -16,7 +12,6 @@
 #include "userInterfaceFunctions.h"
 #include "fileManagementFunctions.h"
 
-using namespace std;
   
 extern const int SCREEN_WIDTH = 100;
 extern const double SAVINGS_INT_RATE = 0.03;

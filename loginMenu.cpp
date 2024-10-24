@@ -26,8 +26,8 @@ bool loginMenu(vector<bankAccountType *> &accountVector, int sessionID, string &
 		cout << setw(42) << "\033[33m*" << reset << setw(57) << "Login Menu" << "\t   \033[33m*\033[0m" << endl;
 		cout << yellow << setw(SCREEN_WIDTH - 1) << "*" << "*" << reset << endl;
 		cout << setw(11) << "\033[33m*" << reset << setw(88) << "1. Login" << "\t   \033[33m*" << reset << endl;
-		cout << setw(11) << "\033[33m*" << reset << setw(88) << "2. Create New User" << "\t   \033[33m*" << reset << endl;
-		cout << setw(11) << "\033[33m*" << reset << setw(88) << "\033[31m3. Log out" << "\t   \033[33m*" << reset << endl;
+		//cout << setw(11) << "\033[33m*" << reset << setw(88) << "2. Create New User" << "\t   \033[33m*" << reset << endl; //only employee 
+		cout << setw(11) << "\033[33m*" << reset << setw(88) << "\033[31m2. Log out" << "\t   \033[33m*" << reset << endl;
 		cout << yellow << setw(SCREEN_WIDTH - 1) << "*" << "*" << reset << endl;
 		cout << right;
 		cout << yellow << string(SCREEN_WIDTH, '*') << reset << endl << endl;
@@ -38,19 +38,12 @@ bool loginMenu(vector<bankAccountType *> &accountVector, int sessionID, string &
 
 		switch(welcomeChoice) {
 		case '1'://needs hashing
-			char choice;			//specify account login
-			cout << "\nPress 1. User\t  Press 2. Employee" << reset << endl;
-			cout << "Login as: ";
-			cin >> choice;
-			cin.ignore();
-			
-		if (choice == '1'){ //login as user	
 			while (!loggedIn) {
-				cout << "Enter username: ";
-				getline(cin, username);
-				cout << "Enter password: ";
-				while ((ch = getch()) != '\n') {		// clearing screen
-					if (ch == 127 || ch == 8) {
+			cout << "Enter username: ";
+			getline(cin, username);
+			cout << "Enter password: ";
+				while ((ch = getch()) != '\n') {
+					if (ch == 127 || ch == 8) {  // handle password clearing
 						if (i != 0) {
 							i--;
 							cout << "\b \b";
@@ -62,65 +55,43 @@ bool loginMenu(vector<bankAccountType *> &accountVector, int sessionID, string &
 				}
 				password[i] = '\0';
 
-				if (attemptLogIn(username, password)) { //populate user account vector
+				if (attemptLogIn(username, password)) { //user login
 					loggedIn = true;
-					string txtFile  = username + ".txt";
+					string txtFile = username + ".txt";
 					accountVector = populateAccounts(accountVector, txtFile);
 					updateUserAccounts(accountVector, txtFile, sessionID);
 					return false;
-					break;
 				}
 				else {
-					i = 0;
+					username += "_employee";
+					if (attemptEmployeeLogIn(username, password)) {//employee login
+						loggedIn = true;
+						string txtFile = username + ".txt";
+						//could make employee have different stuff in account here
+						accountVector = populateAccounts(accountVector, txtFile);
+						updateUserAccounts(accountVector, txtFile, sessionID);
+						return false;
+					} else {
+						i = 0;
+						cout << red << "\nInvalid username or password. Try again.\n" << reset;
+					}
 				}
 			}
-		}else if (choice == '2') { // employee log-in
-            while (!loggedIn) {
-                cout << "Enter employee username: ";
-                getline(cin, username);
-				username += "_employee"; 
-                cout << "Enter employee password: ";
-                while ((ch = getch()) != '\n') {
-                    if (ch == 127 || ch == 8) {
-                        if (i != 0) {
-                            i--;
-                            cout << "\b \b";
-                        }
-                    } else {
-                        password[i++] = ch;
-                        cout << "*";
-                    }
-                }
-                password[i] = '\0';
-
-                if (attemptEmployeeLogIn(username, password)) { // populate employee account vector
-                    loggedIn = true;
-                    string txtFile = username + ".txt";
-                    accountVector = populateAccounts(accountVector, txtFile);
-                    updateUserAccounts(accountVector, txtFile, sessionID);
-					return false;
-                } else {
-                    i = 0;
-                }
-            }
-        } else {
-            clearScreen();
-            cout << red << "Please select user(1) or employee(2)" << reset << endl;
-		}
         break;
-		case '2':
+		//only employee can create account NEED to move to employee options
+		/* case '2':
 			accountVector = createNewUser(accountVector, sessionID, username);
-			return false;
-		case '3':
-		cout << red << "Logging out..." << reset << endl;
-		return true;
+			return false; */
+		case '2':
+			cout << red << "Logging out..." << reset << endl;
+			return true;
 		default:
 			clearScreen();
 			cout << red << "Please enter valid input" << reset << endl;
 			break;
 		}
 
-	} while(welcomeChoice != '3');
+	} while(welcomeChoice != '2');
 	return false;
 
 }

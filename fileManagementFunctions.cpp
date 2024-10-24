@@ -34,13 +34,13 @@ bool attemptLogIn(string username, string password) {
 			userList >> pass;
 
 			if (user == username && pass == password) {
-				cout << "Log-In Successful!" << endl;
+				cout << "\nLog-In Successful!" << endl;
 				userList.close();
 				return true;
 			}
 		}
 		userList.close();
-		cout << "\nPlease try again!" << endl;
+		cout << "\nPlease try again! User login unsuccessful..." << endl;
 		return false;
 	}
 
@@ -357,7 +357,7 @@ bool withdrawToAccount(vector<bankAccountType*> &accountVector, int accountType,
     		case 4: cout << "Account type Not Found: No Service Charge Checking \nReturning to account options... \n\n" << endl; break;
      		case 5: cout << "Account type Not Found: Savings \nReturning to account options... \n\n" << endl; break;
     		case 6: cout << "Account type Not Found: High Interest Savings \nReturning to account options... \n\n" << endl; break;
-     		case 7: cout << "Account type Not Found: Certificate of Deposit (C.O.D.) \nReturning to account options... \n\n" << endl; break;
+     		case 7: cout << "Account type Not Found: Certificate of Deposit \nReturning to account options... \n\n" << endl; break;
     		default: break;
 			}
 	return true;
@@ -427,7 +427,7 @@ bool attemptEmployeeLogIn(string username, string password) {
             }
         }
         employeeList.close();
-        cout << "\nPlease try again!" << endl;
+        cout << "\nPlease try again! Employee login unsuccessful..." << endl;
         return false;
     }
 
