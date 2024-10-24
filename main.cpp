@@ -40,10 +40,12 @@ int main()
 	char mainChoice;
 	vector<bankAccountType *> accountVector;
 	bool isEmployee = false;
+	bool logout = false;
 
 	try {
 		do {
-			loginMenu(accountVector, sessionID, username);
+			logout = loginMenu(accountVector, sessionID, username);
+			if (logout){break;}
 			if (username.find("_employee") != string::npos) {
 				isEmployee = true;
 			}

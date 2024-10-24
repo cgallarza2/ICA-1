@@ -40,7 +40,7 @@ const string red = "\033[0;31m";
 void clearScreen();
 
 //login menu
-void loginMenu(vector<bankAccountType *> &accountsVector, int sessionID, string &username);
+bool loginMenu(vector<bankAccountType *> &accountsVector, int sessionID, string &username);
 vector<bankAccountType *> createNewUser(vector<bankAccountType *> accountVector, int sessionID, string &username);
 //user menus
 void printUserMenu();

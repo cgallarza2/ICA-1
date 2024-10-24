@@ -1,7 +1,7 @@
 #include "userInterfaceFunctions.h" //defined
 #include "fileManagementFunctions.h" //login user, login employee
 
-void loginMenu(vector<bankAccountType *> &accountVector, int sessionID, string &username){
+bool loginMenu(vector<bankAccountType *> &accountVector, int sessionID, string &username){
 	char welcomeChoice;
 	char password[100];
 	bool loggedIn = false;
@@ -9,16 +9,16 @@ void loginMenu(vector<bankAccountType *> &accountVector, int sessionID, string &
 	int ch;
 	clearScreen();
 	do{
-		cout << flashing; //not working
-		cout << "\t\t\t " << yellow << "/" << green << "$$$$$$$" << yellow << "   /" << green << "$$$$$$" << yellow << "  /" << green << "$$" << yellow << "   /" << green << "$$" << yellow << " /" << green << "$$" << yellow << "   /" << green << "$$" << endl;
-		cout << "\t\t\t" << yellow << "|" << green << " $$" << yellow <<"__" << green <<" $$ " << yellow << " /" << green << "$$" << yellow << "__ " << green << " $$" << yellow << "|" << green << " $$$ " << yellow << "|" << green << " $$" << yellow << "|" << green << " $$  " << yellow << "/" << green << "$$" << yellow << "/" << endl;
-		cout << "\t\t\t" << yellow << "|" << green << " $$  " << yellow << "\\" << green << " $$" << yellow << "|" << green << " $$  " << yellow << "\\ " << green << "$$" << yellow << "|" << green << " $$$$" << yellow << "|" << green << " $$" << yellow << "|" << green << " $$ " << yellow << "/" << green << "$$" << yellow << "/" << endl;
-		cout << "\t\t\t" << yellow << "|" << green << " $$$$$$$ " << yellow << "|" << green << " $$$$$$$$" << yellow << "|" << green << " $$ $$ $$" << yellow << "|" << green << " $$$$$" << yellow << "/" << endl;
-		cout << "\t\t\t" << yellow << "|" << green << " $$" << yellow << "__" << green << "  $$" << yellow << "|" << green << " $$" << yellow << "__" << green << "  $$" << yellow << "|" << green << " $$  $$$$" << yellow << "|" << green << " $$  $$" << endl;
-		cout << "\t\t\t" << yellow << "|" << green << " $$  " << yellow << "\\" << green << " $$" << yellow << "|" << green << " $$  " << yellow << "|" << green << " $$" << yellow << "|" << green << " $$" << yellow << "\\" << green << "  $$$" << yellow << "|" << green << " $$" << yellow << "\\" << green << " $$" << endl;
-		cout << "\t\t\t" << yellow << "|" << green << " $$$$$$$/" << yellow << "|" << green << " $$  " << yellow << "|" << green <<" $$" << yellow << "|" << green << " $$ " << yellow << "\\" << green << "  $$" << yellow << "|" << green << " $$ " << yellow << "\\" << green << " $$" << endl;
+		cout << "\t\t\t " << yellow << "/" << flashing << green << "$$$$$$$" << reset << yellow << "   /" << flashing << green << "$$$$$$" << reset << yellow << "  /" << flashing << green <<  "$$" << reset << yellow << "   /" << flashing << green << "$$" << reset << yellow << " /" << flashing << green << "$$" << reset << reset << yellow << "   /" << flashing << green << "$$" << reset << endl;
+		cout << "\t\t\t" << yellow << "|" << flashing << green << " $$" << reset << yellow <<"__" << flashing << green <<" $$ " << reset << yellow << " /" << flashing << green << "$$" << reset << yellow << "__ " << flashing << green << " $$" << reset << yellow << "|" << flashing << green << " $$$ " << reset << yellow << "|" << flashing << green << " $$" << reset << yellow << "|" << flashing << green << " $$  " << reset << yellow << "/" << flashing << green << "$$" << reset << yellow << "/" << endl;
+		cout << "\t\t\t" << yellow << "|" << flashing << green << " $$  " << reset << yellow << "\\" << flashing << green << " $$" << reset << yellow << "|" << flashing << green << " $$  " << reset << yellow << "\\ " << flashing << green << "$$" << reset << yellow << "|" << flashing << green << " $$$$" << reset << yellow << "|" << flashing << green << " $$" << reset << yellow << "|" << flashing << green << " $$ " << reset << yellow << "/" << green << flashing << "$$" << reset << yellow << "/" << endl;
+		cout << "\t\t\t" << yellow << "|" << flashing << green << " $$$$$$$ " << reset << yellow << "|" << flashing << green << " $$$$$$$$" << reset << yellow << "|" << green << " $$ $$ $$" << reset << yellow << "|" << flashing << green << " $$$$$" << reset << yellow << "/" << endl;
+		cout << "\t\t\t" << yellow << "|" << flashing << green << " $$" << reset << yellow << "__" << flashing << green << "  $$" << reset << yellow << "|" << flashing << green << " $$" << reset << yellow << "__" << flashing << green << "  $$" << reset << yellow << "|" << flashing << green << " $$  $$$$" << reset << yellow << "|" << flashing << green << " $$  $$" << reset << endl;
+		cout << "\t\t\t" << yellow << "|" << flashing << green << " $$  " << reset << yellow << "\\" << flashing << green << " $$" << reset << yellow << "|" << flashing << green << " $$  " << reset << yellow << "|" << flashing << green << " $$" << reset << yellow << "|" << flashing << green << " $$" << reset << yellow << "\\" << flashing << green << "  $$$" << reset << yellow << "|" << flashing << green << " $$" << reset << yellow << "\\" << flashing <<  green << " $$" << reset << endl;
+		cout << "\t\t\t" << yellow << "|" << flashing << green << " $$$$$$$/" << reset << yellow << "|" << flashing << green << " $$  " << reset << yellow << "|" << flashing << green <<" $$" << reset << yellow << "|" << flashing << green << " $$ " << reset << yellow << "\\" << flashing << green << "  $$" << reset << yellow << "|" << flashing << green << " $$ " << reset << yellow << "\\" << flashing << green << " $$" << reset << endl;
 		cout << "\t\t\t" << yellow << "|_______/ |__/  |__/|__/  \\__/|__/  __/" << endl << endl;
 		cout << reset;
+		
 		
 		cout << yellow << string(SCREEN_WIDTH, '*') << reset << endl;
 		cout << left;
@@ -27,6 +27,7 @@ void loginMenu(vector<bankAccountType *> &accountVector, int sessionID, string &
 		cout << yellow << setw(SCREEN_WIDTH - 1) << "*" << "*" << reset << endl;
 		cout << setw(11) << "\033[33m*" << reset << setw(88) << "1. Login" << "\t   \033[33m*" << reset << endl;
 		cout << setw(11) << "\033[33m*" << reset << setw(88) << "2. Create New User" << "\t   \033[33m*" << reset << endl;
+		cout << setw(11) << "\033[33m*" << reset << setw(88) << "\033[31m3. Log out" << "\t   \033[33m*" << reset << endl;
 		cout << yellow << setw(SCREEN_WIDTH - 1) << "*" << "*" << reset << endl;
 		cout << right;
 		cout << yellow << string(SCREEN_WIDTH, '*') << reset << endl << endl;
@@ -66,7 +67,8 @@ void loginMenu(vector<bankAccountType *> &accountVector, int sessionID, string &
 					string txtFile  = username + ".txt";
 					accountVector = populateAccounts(accountVector, txtFile);
 					updateUserAccounts(accountVector, txtFile, sessionID);
-					return;
+					return false;
+					break;
 				}
 				else {
 					i = 0;
@@ -96,7 +98,7 @@ void loginMenu(vector<bankAccountType *> &accountVector, int sessionID, string &
                     string txtFile = username + ".txt";
                     accountVector = populateAccounts(accountVector, txtFile);
                     updateUserAccounts(accountVector, txtFile, sessionID);
-                    return;
+					return false;
                 } else {
                     i = 0;
                 }
@@ -108,7 +110,10 @@ void loginMenu(vector<bankAccountType *> &accountVector, int sessionID, string &
         break;
 		case '2':
 			accountVector = createNewUser(accountVector, sessionID, username);
-			return;
+			return false;
+		case '3':
+		cout << red << "Logging out..." << reset << endl;
+		return true;
 		default:
 			clearScreen();
 			cout << red << "Please enter valid input" << reset << endl;
@@ -116,6 +121,6 @@ void loginMenu(vector<bankAccountType *> &accountVector, int sessionID, string &
 		}
 
 	} while(welcomeChoice != '3');
-	return;
+	return false;
 
 }
