@@ -58,41 +58,38 @@ int main()
 			}
 
 			switch(mainChoice) {
-				case '1': //could make into account settings
-					if (isEmployee) {
-						//for now go to employee options
+				case '1': 
+					if (isEmployee) { //create account
+						accountVector.clear();
+						createNewUser(accountVector, sessionID, username);
+						isEmployee = false;
+					} else {
+						//user options 
+						//(print accounts, withdraw, deposit) 
+						printUserOptions(accountVector, sessionID, username);
+					}
+					break;
+				case '2': 
+					if (isEmployee) { //manage user account
+						//need to change the employee functions to go into any users text file and change data
+						//(print any user account, withdraw for user, deposit for user, print statement)
 						printEmployeeOptions(accountVector, sessionID, username);
 					} else {
 						//for now go to user options
+						//could make into manage account settings 
+						//(change username or password)
 						printUserOptions(accountVector, sessionID, username);
 					}
 					break;
-				case '2': //could make into account logs
-					if (isEmployee) {
-						//for now go to employee options
-						printEmployeeOptions(accountVector, sessionID, username);
-					} else {
-						//for now go to user options 
-						printUserOptions(accountVector, sessionID, username);
-					}
-					break;
-				case '3'://options
-					if (isEmployee) {
-						//for now display employee stuff 
-						printEmployeeOptions(accountVector, sessionID, username);
-					} else {
-						printUserOptions(accountVector, sessionID, username);
-					}
-					break;
-				case '4': //log out
-					cout << "\nExiting... " << endl;
+				case '3': //log out
+					cout << red << "\nExiting... " << reset << endl;
 					break;
 				default:
 					clearScreen();
 					cout << "Invalid choice. Returning to main menu.\n";
 					break;
 			}
-		} while (mainChoice != '4');
+		} while (mainChoice != '3');
 } catch (const invalid_argument &e) {
     cout << "Error: " << e.what() << "\nReturning to the main menu...\n";
 }
