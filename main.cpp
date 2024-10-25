@@ -74,6 +74,7 @@ int main()
 						//need to change the employee functions to go into any users text file and change data
 						//(print any user account, withdraw for user, deposit for user, print statement)
 						printEmployeeOptions(accountVector, sessionID, username);
+						isEmployee = false;
 					} else {
 						//for now go to user options
 						//could make into manage account settings 

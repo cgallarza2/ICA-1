@@ -12,7 +12,7 @@ vector<bankAccountType *> printEmployeeOptions(vector<bankAccountType *> &accoun
 		}
 
 		for (const auto account : accountVector) {
-			cout << red << "EMPLOYEE" << green << " logged in: " << account->getName() << reset << endl;
+			cout << red << "EMPLOYEE" << green << "\t\t\t\t\t\t\t\t logged in: " << account->getName() << reset << endl;
 			break;
 		}
 		cout << yellow << string(SCREEN_WIDTH, '*') << reset << endl;
@@ -31,13 +31,26 @@ vector<bankAccountType *> printEmployeeOptions(vector<bankAccountType *> &accoun
 		cout << "Enter your choice: ";
 		cin >> functionChoice;
 
-		string txtFile = username + ".txt";
 		int accountType;
 		double amount;
-
+		
+		vector<bankAccountType *> userVector;
+		string usern, userFile;
+		char passw[10];
+		
 		switch (functionChoice) {
-			case '1': //print user data
-				printAccountInfo(accountVector);
+			case '1': //print user data	
+				cout << "Enter username: ";
+				cin >> usern;
+				cin.ignore(1000, '\n');
+				cout << "Enter password: ";
+				cin >> passw;
+				userFile = usern + ".txt";
+				if (attemptLogIn(usern, passw)) { //user login
+				userVector = populateAccounts(userVector, userFile);				
+				printAccountInfo(userVector);
+				userVector.clear();
+				}
 				break;
 			case '2': //deposit
 				printDeposit();
@@ -45,16 +58,9 @@ vector<bankAccountType *> printEmployeeOptions(vector<bankAccountType *> &accoun
 				cin >> accountType;
 				cout << "Enter deposit amount: " ;
 				cin >> amount;
-
-				if (checkID(sessionID, username)) {
-					depositToAccount(accountVector, accountType, amount);
-					updateUserAccounts(accountVector, txtFile, sessionID);
-				}
-				else {
-					cout << red << "Sorry! It appears a more recent session has been detected. Please login again!" << reset << endl;
-					cin.ignore();
-				}
-
+				populateAccounts(userVector, userFile);
+				depositToAccount(userVector, accountType, amount);
+				updateUserAccounts(userVector, userFile, sessionID);
 				break;
 			case '3': //withdraw
 				printWithdraw();
@@ -62,19 +68,12 @@ vector<bankAccountType *> printEmployeeOptions(vector<bankAccountType *> &accoun
 				cin >> accountType;
 				cout << "Enter withdraw amount: ";
 				cin >> amount;
-
-				if (checkID(sessionID, username)) {
-					withdrawToAccount(accountVector, accountType, amount);
-					updateUserAccounts(accountVector, txtFile, sessionID);
-				}
-				else {
-					cout << red << "Sorry! It appears a more recent session has been detected. Please login again!" << reset << endl;
-					cin.ignore();
-				}
-				break;
+				populateAccounts(userVector, userFile);
+				withdrawToAccount(accountVector, accountType, amount);
+				updateUserAccounts(accountVector, userFile, sessionID);
+				break; 
 			case '4': //return to login
-				cout << "Returning to login..."; //needs fix 
-				updateUserAccounts(accountVector, txtFile, sessionID);
+				cout << "Returning to login...";
 				accountVector.clear();
 				return accountVector;
 				break;
