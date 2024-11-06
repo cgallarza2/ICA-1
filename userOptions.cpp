@@ -23,8 +23,9 @@ vector<bankAccountType *> printUserOptions(vector<bankAccountType *> &accountVec
 		cout << setw(21) << "*" << setw(78) << "1. Print Account Info" << "*" << endl;
 		cout << setw(21) << "*" << setw(78) << "2. Deposit Money" << "*" << endl;
 		cout << setw(21) << "*" << setw(78) << "3. Withdraw Money" << "*" << endl;
-		cout << setw(21) << "*" << setw(78) << "4. Create Monthly Statement" << "*" << endl;
-		cout << setw(21) << "*" << setw(78) << "5. Return to login" << "*" << endl;
+		cout << setw(21) << "*" << setw(78) << "4. Transfer Money Between Accounts" << "*" << endl;
+		cout << setw(21) << "*" << setw(78) << "5. Create Monthly Statement" << "*" << endl;
+		cout << setw(21) << "*" << setw(78) << "6. Return to login" << "*" << endl;
 		cout << setw(SCREEN_WIDTH - 1) << "*" << "*" << endl;
 		cout << right;
 		cout << string(SCREEN_WIDTH, '*') << endl << endl;
@@ -73,10 +74,35 @@ vector<bankAccountType *> printUserOptions(vector<bankAccountType *> &accountVec
 					cin.ignore();
 				}
 				break;
-			case '4': //create monthly statement
+			case '4': //transfer
+				string fromAccountName, toAccountName;
+				cout << "Enter the name of the account that is sending the funds: ";
+				cin.ignore();
+				getline(cin, fromAccountName);
+				cout << "Enter the name of the account that is receiving the funds: ";
+				getline(cin, toAccountName);
+				cout << "Enter the amount that is being transferred: ";
+				cin >> amount;
+
+				if (!isValidAccount(fromAccountName) || !isValidAccount(toAccountName)) {
+					cout << "Invalid account name entered. Transfer has been aborted.\n";
+				break;
+				}
+
+				if (checkID(sessionID, username)) {
+					if (transferBetweenAccounts(accountVector, fromAccountName, toAccountName, amount)) {
+						updateUserAccounts(accountVector, txtFile, sessionID);
+					}
+				}
+				else {
+				cout << "Sorry! It appears a more recent session has been detected. Please login again!" << endl;
+				cin.ignore();
+				}
+				break;
+			case '5': //create monthly statement
 				createStatement(accountVector);
 				break;
-			case '5':
+			case '6':
 				cout << "Returning to login...";
 				updateUserAccounts(accountVector, txtFile, sessionID);
 				accountVector.clear();
@@ -88,7 +114,7 @@ vector<bankAccountType *> printUserOptions(vector<bankAccountType *> &accountVec
 				cout << "Please enter a response (1-5)" << endl;
 				break;
 		}
-	} while(functionChoice != '5');
+	} while(functionChoice != '6');
 
 	return accountVector;
 }

@@ -48,4 +48,9 @@ void createStatement(vector<bankAccountType*> accountVector);
 
 //History Management
 void recordEvent(string event, string user);
+
+//Transferring between accounts
+bool transferBetweenAccounts(vector<bankAccountType*> &accountVector, const string &fromAccountName, const string &toAccountName, double amount);
+bool isValidAccount(const std::string &accountName);
+
 #endif

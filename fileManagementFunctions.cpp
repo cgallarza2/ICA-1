@@ -498,3 +498,65 @@ void recordEvent(string event, string user) {
 
 	return;
 }
+
+//Validate Account Names
+bool isValidAccount(const string &accountName) {
+	ifstream userList("userList.txt");
+	string user, pass;
+
+	if (userList.is_open()) {
+		while (userList >> user >> pass) {
+			if (user == accountName) {
+				userList.close();
+				return true;
+			}
+		}
+		userList.close();
+	}
+	return false;
+}
+
+//Account Transferring
+bool transferBetweenAccounts(vector<bankAccountType*> &accountVector, const string &fromAccountName, const string &toAccountName, double amount) {
+	try {
+		if (cin.fail()) {
+			cin.clear();
+			throw invalid_argument("Invalid transfer amount. Please try again.");
+			}
+
+			if (amount <= 0) {
+				throw invalid_argument("You must enter an amount greater than zero. Please try again.");
+			}
+
+			bankAccountType *fromAccount = nullptr;
+		   bankAccountType *toAccount = nullptr;
+
+			for (auto &account : accountVector) {
+				if (account->getName() == fromAccountName) {
+					fromAccount = account;
+				} else if (account->getName() == toAccountName) {
+					toAccount = account;
+				}
+			}
+
+			if (!fromAccount || !toAccount) {
+				cout << "One or both accounts not found. Transfer failed.\n";
+				return false;
+			}
+
+			if (fromAccount->getBalance() < amount) {
+				throw runtime_error("Insufficient balance from the sender. Transfer failed.");
+			}
+
+			fromAccount->withdraw(amount);
+			toAccount->deposit(amount);
+
+			cout << "\nTransfer successful: $" << amount << " transferred from " << fromAccountName << " to " << toAccountName << ".\n";
+			return true;
+			}
+			catch (const exception &e) {
+			cout << "Error: " << e.what() << endl;
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+	}
+	return false;
+}
