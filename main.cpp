@@ -37,6 +37,9 @@ int main()
 	bool isEmployee = false;
 	bool logout = false;
 
+	//printTransactionHistory();
+	//cin >> username;
+
 	try {
 		do {
 			logout = loginMenu(accountVector, sessionID, username);
@@ -107,6 +110,6 @@ int main()
                                                  //6000, "password", "username"));
     //accountsList.push_back(new certificateOfDepositType("Hamid", 51001, 18000, "password", "username",
                                                 //0.075, 18));
-
+	 recordEvent("USER LOGGING OUT", username);
     return 0;
 }

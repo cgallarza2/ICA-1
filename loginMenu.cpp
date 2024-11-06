@@ -5,6 +5,7 @@ bool loginMenu(vector<bankAccountType *> &accountVector, int sessionID, string &
 	char welcomeChoice;
 	char password[100];
 	bool loggedIn = false;
+	string staticUsername;
 	int i = 0;
 	int ch;
 	clearScreen();
@@ -60,9 +61,11 @@ bool loginMenu(vector<bankAccountType *> &accountVector, int sessionID, string &
 					string txtFile = username + ".txt";
 					accountVector = populateAccounts(accountVector, txtFile);
 					updateUserAccounts(accountVector, txtFile, sessionID);
+					recordEvent("SUCCESSFUL USER LOGIN", username);
 					return false;
 				}
 				else {
+					staticUsername = username;
 					username += "_employee";
 					if (attemptEmployeeLogIn(username, password)) {//employee login
 						loggedIn = true;
@@ -70,10 +73,12 @@ bool loginMenu(vector<bankAccountType *> &accountVector, int sessionID, string &
 						//could make employee have different stuff in account here
 						accountVector = populateAccounts(accountVector, txtFile);
 						updateUserAccounts(accountVector, txtFile, sessionID);
+						recordEvent("SUCCESSFUL EMPLOYEE LOGIN", username);
 						return false;
 					} else {
 						i = 0;
 						cout << red << "\nInvalid username or password. Try again.\n" << reset;
+						recordEvent("FAILED LOGIN ATTEMPT", staticUsername);
 					}
 				}
 			}

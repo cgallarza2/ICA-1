@@ -35,6 +35,7 @@ vector<bankAccountType *> printUserOptions(vector<bankAccountType *> &accountVec
 		string txtFile = username + ".txt";
 		int accountType;
 		double amount;
+		string amountString;
 
 		switch (functionChoice) {
 			case '1': //print user data
@@ -45,10 +46,13 @@ vector<bankAccountType *> printUserOptions(vector<bankAccountType *> &accountVec
 				cout << "Enter account type (1-6): ";
 				cin >> accountType;
 				cout << "Enter deposit amount: " ;
-				cin >> amount;
+				cin >> amountString;
+				amount = stod(amountString);
 
 				if (checkID(sessionID, username)) {
-					depositToAccount(accountVector, accountType, amount);
+					if (depositToAccount(accountVector, accountType, amount)) {
+						recordEvent("DEPOSIT: +$" + amountString, username);
+					}
 					updateUserAccounts(accountVector, txtFile, sessionID);
 				}
 				else {
@@ -62,10 +66,13 @@ vector<bankAccountType *> printUserOptions(vector<bankAccountType *> &accountVec
 				cout << "Enter account type (1-6): ";
 				cin >> accountType;
 				cout << "Enter withdraw amount: ";
-				cin >> amount;
+				cin >> amountString;
+				amount = stod(amountString);
 
 				if (checkID(sessionID, username)) {
-					withdrawToAccount(accountVector, accountType, amount);
+					if (withdrawToAccount(accountVector, accountType, amount)) {
+						recordEvent("WITHDRAW: -$" + amountString, username);
+					}
 					updateUserAccounts(accountVector, txtFile, sessionID);
 				}
 				else {

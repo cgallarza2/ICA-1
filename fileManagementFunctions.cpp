@@ -18,6 +18,7 @@
 #include "highInterestCheckingType.h"
 #include "certificateOfDepositType.h"
 #include "checkingAccountType.h"
+#include "userInterfaceFunctions.h"
 
 using namespace std;
 
@@ -61,6 +62,8 @@ void addAccount(string username, string password) {
 
 		userList.close();
 	}
+
+	recordEvent("NEW USER", username);
 }
 
 int getch(){
@@ -323,7 +326,7 @@ bool depositToAccount(vector<bankAccountType*> &accountVector, int accountType, 
 	 catch (const exception& e) {
 		 cout << "An error has occurred: " << e.what() << endl;
 	 }
-	 return true;
+	 return false;
 }
 
 //withdraw function
@@ -360,7 +363,7 @@ bool withdrawToAccount(vector<bankAccountType*> &accountVector, int accountType,
      		case 7: cout << "Account type Not Found: Certificate of Deposit \nReturning to account options... \n\n" << endl; break;
     		default: break;
 			}
-	return true;
+	return false;
     }
 	 catch (const invalid_argument& e) {
 		  cout << "Error: " << e.what() << endl;
@@ -372,7 +375,7 @@ bool withdrawToAccount(vector<bankAccountType*> &accountVector, int accountType,
 	 catch (const exception& e) {
 		  cout << "An error has occurred: " << e.what() << endl;
 	 }
-	 return true;
+	 return false;
 }
 
 
@@ -473,3 +476,25 @@ int generateAccountNumber() {
     return accountNumber;
 }
 
+//History Management
+void recordEvent(string event, string user) {
+
+	time_t secondsTime;
+	struct tm * date;
+
+	time (&secondsTime);
+	date = localtime (&secondsTime);
+
+	ofstream history;
+
+	history.open("completeTransactionHistory.txt", ios::app);
+	if (history.is_open()) {
+		history << event << ", " << user << ", " << asctime(date);
+		history.close();
+	}
+	else {
+		cout << "\nError: Unable to open Transaction History file" << endl;
+	}
+
+	return;
+}

@@ -46,4 +46,6 @@ bool depositToAccount(vector<bankAccountType*> &accountVector, int accountType, 
 bool withdrawToAccount(vector<bankAccountType*> &accountVector, int accountType, double amount);
 void createStatement(vector<bankAccountType*> accountVector);
 
+//History Management
+void recordEvent(string event, string user);
 #endif

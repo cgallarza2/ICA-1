@@ -5,6 +5,7 @@
 #include <iostream>
 #include <iomanip>
 #include <vector>
+#include <fstream>
 #include "bankAccountType.h"
 #include "savingsAccountType.h"
 #include "highInterestSavingsType.h"
@@ -51,5 +52,6 @@ vector<bankAccountType *> printEmployeeOptions(vector<bankAccountType *> &accoun
 //account options
 void printDeposit();
 void printWithdraw();
+void printTransactionHistory();
 
 #endif

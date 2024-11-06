@@ -48,7 +48,7 @@ vector<bankAccountType *> printUserOptions(vector<bankAccountType *> &accountVec
 				cin >> amount;
 
 				if (checkID(sessionID, username)) {
-					depositToAccount(accountVector, accountType, amount);
+					depositToAccount(accountVector, accountType, amount;
 					updateUserAccounts(accountVector, txtFile, sessionID);
 				}
 				else {

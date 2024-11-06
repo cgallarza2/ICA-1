@@ -23,7 +23,8 @@ vector<bankAccountType *> printEmployeeOptions(vector<bankAccountType *> &accoun
 		cout << setw(21) << "\033[33m*" << reset << setw(78) << "1. Print User Account Info" << "\t   \033[33m*" << reset << endl;
 		cout << setw(21) << "\033[33m*" << reset << setw(78) << "2. Deposit Money to user" << "\t   \033[33m*" << reset << endl;
 		cout << setw(21) << "\033[33m*" << reset << setw(78) << "3. Withdraw Money to user" << "\t   \033[33m*" << reset << endl;
-		cout << setw(21) << "\033[33m*" << reset << setw(78) << "4. Return to login" << "\t   \033[33m*" << reset << endl;
+		cout << setw(21) << "\033[33m*" << reset << setw(78) << "4. Print Transaction History" << "\t   \033[33m*" << reset << endl;
+		cout << setw(21) << "\033[33m*" << reset << setw(78) << "5. Return to login" << "\t   \033[33m*" << reset << endl;
 		cout << yellow << setw(SCREEN_WIDTH - 1) << "*" << "*" << reset << endl;
 		cout << right;
 		cout << yellow << string(SCREEN_WIDTH, '*') << reset << endl << endl;
@@ -72,7 +73,10 @@ vector<bankAccountType *> printEmployeeOptions(vector<bankAccountType *> &accoun
 				withdrawToAccount(accountVector, accountType, amount);
 				updateUserAccounts(accountVector, userFile, sessionID);
 				break; 
-			case '4': //return to login
+			case '4': //transaction history
+				printTransactionHistory();
+				break;
+			case '5': //return to login
 				cout << "Returning to login...";
 				accountVector.clear();
 				return accountVector;
