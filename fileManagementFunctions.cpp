@@ -274,8 +274,8 @@ void printAccountInfo(const vector<bankAccountType*> accountVector) {
             case 4: cout << "Account type: Savings" << endl; break;
             case 5: cout << "Account type: High Interest Savings" << endl; break;
             case 6: cout << "Account type: Certificate of Deposit" << endl;
-                //cout << "Interest rate: " << account->getInterestRate() << "%" << endl;
-                //cout << "Maturity months: " << account->getMaturityMonths() << endl; not working friend?
+               // cout << "Interest rate: " << account->getInterestRate() << "%" << endl;
+                cout << "Maturity months: " << account->getMaturityMonths() << endl;
                 break;
             default: cout << "Account type: Not Found \nReturning to account options... \n\n"; break;
         }
@@ -504,17 +504,20 @@ bool isValidAccount(const string &accountName) {
 	ifstream userList("userList.txt");
 	string user, pass;
 
-	if (userList.is_open()) {
-		while (userList >> user >> pass) {
-			if (user == accountName) {
-				userList.close();
-				return true;
-			}
-		}
-		userList.close();
-	}
-	return false;
+//	if (userList.is_open()) {
+//		while (userList >> user >> pass) {
+//			if (user == accountName) {
+//				userList.close();
+//				return true;
+//			}
+//		}
+//		userList.close();
+//	}
+//	return false;
+
+	return true;
 }
+
 
 //Account Transferring
 bool transferBetweenAccounts(vector<bankAccountType*> &accountVector, const string &fromAccountName, const string &toAccountName, double amount) {

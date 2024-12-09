@@ -84,6 +84,7 @@ vector<bankAccountType *> printUserOptions(vector<bankAccountType *> &accountVec
 			case '4': { //transfer
 				string fromAccountName, toAccountName;
 				double amount;
+				string stringAmount;
 
 				cout << "Enter the name of the account that is sending the funds: ";
 				cin.ignore();
@@ -93,7 +94,8 @@ vector<bankAccountType *> printUserOptions(vector<bankAccountType *> &accountVec
 				getline(cin, toAccountName);
 
 				cout << "Enter the amount that is being transferred: ";
-				cin >> amount;
+				cin >> stringAmount;
+				amount = stod(stringAmount);
 
 				if (!isValidAccount(fromAccountName) || !isValidAccount(toAccountName)) {
 					cout << "Invalid account name entered. Transfer has been aborted.\n";
@@ -103,6 +105,7 @@ vector<bankAccountType *> printUserOptions(vector<bankAccountType *> &accountVec
 				if (checkID(sessionID, username)) {
 					if (transferBetweenAccounts(accountVector, fromAccountName, toAccountName, amount)) {
 						updateUserAccounts(accountVector, username + ".txt", sessionID);
+						recordEvent("TRANSFER : $" + stringAmount + " FROM " + fromAccountName + " TO " + toAccountName, username);
 					}
 				}
 				else {

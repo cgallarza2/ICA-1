@@ -34,6 +34,7 @@ vector<bankAccountType *> printEmployeeOptions(vector<bankAccountType *> &accoun
 
 		int accountType;
 		double amount;
+		string stringAmount;
 		
 		vector<bankAccountType *> userVector;
 		string usern, userFile;
@@ -65,11 +66,13 @@ vector<bankAccountType *> printEmployeeOptions(vector<bankAccountType *> &accoun
 					cout << "Enter account type (1-6): ";
 					cin >> accountType;
 					cout << "Enter deposit amount: " ;
-					cin >> amount;
+					cin >> stringAmount;
+					amount = stod(stringAmount);
 					userVector = populateAccounts(userVector, userFile);
-					if (accountType >= 1 && accountType <= 6 && amount > 0) {					
+					if (accountType >= 1 && accountType <= 6 && amount > 0) {
 						depositToAccount(userVector, accountType, amount);
 						updateUserAccounts(userVector, userFile, sessionID);
+						recordEvent("EMPLOYEE DEPOSIT (USER: " + usern + "): +$" + stringAmount, username);
 					}
 				}
 				break;
@@ -85,11 +88,13 @@ vector<bankAccountType *> printEmployeeOptions(vector<bankAccountType *> &accoun
 					cout << "Enter account type (1-6): ";
 					cin >> accountType;
 					cout << "Enter withdraw amount: " ;
-					cin >> amount;
+					cin >> stringAmount;
+					amount = stod(stringAmount);
 					userVector = populateAccounts(userVector, userFile);
 					if (accountType >= 1 && accountType <= 6 && amount > 0) {					
 						withdrawToAccount(userVector, accountType, amount); //handles balance less than 0
 						updateUserAccounts(userVector, userFile, sessionID);
+						recordEvent("EMPLOYEE WITHDRAW (USER: " + usern + "): -$" + stringAmount, username);
 					}
 				}
 				//userVector.clear();
