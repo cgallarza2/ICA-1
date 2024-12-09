@@ -116,6 +116,7 @@ vector<bankAccountType *> printUserOptions(vector<bankAccountType *> &accountVec
 				}
 			case '5': { //create monthly statement
 				createStatement(accountVector);
+				updateUserAccounts(accountVector, username + ".txt", sessionID);
 				break;
 				}
 			case '6': {

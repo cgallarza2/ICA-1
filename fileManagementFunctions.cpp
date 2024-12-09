@@ -275,7 +275,7 @@ void printAccountInfo(const vector<bankAccountType*> accountVector) {
             case 5: cout << "Account type: High Interest Savings" << endl; break;
             case 6: cout << "Account type: Certificate of Deposit" << endl;
                // cout << "Interest rate: " << account->getInterestRate() << "%" << endl;
-                cout << "Maturity months: " << account->getMaturityMonths() << endl;
+                cout << "Active Months: " << account->getMaturityMonths() << endl;
                 break;
             default: cout << "Account type: Not Found \nReturning to account options... \n\n"; break;
         }
@@ -343,7 +343,12 @@ bool withdrawToAccount(vector<bankAccountType*> &accountVector, int accountType,
 
 		for (auto account : accountVector) { //iterate
 			if (account->getType() == accountType) { //check type to withdraw
-				if (account->getBalance() >= amount) { //check balance greater than 0 (check if withdraw goes - )
+
+				if ((account->getType() == 6) && (account->getMaturityMonths() < 6)) {
+					cout << "Certificate of Deposit is too young!\n";
+					return false;
+				}
+				else if (account->getBalance() >= amount) { //check balance greater than 0 (check if withdraw goes - )
 					account->withdraw(amount); // withdraw()
 					cout << "\nSuccessful withdraw of: $" << amount 
 								<< "\nRemaining balance: $" << account->getBalance() 
@@ -406,9 +411,9 @@ void createStatement(vector<bankAccountType*> accountVector){
         cout << endl;
     }
 	//need to restore og balance after processing monthly statements
-	for (int i = 0; i < accountVector.size(); i++){
-		accountVector[i]->setBalance(ogBalance[i]); //add all balances back in place to account vect
-	}
+	//for (int i = 0; i < accountVector.size(); i++){
+	//	accountVector[i]->setBalance(ogBalance[i]); //add all balances back in place to account vect
+	//}
 }
 
 //employee login

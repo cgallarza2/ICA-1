@@ -86,7 +86,8 @@ void certificateOfDepositType::withdraw(double amount)
 void certificateOfDepositType::createMonthlyStatement()
 {
 	postInterest();
-	cdMonth++;
+	cdMonth = NUMBER_OF_MATURITY_MONTHS;
+	maturityMonths++;
 }
 
 void certificateOfDepositType::print()
