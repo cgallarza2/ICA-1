@@ -54,24 +54,45 @@ vector<bankAccountType *> printEmployeeOptions(vector<bankAccountType *> &accoun
 				}
 				break;
 			case '2': //deposit
-				printDeposit();
-				cout << "Enter account type (1-6): ";
-				cin >> accountType;
-				cout << "Enter deposit amount: " ;
-				cin >> amount;
-				populateAccounts(userVector, userFile);
-				depositToAccount(userVector, accountType, amount);
-				updateUserAccounts(userVector, userFile, sessionID);
+				cout << "Enter username: ";
+				cin >> usern;
+				cin.ignore(1000, '\n');
+				cout << "Enter password: ";
+				cin >> passw;
+				userFile = usern + ".txt";
+				if (attemptLogIn(usern, passw)) { //user login
+					printDeposit();
+					cout << "Enter account type (1-6): ";
+					cin >> accountType;
+					cout << "Enter deposit amount: " ;
+					cin >> amount;
+					userVector = populateAccounts(userVector, userFile);
+					if (accountType >= 1 && accountType <= 6 && amount > 0) {					
+						depositToAccount(userVector, accountType, amount);
+						updateUserAccounts(userVector, userFile, sessionID);
+					}
+				}
 				break;
 			case '3': //withdraw
-				printWithdraw();
-				cout << "Enter account type (1-6): ";
-				cin >> accountType;
-				cout << "Enter withdraw amount: ";
-				cin >> amount;
-				populateAccounts(userVector, userFile);
-				withdrawToAccount(accountVector, accountType, amount);
-				updateUserAccounts(accountVector, userFile, sessionID);
+				cout << "Enter username: ";
+				cin >> usern;
+				cin.ignore(1000, '\n');
+				cout << "Enter password: ";
+				cin >> passw;
+				userFile = usern + ".txt";
+				if (attemptLogIn(usern, passw)) { //user login
+					printWithdraw();
+					cout << "Enter account type (1-6): ";
+					cin >> accountType;
+					cout << "Enter withdraw amount: " ;
+					cin >> amount;
+					userVector = populateAccounts(userVector, userFile);
+					if (accountType >= 1 && accountType <= 6 && amount > 0) {					
+						withdrawToAccount(userVector, accountType, amount); //handles balance less than 0
+						updateUserAccounts(userVector, userFile, sessionID);
+					}
+				}
+				//userVector.clear();
 				break; 
 			case '4': //transaction history
 				printTransactionHistory();
